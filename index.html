@@ -304,25 +304,25 @@
       if (categoryChart) categoryChart.destroy();
       const cats = Object.keys(data.categories || {});
       categoryChart = new Chart(catCtx, {
-          type: 'bar',
-          data: {  // ✅ "data:" is required!
-            labels: cats,
-            datasets: [{
-               cats.map(c => (data.categories || {})[c] || 0),
-              backgroundColor: cats.map(c => {
-                const map = {
-                  'Movie/TV': '#8b5cf6',
-                  'Book': '#ec4899',
-                  'Music': '#f97316',
-                  'Game': '#0ea5e9',
-                  'Other': '#64748b'
-                };
-                return map[c] || '#64748b';
-              }),
-              borderRadius: 8,
-              borderSkipped: false
-            }]
-          },
+        type: 'bar',
+        data: {  // ✅ ADD THIS
+          labels: cats,
+          datasets: [{
+             cats.map(c => (data.categories || {})[c] || 0),
+            backgroundColor: cats.map(c => {
+              const map = {
+                'Movie/TV': '#8b5cf6',
+                'Book': '#ec4899',
+                'Music': '#f97316',
+                'Game': '#0ea5e9',
+                'Other': '#64748b'
+              };
+              return map[c] || '#64748b';
+            }),
+            borderRadius: 8,
+            borderSkipped: false
+          }]
+        },
         options: {
           responsive: true,
           maintainAspectRatio: false,
@@ -335,14 +335,13 @@
           }
         }
       });
-
       // Sentiment Chart
       const sentCtx = document.getElementById('sentimentChart').getContext('2d');
       if (sentimentChart) sentimentChart.destroy();
       const sent = data.sentiment || {};
       sentimentChart = new Chart(sentCtx, {
         type: 'doughnut',
-         {
+        data: {  // ✅ ADD THIS
           labels: ['Positive', 'Neutral', 'Negative'],
           datasets: [{
              [sent.Positive || 0, sent.Neutral || 0, sent.Negative || 0],
@@ -358,7 +357,6 @@
           }
         }
       });
-    };
 
     const renderPosts = (posts) => {
       const container = document.getElementById('postsContainer');
