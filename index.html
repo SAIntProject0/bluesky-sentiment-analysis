@@ -1,86 +1,422 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>ReviewSky Debug Dashboard</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ReviewSky Sentiment Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎭</text></svg>">
   <style>
-    body { font-family: monospace; padding: 20px; background: #f5f5f5; }
-    .card { background: white; padding: 15px; margin: 10px 0; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-    .error { color: red; }
-    .success { color: green; }
+    :root {
+      --bg: #fafafa;
+      --text: #1e293b;
+      --card: #ffffff;
+      --border: #e2e8f0;
+      --positive: #10b981;
+      --neutral: #64748b;
+      --negative: #ef4444;
+      --movie: #8b5cf6;
+      --book: #ec4899;
+      --music: #f97316;
+      --game: #0ea5e9;
+      --other: #64748b;
+      --shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
+      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+    [data-theme="dark"] {
+      --bg: #0f172a;
+      --text: #f1f5f9;
+      --card: #1e293b;
+      --border: #334155;
+      --shadow: 0 10px 25px -5px rgba(0,0,0,0.3);
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 24px;
+      transition: var(--transition);
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      background: linear-gradient(90deg, var(--movie), var(--book), var(--music), var(--game));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: fadeIn 1s ease-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .theme-btn {
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 10px 20px;
+      border-radius: 14px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: var(--transition);
+      box-shadow: var(--shadow);
+    }
+    .theme-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px -6px rgba(0,0,0,0.15);
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 24px;
+      margin-bottom: 36px;
+    }
+    .stat-card {
+      background: var(--card);
+      border-radius: 20px;
+      padding: 24px;
+      text-align: center;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      animation: slideUp 0.6s ease-out;
+    }
+    .stat-card:nth-child(2) { animation-delay: 0.1s; }
+    .stat-card:nth-child(3) { animation-delay: 0.2s; }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .stat-label {
+      font-size: 1.1rem;
+      opacity: 0.8;
+      margin-bottom: 10px;
+    }
+    .stat-value {
+      font-size: 3rem;
+      font-weight: 800;
+      background: linear-gradient(90deg, var(--positive), var(--neutral), var(--negative));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .positive .stat-value { color: var(--positive); background: none; }
+    .neutral .stat-value { color: var(--neutral); background: none; }
+    .negative .stat-value { color: var(--negative); background: none; }
+    .charts {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      margin-bottom: 40px;
+    }
+    @media (max-width: 900px) {
+      .charts { grid-template-columns: 1fr; }
+    }
+    .chart-card {
+      background: var(--card);
+      border-radius: 20px;
+      padding: 24px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      animation: fadeIn 1s ease-out;
+    }
+    .chart-card h3 {
+      margin-bottom: 20px;
+      font-size: 1.4rem;
+      font-weight: 700;
+    }
+    .posts-section h2 {
+      margin-bottom: 20px;
+      font-size: 1.8rem;
+      font-weight: 700;
+    }
+    .posts-grid {
+      display: grid;
+      gap: 24px;
+      animation: fadeIn 1.2s ease-out;
+    }
+    .post-card {
+      background: var(--card);
+      border-radius: 20px;
+      padding: 24px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      animation: fadeIn 1.3s ease-out;
+    }
+    .post-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px -10px rgba(0,0,0,0.15);
+    }
+    .post-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      font-weight: 700;
+    }
+    .post-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .category-badge {
+      padding: 6px 14px;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: white;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .cat-movie { background: var(--movie); }
+    .cat-book { background: var(--book); }
+    .cat-music { background: var(--music); }
+    .cat-game { background: var(--game); }
+    .cat-other { background: var(--other); }
+    .sentiment {
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+    .sent-pos { color: var(--positive); }
+    .sent-neut { color: var(--neutral); }
+    .sent-neg { color: var(--negative); }
+    .post-text {
+      line-height: 1.7;
+      font-size: 1.05rem;
+      opacity: 0.95;
+    }
+    .last-update {
+      text-align: center;
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      opacity: 0.8;
+      font-style: italic;
+      font-size: 1.05rem;
+    }
+    .loading {
+      text-align: center;
+      padding: 60px 20px;
+      font-size: 1.3rem;
+      color: var(--neutral);
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+      0% { opacity: 0.6; }
+      50% { opacity: 1; }
+      100% { opacity: 0.6; }
+    }
+    .error {
+      background: #fee;
+      color: #c00;
+      padding: 20px;
+      border-radius: 16px;
+      margin: 20px 0;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
-  <h1>🔍 ReviewSky Debug Dashboard</h1>
-  
-  <div class="card">
-    <strong>Last update:</strong> <span id="timestamp">Loading...</span>
-  </div>
+  <div class="container">
+    <header>
+      <h1>ReviewSky Sentiment Dashboard</h1>
+      <button class="theme-btn" id="themeToggle">🌓 Toggle Theme</button>
+    </header>
 
-  <div class="card">
-    <h3>📊 Sentiment Counts</h3>
-    <div>Positive: <span id="pos">?</span></div>
-    <div>Neutral: <span id="neut">?</span></div>
-    <div>Negative: <span id="neg">?</span></div>
-  </div>
+    <div class="stats-grid">
+      <div class="stat-card positive">
+        <div class="stat-label">Positive</div>
+        <div class="stat-value" id="positiveCount">0</div>
+      </div>
+      <div class="stat-card neutral">
+        <div class="stat-label">Neutral</div>
+        <div class="stat-value" id="neutralCount">0</div>
+      </div>
+      <div class="stat-card negative">
+        <div class="stat-label">Negative</div>
+        <div class="stat-value" id="negativeCount">0</div>
+      </div>
+    </div>
 
-  <div class="card">
-    <h3>📂 Categories</h3>
-    <div id="categories">Loading...</div>
-  </div>
+    <div class="charts">
+      <div class="chart-card">
+        <h3>Reviews by Category</h3>
+        <canvas id="categoryChart" height="220"></canvas>
+      </div>
+      <div class="chart-card">
+        <h3>Sentiment Distribution</h3>
+        <canvas id="sentimentChart" height="220"></canvas>
+      </div>
+    </div>
 
-  <div class="card">
-    <h3>🧾 First Post Preview</h3>
-    <div id="first-post">No posts</div>
-  </div>
+    <div class="posts-section">
+      <h2>Latest Reviews from #ReviewSky</h2>
+      <div class="posts-grid" id="postsContainer">
+        <div class="loading">Loading real-time sentiment data...</div>
+      </div>
+    </div>
 
-  <div class="card">
-    <h3>📡 Raw JSON (for debugging)</h3>
-    <pre id="raw" style="max-height:200px; overflow:auto;"></pre>
+    <div class="last-update">
+      Auto-refreshes every 30 seconds • Updated every 2 hours via UNIX cron
+    </div>
   </div>
 
   <script>
-    async function load() {
-      try {
-        // Fetch with cache-busting
-        const res = await fetch('data/sentiment.json?' + Date.now());
-        if (!res.ok) throw new Error(`HTTP ${res.status}: ${res.statusText}`);
-        
-        const data = await res.json();
-        document.getElementById('raw').textContent = JSON.stringify(data, null, 2);
+    // Theme toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    themeToggle.textContent = savedTheme === 'light' ? '🌙 Dark Mode' : '☀️ Light Mode';
 
-        // Update UI
-        document.getElementById('timestamp').textContent = new Date(data.timestamp).toString();
-        document.getElementById('pos').textContent = data.sentiment?.Positive || 0;
-        document.getElementById('neut').textContent = data.sentiment?.Neutral || 0;
-        document.getElementById('neg').textContent = data.sentiment?.Negative || 0;
+    themeToggle.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme');
+      const next = current === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+      themeToggle.textContent = next === 'light' ? '🌙 Dark Mode' : '☀️ Light Mode';
+    });
 
-        // Categories
-        const catDiv = document.getElementById('categories');
-        catDiv.innerHTML = '';
-        for (const [cat, count] of Object.entries(data.categories || {})) {
-          const p = document.createElement('div');
-          p.textContent = `${cat}: ${count}`;
-          catDiv.appendChild(p);
+    // Chart instances
+    let categoryChart, sentimentChart;
+
+    const renderCharts = (data) => {
+      // Category Chart
+      const catCtx = document.getElementById('categoryChart').getContext('2d');
+      if (categoryChart) categoryChart.destroy();
+      const cats = Object.keys(data.categories || {});
+      categoryChart = new Chart(catCtx, {
+        type: 'bar',
+         {
+          labels: cats,
+          datasets: [{
+             cats.map(c => (data.categories || {})[c] || 0),
+            backgroundColor: cats.map(c => {
+              const map = {
+                'Movie/TV': '#8b5cf6',
+                'Book': '#ec4899',
+                'Music': '#f97316',
+                'Game': '#0ea5e9',
+                'Other': '#64748b'
+              };
+              return map[c] || '#64748b';
+            }),
+            borderRadius: 8,
+            borderSkipped: false
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: { stepSize: 1 }
+            }
+          }
         }
+      });
 
-        // First post
-        if (data.posts && data.posts.length > 0) {
-          const p = data.posts[0];
-          document.getElementById('first-post').innerHTML = 
-            `<strong>@${p.handle}</strong> [${p.category}]<br>${p.text}<br><em>${p.label} (${(p.score*100).toFixed(1)}%)</em>`;
+      // Sentiment Chart
+      const sentCtx = document.getElementById('sentimentChart').getContext('2d');
+      if (sentimentChart) sentimentChart.destroy();
+      const sent = data.sentiment || {};
+      sentimentChart = new Chart(sentCtx, {
+        type: 'doughnut',
+         {
+          labels: ['Positive', 'Neutral', 'Negative'],
+          datasets: [{
+             [sent.Positive || 0, sent.Neutral || 0, sent.Negative || 0],
+            backgroundColor: ['#10b981', '#64748b', '#ef4444'],
+            borderWidth: 0
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'bottom' }
+          }
         }
+      });
+    };
 
-        console.log("✅ Data loaded successfully", data);
-      } catch (err) {
-        console.error("❌ Load failed", err);
-        document.getElementById('timestamp').className = 'error';
-        document.getElementById('timestamp').textContent = 'ERROR: ' + err.message;
+    const renderPosts = (posts) => {
+      const container = document.getElementById('postsContainer');
+      if (!posts || posts.length === 0) {
+        container.innerHTML = '<div class="loading">No reviews available yet.</div>';
+        return;
       }
-    }
 
-    load();
-    setInterval(load, 30000);
+      container.innerHTML = posts.map(post => {
+        const catClass = 
+          post.category === 'Movie/TV' ? 'cat-movie' :
+          post.category === 'Book' ? 'cat-book' :
+          post.category === 'Music' ? 'cat-music' :
+          post.category === 'Game' ? 'cat-game' : 'cat-other';
+        const sentClass = 
+          post.label === 'Positive' ? 'sent-pos' :
+          post.label === 'Negative' ? 'sent-neg' : 'sent-neut';
+
+        return `
+          <div class="post-card">
+            <div class="post-header">
+              <span>@${post.handle}</span>
+              <span class="sentiment ${sentClass}">${post.label} (${Math.round(post.score * 100)}%)</span>
+            </div>
+            <div class="post-meta">
+              <span class="category-badge ${catClass}">${post.category}</span>
+            </div>
+            <div class="post-text">${(post.text || '').replace(/\n/g, '<br>')}</div>
+          </div>
+        `;
+      }).join('');
+    };
+
+    const updateUI = (data) => {
+      document.getElementById('positiveCount').textContent = (data.sentiment?.Positive) || 0;
+      document.getElementById('neutralCount').textContent = (data.sentiment?.Neutral) || 0;
+      document.getElementById('negativeCount').textContent = (data.sentiment?.Negative) || 0;
+
+      renderCharts(data);
+      renderPosts(data.posts || []);
+    };
+
+    const loadData = async () => {
+      try {
+        const res = await fetch(`data/sentiment.json?_=${Date.now()}`);
+        if (!res.ok) throw new Error(`Failed to load data (${res.status})`);
+        const data = await res.json();
+        updateUI(data);
+      } catch (err) {
+        console.error('Load error:', err);
+        document.getElementById('postsContainer').innerHTML = 
+          `<div class="error">⚠️ Failed to load data.<br>${err.message}<br>Check console for details.</div>`;
+      }
+    };
+
+    // Initial load + auto-refresh
+    loadData();
+    setInterval(loadData, 30000);
   </script>
 </body>
 </html>
