@@ -45,6 +45,14 @@
     .last-update{margin-top:18px;padding-top:12px;border-top:1px solid var(--border);opacity:.85;font-style:italic}
     .loading{text-align:center;padding:40px;color:var(--neutral)}
     .error{background:#fee;padding:12px;border-radius:10px;color:#900}
+    .chart-card canvas {
+      display: block;        /* prevents inline baseline spacing oddness */
+      width: 100% !important;/* fill available width */
+      height: 220px !important; /* fixed visual height so Chart.js won't expand parent */
+      max-height: 380px;     /* safety cap for very tall screens */
+      object-fit: contain;   /* safe fallback */
+    }
+    #trendCard canvas { height: 260px !important; }
     @media (max-width:480px){h1{font-size:1.3rem}}
   </style>
 </head>
@@ -224,21 +232,21 @@
             { label: 'Positive', data: pos, backgroundColor: 'rgba(16,185,129,0.9)' },
             { label: 'Neutral', data: neut, backgroundColor: 'rgba(100,116,139,0.9)' },
             { label: 'Negative', data: neg, backgroundColor: 'rgba(239,68,68,0.9)' }
-          ]}, options: { responsive:true, maintainAspectRatio:false, scales:{ x:{ stacked:true }, y:{ stacked:true, beginAtZero:true }}, plugins:{legend:{position:'bottom'}} }
+          ]}, options: { responsive:true, maintainAspectRatio: true, scales:{ x:{ stacked:true }, y:{ stacked:true, beginAtZero:true }}, plugins:{legend:{position:'bottom'}} }
         });
       } else {
         categoryChart = new Chart(catCtx, {
           type: 'bar', data: {
             labels: categories,
             datasets: [{ label:'Count', data: categoryCounts, backgroundColor: categories.map(c => ({'Movie/TV':'#8b5cf6','Book':'#ec4899','Music':'#f97316','Game':'#0ea5e9','Other':'#64748b'}[c] || '#64748b')), borderRadius:8, borderSkipped:false }]
-          }, options: { responsive:true, maintainAspectRatio:false, scales:{ y:{ beginAtZero:true, ticks:{ stepSize:1 } } }, plugins:{ legend:{ display:false } } }
+          }, options: { responsive:true, maintainAspectRatio: true, scales:{ y:{ beginAtZero:true, ticks:{ stepSize:1 } } }, plugins:{ legend:{ display:false } } }
         });
       }
 
       // sentiment doughnut
       const sentCtx = sentEl.getContext('2d');
       sentimentChart = new Chart(sentCtx, {
-        type: 'doughnut', data: { labels:['Positive','Neutral','Negative'], datasets:[{ data: sentCounts, backgroundColor:['#10b981','#64748b','#ef4444'], borderWidth:0 }] }, options: { responsive:true, maintainAspectRatio:false, plugins:{legend:{position:'bottom'}} }
+        type: 'doughnut', data: { labels:['Positive','Neutral','Negative'], datasets:[{ data: sentCounts, backgroundColor:['#10b981','#64748b','#ef4444'], borderWidth:0 }] }, options: { responsive:true, maintainAspectRatio: true, plugins:{legend:{position:'bottom'}} }
       });
 
       // trend chart (only show if history present or mode=trend)
@@ -250,7 +258,7 @@
         const posSeries = history ? history.map(h=>h.Positive||0) : posts.slice(-30).map(p=>p.label==='Positive'?1:0);
         const neutSeries = history ? history.map(h=>h.Neutral||0) : posts.slice(-30).map(p=>p.label==='Neutral'?1:0);
         const negSeries = history ? history.map(h=>h.Negative||0) : posts.slice(-30).map(p=>p.label==='Negative'?1:0);
-        trendChart = new Chart(tctx, { type:'line', data:{ labels: times.map(t=>new Date(t).toLocaleTimeString()), datasets:[ { label:'Positive', data:posSeries, tension:0.3, fill:false }, { label:'Neutral', data:neutSeries, tension:0.3, fill:false }, { label:'Negative', data:negSeries, tension:0.3, fill:false } ]}, options:{ responsive:true, maintainAspectRatio:false, plugins:{legend:{position:'bottom'}}, scales:{ y:{ beginAtZero:true } } } });
+        trendChart = new Chart(tctx, { type:'line', data:{ labels: times.map(t=>new Date(t).toLocaleTimeString()), datasets:[ { label:'Positive', data:posSeries, tension:0.3, fill:false }, { label:'Neutral', data:neutSeries, tension:0.3, fill:false }, { label:'Negative', data:negSeries, tension:0.3, fill:false } ]}, options:{ responsive:true, maintainAspectRatio: true, plugins:{legend:{position:'bottom'}}, scales:{ y:{ beginAtZero:true } } } });
       } else {
         if(trendCard) trendCard.style.display = 'none';
       }
