@@ -1,339 +1,86 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Bluesky Sentiment Dashboard</title>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <meta charset="utf-8">
+  <title>ReviewSky Debug Dashboard</title>
   <style>
-    :root {
-      --bg: #ffffff;
-      --text: #333333;
-      --card-bg: #f8f9fa;
-      --positive: #4caf50;
-      --neutral: #9e9e9e;
-      --negative: #f44336;
-      --border: #e0e0e0;
-    }
-    [data-theme="dark"] {
-      --bg: #121212;
-      --text: #e0e0e0;
-      --card-bg: #1e1e1e;
-      --border: #333333;
-    }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Segoe UI', system-ui, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      padding: 20px;
-    }
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 25px;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-    h1 {
-      font-size: 2.2rem;
-      background: linear-gradient(90deg, var(--positive), var(--neutral), var(--negative));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-    .theme-toggle {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      color: var(--text);
-      padding: 8px 16px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: 600;
-    }
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 16px;
-      margin-bottom: 25px;
-    }
-    .stat-card {
-      background: var(--card-bg);
-      border-radius: 12px;
-      padding: 20px;
-      text-align: center;
-      border: 1px solid var(--border);
-    }
-    .stat-value {
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin: 10px 0;
-    }
-    .positive .stat-value { color: var(--positive); }
-    .neutral .stat-value { color: var(--neutral); }
-    .negative .stat-value { color: var(--negative); }
-    .charts {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 25px;
-      margin-bottom: 30px;
-    }
-    @media (max-width: 900px) {
-      .charts { grid-template-columns: 1fr; }
-    }
-    .chart-container {
-      background: var(--card-bg);
-      border-radius: 12px;
-      padding: 20px;
-      border: 1px solid var(--border);
-    }
-    .posts-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin: 25px 0 15px;
-    }
-    .posts {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-    .post {
-      background: var(--card-bg);
-      border-radius: 12px;
-      padding: 18px;
-      border-left: 4px solid var(--neutral);
-      border: 1px solid var(--border);
-    }
-    .post.positive { border-left-color: var(--positive); }
-    .post.neutral { border-left-color: var(--neutral); }
-    .post.negative { border-left-color: var(--negative); }
-    .post-header {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 10px;
-      font-weight: 600;
-    }
-    .post-sentiment {
-      font-size: 0.9rem;
-      opacity: 0.8;
-    }
-    .positive .post-sentiment { color: var(--positive); }
-    .negative .post-sentiment { color: var(--negative); }
-    .last-update {
-      text-align: center;
-      margin-top: 20px;
-      opacity: 0.7;
-      font-style: italic;
-    }
-    .loading {
-      text-align: center;
-      padding: 40px;
-      font-size: 1.2rem;
-    }
+    body { font-family: monospace; padding: 20px; background: #f5f5f5; }
+    .card { background: white; padding: 15px; margin: 10px 0; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    .error { color: red; }
+    .success { color: green; }
   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>Bluesky Sentiment Dashboard</h1>
-      <button class="theme-toggle" id="themeToggle">🌓 Dark Mode</button>
-    </header>
+  <h1>🔍 ReviewSky Debug Dashboard</h1>
+  
+  <div class="card">
+    <strong>Last update:</strong> <span id="timestamp">Loading...</span>
+  </div>
 
-    <div class="stats">
-      <div class="stat-card positive">
-        <div>Positive</div>
-        <div class="stat-value" id="positiveCount">0</div>
-      </div>
-      <div class="stat-card neutral">
-        <div>Neutral</div>
-        <div class="stat-value" id="neutralCount">0</div>
-      </div>
-      <div class="stat-card negative">
-        <div>Negative</div>
-        <div class="stat-value" id="negativeCount">0</div>
-      </div>
-    </div>
+  <div class="card">
+    <h3>📊 Sentiment Counts</h3>
+    <div>Positive: <span id="pos">?</span></div>
+    <div>Neutral: <span id="neut">?</span></div>
+    <div>Negative: <span id="neg">?</span></div>
+  </div>
 
-    <div class="charts">
-      <div class="chart-container">
-        <h3>Sentiment Distribution</h3>
-        <canvas id="pieChart" height="200"></canvas>
-      </div>
-      <div class="chart-container">
-        <h3>Sentiment Trends (Last 5 Runs)</h3>
-        <canvas id="trendChart" height="200"></canvas>
-      </div>
-    </div>
+  <div class="card">
+    <h3>📂 Categories</h3>
+    <div id="categories">Loading...</div>
+  </div>
 
-    <div class="posts-header">
-      <h2>Recent Bluesky Posts</h2>
-      <div>Last updated: <span id="lastUpdate">...</span></div>
-    </div>
-    <div class="posts" id="postsContainer">
-      <div class="loading">Loading sentiment data...</div>
-    </div>
+  <div class="card">
+    <h3>🧾 First Post Preview</h3>
+    <div id="first-post">No posts</div>
+  </div>
 
-    <div class="last-update">
-      Auto-refreshes every 30 seconds • Data updated every 6 hours via UNIX cron
-    </div>
+  <div class="card">
+    <h3>📡 Raw JSON (for debugging)</h3>
+    <pre id="raw" style="max-height:200px; overflow:auto;"></pre>
   </div>
 
   <script>
-    // Theme toggle
-    const themeToggle = document.getElementById('themeToggle');
-    const currentTheme = localStorage.getItem('theme') || 'light';
-    document.documentElement.setAttribute('data-theme', currentTheme);
-    themeToggle.textContent = currentTheme === 'light' ? '🌙 Dark Mode' : '☀️ Light Mode';
+    async function load() {
+      try {
+        // Fetch with cache-busting
+        const res = await fetch('data/sentiment.json?' + Date.now());
+        if (!res.ok) throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+        
+        const data = await res.json();
+        document.getElementById('raw').textContent = JSON.stringify(data, null, 2);
 
-    themeToggle.addEventListener('click', () => {
-      const newTheme = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
-      document.documentElement.setAttribute('data-theme', newTheme);
-      localStorage.setItem('theme', newTheme);
-      themeToggle.textContent = newTheme === 'light' ? '🌙 Dark Mode' : '☀️ Light Mode';
-    });
+        // Update UI
+        document.getElementById('timestamp').textContent = new Date(data.timestamp).toString();
+        document.getElementById('pos').textContent = data.sentiment?.Positive || 0;
+        document.getElementById('neut').textContent = data.sentiment?.Neutral || 0;
+        document.getElementById('neg').textContent = data.sentiment?.Negative || 0;
 
-    // Chart instances
-    let pieChart, trendChart;
-
-    // Load historical data (simulate last 5 runs)
-    let historicalData = JSON.parse(localStorage.getItem('sentimentHistory')) || [];
-
-    // Format time
-    const formatTime = (isoString) => {
-      return new Date(isoString).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-    };
-
-    // Update UI
-    const updateDashboard = (data) => {
-      // Update counts
-      document.getElementById('positiveCount').textContent = data.positive;
-      document.getElementById('neutralCount').textContent = data.neutral;
-      document.getElementById('negativeCount').textContent = data.negative;
-      document.getElementById('lastUpdate').textContent = new Date(data.timestamp).toLocaleString();
-
-      // Save to history (keep last 5)
-      historicalData.push({
-        time: formatTime(data.timestamp),
-        positive: data.positive,
-        neutral: data.neutral,
-        negative: data.negative
-      });
-      if (historicalData.length > 5) historicalData.shift();
-      localStorage.setItem('sentimentHistory', JSON.stringify(historicalData));
-
-      // Pie chart
-      if (pieChart) pieChart.destroy();
-      const pieCtx = document.getElementById('pieChart').getContext('2d');
-      pieChart = new Chart(pieCtx, {
-        type: 'pie',
-        data: {
-          labels: ['Positive', 'Neutral', 'Negative'],
-          datasets: [{
-            data: [data.positive, data.neutral, data.negative],
-            backgroundColor: ['#4caf50', '#9e9e9e', '#f44336'],
-            borderWidth: 0
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: { position: 'bottom' }
-          }
+        // Categories
+        const catDiv = document.getElementById('categories');
+        catDiv.innerHTML = '';
+        for (const [cat, count] of Object.entries(data.categories || {})) {
+          const p = document.createElement('div');
+          p.textContent = `${cat}: ${count}`;
+          catDiv.appendChild(p);
         }
-      });
 
-      // Trend chart
-      if (trendChart) trendChart.destroy();
-      const trendCtx = document.getElementById('trendChart').getContext('2d');
-      trendChart = new Chart(trendCtx, {
-        type: 'line',
-        data: {
-          labels: historicalData.map(h => h.time),
-          datasets: [
-            {
-              label: 'Positive',
-              data: historicalData.map(h => h.positive),
-              borderColor: '#4caf50',
-              backgroundColor: 'rgba(76, 175, 80, 0.1)',
-              tension: 0.3,
-              fill: true
-            },
-            {
-              label: 'Neutral',
-              data: historicalData.map(h => h.neutral),
-              borderColor: '#9e9e9e',
-              backgroundColor: 'rgba(158, 158, 158, 0.1)',
-              tension: 0.3,
-              fill: true
-            },
-            {
-              label: 'Negative',
-              data: historicalData.map(h => h.negative),
-              borderColor: '#f44336',
-              backgroundColor: 'rgba(244, 67, 54, 0.1)',
-              tension: 0.3,
-              fill: true
-            }
-          ]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: { position: 'bottom' }
-          },
-          scales: {
-            y: {
-              beginAtZero: true,
-              ticks: { stepSize: 1 }
-            }
-          }
+        // First post
+        if (data.posts && data.posts.length > 0) {
+          const p = data.posts[0];
+          document.getElementById('first-post').innerHTML = 
+            `<strong>@${p.handle}</strong> [${p.category}]<br>${p.text}<br><em>${p.label} (${(p.score*100).toFixed(1)}%)</em>`;
         }
-      });
 
-      // Posts
-      const postsContainer = document.getElementById('postsContainer');
-      postsContainer.innerHTML = '';
-      data.posts.forEach(post => {
-        const postEl = document.createElement('div');
-        postEl.className = `post ${post.label.toLowerCase()}`;
-        postEl.innerHTML = `
-          <div class="post-header">
-            <span>${post.handle}</span>
-            <span class="post-sentiment">${post.label} (${Math.round(post.score * 100)}%)</span>
-          </div>
-          <div>${post.text.replace(/\n/g, '<br>')}</div>
-        `;
-        postsContainer.appendChild(postEl);
-      });
-    };
+        console.log("✅ Data loaded successfully", data);
+      } catch (err) {
+        console.error("❌ Load failed", err);
+        document.getElementById('timestamp').className = 'error';
+        document.getElementById('timestamp').textContent = 'ERROR: ' + err.message;
+      }
+    }
 
-    // Fetch data
-    const fetchData = () => {
-      fetch('data/sentiment.json?t=' + Date.now())
-        .then(res => {
-          if (!res.ok) throw new Error('Data not ready yet');
-          return res.json();
-        })
-        .then(updateDashboard)
-        .catch(err => {
-          console.warn('Failed to load data:', err);
-          document.getElementById('postsContainer').innerHTML = 
-            '<div class="loading">Waiting for first data update...<br><small>Check back in a few minutes!</small></div>';
-        });
-    };
-
-    // Initial load + auto-refresh
-    fetchData();
-    setInterval(fetchData, 30000); // Every 30 seconds
+    load();
+    setInterval(load, 30000);
   </script>
 </body>
 </html>
