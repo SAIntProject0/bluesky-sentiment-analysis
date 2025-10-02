@@ -1,17 +1,8 @@
 {
-  "timestamp": "2025-09-29T12:34:18.325643Z",
-  "sentiment": {
-    "Positive": 14,
-    "Neutral": 7,
-    "Negative": 4
-  },
-  "categories": {
-    "Movie/TV": 5,
-    "Book": 6,
-    "Music": 3,
-    "Game": 9,
-    "Other": 2
-  },
+  "timestamp": "2025-10-02T18:21:53.029240Z",
+  "positive": 14,
+  "neutral": 7,
+  "negative": 4,
   "posts": [
     {
       "text": "\ud83d\udccc Feed Works with keyword COMBOS ie:\n[Book] + [Review] or\n[Anyone Got] + [Movie Idea]\n\nAttempts to pick up on reviews and suggestion requests for everything I can think of: Movies, Books, Games, Theatre, Albums etc. Ideally this will help people easily find ideas for new media to engage with.",
