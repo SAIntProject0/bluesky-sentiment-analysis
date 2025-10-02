@@ -1,0 +1,33 @@
+name: Scheduled Sentiment Analysis
+
+on:
+  schedule:
+    - cron: '0 */2 * * *'    # At minute 0 every 2nd hour
+  workflow_dispatch:         # Allows manual trigger
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Create venv & install dependencies
+      run: |
+        python -m venv venv
+        source venv/bin/activate
+        pip install requests
+
+    - name: Run sentiment analysis
+      run: bash sentiment.sh
+      env:
+        BSKY_HANDLE: ${{ secrets.BSKY_HANDLE }}
+        BSKY_APP_PASSWORD: ${{ secrets.BSKY_APP_PASSWORD }}
+        HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
