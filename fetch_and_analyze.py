@@ -6,11 +6,25 @@ BSKY_PASS = os.environ["BSKY_APP_PASSWORD"]
 HF_TOKEN = os.environ["HF_TOKEN"]
 
 # Login
-sess = requests.post("https://bsky.social/xrpc/com.atproto.server.createSession", json={
-    "identifier": BSKY_HANDLE,
-    "password": BSKY_PASS,
-}).json()
+resp = requests.post(
+    "https://bsky.social/xrpc/com.atproto.server.createSession",
+    json={"identifier": BSKY_HANDLE, "password": BSKY_PASS},
+)
+print("🔍 Login HTTP status:", resp.status_code)
+try:
+    sess = resp.json()
+    print("🔍 Login response JSON:", sess)
+except ValueError:
+    print("❌ Failed to parse JSON. Response text:", resp.text)
+    exit(1)
+
+if "accessJwt" not in sess:
+    print("❌ ‘accessJwt’ missing. Full response:", sess)
+    exit(1)
+
 token = sess["accessJwt"]
+print(f"✅ Logged in as {BSKY_HANDLE}")
+
 
 # Get posts from 1 popular account
 headers = {"Authorization": f"Bearer {token}"}
