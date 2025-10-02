@@ -13,6 +13,9 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v2
 
+      - name: Make script executable
+        run: chmod +x sentiment.sh
+
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
@@ -24,11 +27,13 @@ jobs:
           source venv/bin/activate
           pip install requests
 
-      - name: Run sentiment analysis
-        run: bash sentiment.sh
+      - name: Run sentiment analysis (with debug)
+        run: |
+          set -x
+          source venv/bin/activate
+          ./sentiment.sh
         env:
           BSKY_HANDLE: ${{ secrets.BSKY_HANDLE }}
           BSKY_APP_PASSWORD: ${{ secrets.BSKY_APP_PASSWORD }}
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
