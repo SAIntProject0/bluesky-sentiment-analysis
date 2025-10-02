@@ -237,12 +237,12 @@ def process_and_analyze():
     # Keep only recent posts (last 1000 to manage size)
     all_posts = sorted(all_posts, key=lambda x: x.get("timestamp", ""), reverse=True)[:1000]
     
-    # Calculate sentiment counts
-    sentiment_counts = {"Positive": 0, "Neutral": 0, "Negative": 0}
+    # Calculate sentiment counts dynamically with lowercase keys to match dashboard
+    sentiment_counts = {"positive": 0, "neutral": 0, "negative": 0}
     category_counts = {}
     
     for post in all_posts:
-        sentiment_counts[post["label"]] += 1
+        sentiment_counts[post["label"].lower()] += 1
         category = post.get("category", "Other")
         category_counts[category] = category_counts.get(category, 0) + 1
     
@@ -263,9 +263,9 @@ def process_and_analyze():
     
     print("✅ Analysis complete!")
     print(f"📈 Total posts: {len(all_posts)} (added {len(processed_posts)} new)")
-    print(f"😊 Positive: {sentiment_counts['Positive']}")
-    print(f"😐 Neutral: {sentiment_counts['Neutral']}")
-    print(f"😞 Negative: {sentiment_counts['Negative']}")
+    print(f"😊 Positive: {sentiment_counts['positive']}")
+    print(f"😐 Neutral: {sentiment_counts['neutral']}")
+    print(f"😞 Negative: {sentiment_counts['negative']}")
 
 if __name__ == "__main__":
     process_and_analyze()
