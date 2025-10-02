@@ -5,6 +5,14 @@ BSKY_HANDLE = os.environ["BSKY_HANDLE"]
 BSKY_PASS = os.environ["BSKY_APP_PASSWORD"]
 HF_TOKEN = os.environ["HF_TOKEN"]
 
+- name: Debug secrets
+  run: |
+    echo "Handle: ${BSKY_HANDLE}"
+    echo "Pass prefix: ${BSKY_APP_PASSWORD:0:4}••••"
+  env:
+    BSKY_HANDLE: ${{ secrets.BSKY_HANDLE }}
+    BSKY_APP_PASSWORD: ${{ secrets.BSKY_APP_PASSWORD }}
+
 # Login
 resp = requests.post(
     "https://bsky.social/xrpc/com.atproto.server.createSession",
