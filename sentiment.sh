@@ -1,5 +1,7 @@
 #!/bin/bash
 set -e  # Exit on error
+# activate the venv that Actions created
+source venv/bin/activate
 
 echo "[$(date)] 🚀 Starting Bluesky sentiment analysis..."
 
