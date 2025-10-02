@@ -277,19 +277,21 @@
 
     // --- Data loader ---
     async function loadData(){
-      try{
-        const res = await fetch(`${DATA_PATH}?_=${Date.now()}`);
-        if(!res.ok) throw new Error(`Failed to load (${res.status})`);
-        const data = await res.json();
-        const vizMode = safeGetEl('vizSelect').value;
-        updateUI(data, vizMode);
-        return data;
-      } catch(err){
-        console.error(err);
-        const posts = safeGetEl('postsContainer'); if(posts) posts.innerHTML = `<div class="error">⚠️ Failed to load data: ${err.message}</div>`;
-        return { posts: [] };
-      }
-    }
+  try {
+    const res = await fetch(`${DATA_PATH}?_=${Date.now()}`);
+    if (!res.ok) throw new Error(`Failed to load (${res.status})`);
+    const data = await res.json();
+    console.log("Fetched sentiment.json data:", data); // Add this log to check data
+    updateUI(data, safeGetEl('vizSelect').value);
+    return data;
+  } catch (err) {
+    console.error(err);
+    const posts = safeGetEl('postsContainer');
+    if (posts) posts.innerHTML = `<div class="error">⚠️ Failed to load data: ${err.message}</div>`;
+    return { posts: [] };
+  }
+}
+
 
     // --- Controls ---
     const vizSelect = safeGetEl('vizSelect');
