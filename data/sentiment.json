@@ -1,9 +1,18 @@
 {
-  "timestamp": "2025-10-03T17:15:43.793998Z",
+  "timestamp": "2025-10-03T19:45:35.415022Z",
   "positive": 30,
-  "neutral": 28,
+  "neutral": 29,
   "negative": 19,
   "posts": [
+    {
+      "text": "Called it.\n\nWhat'd I tell you?  WHAT DID I TELL YOU?!",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Neutral",
+      "score": 0.715,
+      "timestamp": "2025-10-03T19:42:31.508Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2ctar7a322e"
+    },
     {
       "text": "Do it! This is perfect and straight out of the CIA sabotage playbook.",
       "handle": "paul.bsky.social",
