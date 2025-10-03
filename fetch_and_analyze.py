@@ -170,9 +170,18 @@ def main():
         if "text" not in post:
             print(f"⚠️ Skipping post without text: {post.get('uri', 'no uri')}")
             continue
-        result = analyze_sentiment_batch([post["text"]])[0]
-        label = label_map.get(result.get("label", "neutral"), "Neutral")
-        score = result.get("score", 0.5)
+        results = analyze_sentiment_batch([post["text"]])
+        # HF returns: [[{label, score}]] for batch of 1
+        if isinstance(results, list) and len(results) > 0:
+            if isinstance(results[0], list) and len(results[0]) > 0:
+                pred = results[0][0]  # ← This is the dict
+            else:
+                pred = results[0]
+        else:
+            pred = {"label": "neutral", "score": 0.5}
+        
+        label = label_map.get(pred.get("label", "neutral"), "Neutral")
+        score = pred.get("score", 0.5)
         processed.append({
             "text": post["text"],
             "handle": post.get("handle", "unknown.bsky.social"),
