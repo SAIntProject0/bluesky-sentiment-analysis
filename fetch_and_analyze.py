@@ -1,7 +1,9 @@
 import os
 import json
 import requests
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
+
+# Use this instead of datetime.utcnow()
 import time
 
 # Your environment variables
@@ -52,7 +54,7 @@ def fetch_posts_from_account(token, repo, limit=15):
                 posts.append({
                     "text": text,
                     "handle": repo,
-                    "timestamp": record.get("value", {}).get("createdAt", datetime.utcnow().isoformat()),
+                    "timestamp": record.get("value", {}).get("createdAt", datetime.now(timezone.utc).isoformat()),
                     "uri": record.get("uri", "")
                 })
         return posts
@@ -60,7 +62,6 @@ def fetch_posts_from_account(token, repo, limit=15):
         return []
 
 def search_posts_by_keyword(token, keyword, limit=10):
-    # Placeholder, adjust based on actual Bluesky search API
     headers = {"Authorization": f"Bearer {token}"}
     resp = requests.get(
         "https://bsky.social/xrpc/app.bsky.feed.searchPosts",
@@ -69,7 +70,25 @@ def search_posts_by_keyword(token, keyword, limit=10):
         timeout=10
     )
     if resp.status_code == 200:
-        return resp.json().get("posts", [])
+        feed = resp.json().get("feed", [])
+        posts = []
+        for item in feed:
+            post_obj = item.get("post", {})
+            record = post_obj.get("record", {})
+            text = record.get("text", "").strip()
+            uri = post_obj.get("uri", "")
+            author = post_obj.get("author", {})
+            handle = author.get("handle", "unknown.bsky.social")
+            created_at = record.get("createdAt", datetime.utcnow().isoformat())
+            
+            if 20 < len(text) < 500:
+                posts.append({
+                    "text": text,
+                    "handle": handle,
+                    "timestamp": created_at,
+                    "uri": uri
+                })
+        return posts
     return []
 
 def categorize_post(text):
@@ -122,6 +141,7 @@ def main():
     if not new_posts:
         print("No new posts.")
         return
+
     if os.path.exists("data/sentiment.json"):
         with open("data/sentiment.json", "r") as f:
             try:
@@ -130,34 +150,42 @@ def main():
                 data = {}
     else:
         data = {}
+
     existing_posts = data.get("posts", [])
-    existing_uris = set([p.get("uri", p["text"]) for p in existing_posts])
-    unique_posts = [p for p in new_posts if p.get("uri", p["text"]) not in existing_uris]
+    existing_uris = set(get_post_id(p) for p in existing_posts)
+    unique_posts = [p for p in new_posts if get_post_id(p) not in existing_uris]
+
     if not unique_posts:
         print("No new unique posts.")
         return
+
     label_map = {"LABEL_0": "Negative", "LABEL_1": "Neutral", "LABEL_2": "Positive"}
     processed = []
     for i, post in enumerate(unique_posts):
+        # Ensure post has "text"
+        if "text" not in post:
+            print(f"⚠️ Skipping post without text: {post.get('uri', 'no uri')}")
+            continue
         result = analyze_sentiment_batch([post["text"]])[0][0]
         label = label_map.get(result.get("label", "LABEL_1"), "Neutral")
         score = result.get("score", 0.5)
         processed.append({
             "text": post["text"],
-            "handle": post["handle"],
+            "handle": post.get("handle", "unknown.bsky.social"),
             "category": categorize_post(post["text"]),
             "label": label,
             "score": round(score, 3),
             "timestamp": post.get("timestamp", datetime.utcnow().isoformat()),
             "uri": post.get("uri", "")
         })
+
     all_posts = existing_posts + processed
-    # Limit size
     all_posts = sorted(all_posts, key=lambda p: p.get("timestamp", ""), reverse=True)[:1000]
-    # Count sentiment
+
     counts = {"Positive":0, "Neutral":0, "Negative":0}
     for p in all_posts:
         counts[p["label"]] += 1
+
     data_out = {
         "timestamp": datetime.utcnow().isoformat() + "Z",
         "positive": counts["Positive"],
@@ -165,7 +193,7 @@ def main():
         "negative": counts["Negative"],
         "posts": all_posts
     }
-    # Save
+
     os.makedirs("data", exist_ok=True)
     with open("data/sentiment.json", "w") as f:
         json.dump(data_out, f, indent=2)
