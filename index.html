@@ -190,6 +190,7 @@
 
     // CSV export
     function exportCSV(posts){ if(!posts || posts.length===0) return alert('No posts to export'); const keys=['handle','category','label','score','text','timestamp','uri']; const rows=[keys.join(',')]; posts.forEach(p=>{ const row = keys.map(k=>`"${String(p[k]??'').replace(/"/g,'""')}"`).join(','); rows.push(row); }); const blob = new Blob([rows.join('
+')],{type:'text/csv'}); const url = URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download='reviews.csv'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url); }"`).join(','); rows.push(row); }); const blob = new Blob([rows.join('
 ')],{type:'text/csv'}); const url = URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download='reviews.csv'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url); }
 
     function destroyIf(c){ if(c && typeof c.destroy==='function') c.destroy(); }
