@@ -1,9 +1,36 @@
 {
-  "timestamp": "2025-10-03T16:00:45.472753Z",
+  "timestamp": "2025-10-03T16:15:41.876363Z",
   "positive": 29,
-  "neutral": 27,
-  "negative": 17,
+  "neutral": 28,
+  "negative": 19,
   "posts": [
+    {
+      "text": "Oh and with the government shut down, U.S. Customs is probably at a standstill.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.693,
+      "timestamp": "2025-10-03T16:06:24.864Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2ch6dans22e"
+    },
+    {
+      "text": "Oh so that's why they named Ft. Eisenhower back to Ft. Gordon?",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Neutral",
+      "score": 0.676,
+      "timestamp": "2025-10-03T16:04:55.882Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2ch3of5ck2e"
+    },
+    {
+      "text": "It's so fucking annoying to find something online and then have to first email whomever the supplier is before you order and be like HAY U GUISE, R U AN AMURIKAN? B/C IF UR NOT I GET TURBO FUCKT IN TEH FACE.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.927,
+      "timestamp": "2025-10-03T16:02:22.094Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2cgx3pwos2w"
+    },
     {
       "text": "I have a package stuck in U.S. Customs right now. \n\nThe shipping company rep said ALL packages are being inspected now with Trump's new idiotic rules, and \"We don't give ETAs for clearance because some packages take 4 hours to clear, some take 4 weeks.\"\n\nTrump has killed international commerce.",
       "handle": "paul.bsky.social",
