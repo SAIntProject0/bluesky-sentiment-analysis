@@ -20,6 +20,9 @@ MAX_POSTS_PER_SOURCE = 15
 BATCH_SIZE = 20
 REQUEST_DELAY = 1
 
+def get_post_id(post):
+    return post.get("uri") or post.get("text", "")[:100]
+
 def login_to_bluesky():
     print("🔐 Logging into Bluesky...")
     resp = requests.post(
