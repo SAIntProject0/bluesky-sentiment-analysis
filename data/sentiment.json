@@ -1,9 +1,27 @@
 {
-  "timestamp": "2025-10-03T21:00:42.190629Z",
+  "timestamp": "2025-10-03T21:15:40.457808Z",
   "positive": 30,
   "neutral": 29,
-  "negative": 22,
+  "negative": 24,
   "posts": [
+    {
+      "text": "I hope you have an entire office dedicated to criminal evidence gathering, because you're going to need it for the laundry list of crimes for the next impeachment hearing.\n\nAlso, good time to remind your Nazi colleagues that the statute of limitations for crimes is longer than 3 years and 3 months.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.504,
+      "timestamp": "2025-10-03T21:09:28.604Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2cy4amef222"
+    },
+    {
+      "text": "Bad news.\n\nwww.theverge.com/news/791533/...",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.786,
+      "timestamp": "2025-10-03T21:06:55.257Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2cxxoelhc22"
+    },
     {
       "text": "Kick the door down and hold the vote anyway?\n\nRepublicans can sit it out if they want, but you guys need to press the issue.",
       "handle": "paul.bsky.social",
