@@ -266,14 +266,30 @@
 
     // --- UI update pipeline ---
     function updateUI(data, mode='default'){
-      const sent = data.sentiment || {};
-      safeGetEl('positiveCount').textContent = sent.Positive || 0;
-      safeGetEl('neutralCount').textContent = sent.Neutral || 0;
-      safeGetEl('negativeCount').textContent = sent.Negative || 0;
-      renderPosts(data.posts || []);
-      renderCharts(data, mode);
-      const lu = safeGetEl('lastUpdate'); if(lu){ lu.textContent = 'Last fetched: ' + new Date().toLocaleString(); }
+    // Safely extract sentiment counts (case-insensitive fallback)
+    const sent = data.sentiment || {};
+    const getSentimentCount = (key) => {
+      // Try exact match first (e.g., "Positive")
+      if (sent[key] !== undefined) return sent[key];
+      // Try lowercase (e.g., "positive")
+      if (sent[key.toLowerCase()] !== undefined) return sent[key.toLowerCase()];
+      // Try title case (e.g., "positive" → "Positive")
+      const titleKey = key.toLowerCase();
+      if (sent[titleKey] !== undefined) return sent[titleKey];
+      return 0;
+    };
+  
+    safeGetEl('positiveCount').textContent = getSentimentCount('Positive');
+    safeGetEl('neutralCount').textContent = getSentimentCount('Neutral');
+    safeGetEl('negativeCount').textContent = getSentimentCount('Negative');
+  
+    renderPosts(data.posts || []);
+    renderCharts(data, mode);
+    const lu = safeGetEl('lastUpdate');
+    if (lu) {
+      lu.textContent = 'Last fetched: ' + new Date().toLocaleString();
     }
+  }
 
     // --- Data loader ---
     async function loadData(){
