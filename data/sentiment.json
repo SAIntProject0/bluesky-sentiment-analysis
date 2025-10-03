@@ -1,9 +1,414 @@
 {
-  "timestamp": "2025-10-02T18:21:53.029240Z",
-  "positive": 14,
-  "neutral": 7,
-  "negative": 4,
+  "timestamp": "2025-10-03T11:00:55.130805Z",
+  "positive": 29,
+  "neutral": 26,
+  "negative": 15,
   "posts": [
+    {
+      "text": "Wait, you mean the company who is completely reliant on Xi Jinping for its entire supply chain bows to dictators?\n\nI\u2019m shocked. SHOCKED I TELL YOU!",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.801,
+      "timestamp": "2025-10-03T04:17:15.282Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2b7kashmk2s"
+    },
+    {
+      "text": "If we're gonna fire people from Federal service, we need to start with all the Republicans who got us into this mess.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.888,
+      "timestamp": "2025-10-02T19:41:17.010Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2acpmoz3s2j"
+    },
+    {
+      "text": "It also tells us they\u2019re doing zero background checks.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.786,
+      "timestamp": "2025-10-02T17:06:25.079Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2a22p7prk22"
+    },
+    {
+      "text": "Hopefully they put him in the same lockup with the others he himself locked up.\n\nThey might like to have a few words with him.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Neutral",
+      "score": 0.76,
+      "timestamp": "2025-10-02T17:04:59.602Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m27zy5p74k22"
+    },
+    {
+      "text": "Why is it even up to him? \n\nReps should assume office the instant the state ratifies the election.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.527,
+      "timestamp": "2025-10-02T16:01:05.664Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m27wfveo2s2f"
+    },
+    {
+      "text": "Soccer dad settles down for sleep, pulls the covers up, and shuts his eyes. He spirals deeper into dreamland, and as the fog of reality fades away, a new scene materializes in his head....\n\nSoccer dad:  \"Hell yeah\"\n\nwww.youtube.com/watch?v=Syqc...",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Neutral",
+      "score": 0.742,
+      "timestamp": "2025-10-02T13:22:43.343Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m27nkpauos2j"
+    },
+    {
+      "text": "Ahhhh my misunderstanding.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.71,
+      "timestamp": "2025-10-02T13:07:24.572Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m27mpd26fs2w"
+    },
+    {
+      "text": "They\u2019ve been more damaging to the USA\u2019s credibility than to Denmark\u2019s.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.898,
+      "timestamp": "2025-10-02T10:53:08.950Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m27f7am4zk2z"
+    },
+    {
+      "text": "Hey remember when Trump gave highly classified info directly to Russian officials 8 years ago?",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.503,
+      "timestamp": "2025-10-02T10:50:41.265Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m27f2tr6ek2z"
+    },
+    {
+      "text": "So they\u2019re trying to steal TikTok and sell it for pennies on the dollar to other oligarchs?\n\nWe are totally Russia now.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.762,
+      "timestamp": "2025-10-02T10:41:40.133Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m27ekpp3722z"
+    },
+    {
+      "text": "en.m.wikipedia.org/wiki/Rent_Is...",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Neutral",
+      "score": 0.893,
+      "timestamp": "2025-10-02T03:05:50.487Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m26l3n25is2x"
+    },
+    {
+      "text": "Me thinks the lady doth protest too much. \n\nHe\u2019s definitely trying to get out in front of something with this.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Neutral",
+      "score": 0.73,
+      "timestamp": "2025-10-02T01:27:24.549Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m26flmp6x22k"
+    },
+    {
+      "text": "Bluesky runs on open protocols with open source code. Today we\u2019re taking an additional step and making a patent non-aggression pledge to ensure that everyone can build confidently on our work.\n\nLearn more and read the pledge in our blog post: bsky.social/about/blog/1...",
+      "handle": "bsky.app",
+      "category": "Book",
+      "label": "Positive",
+      "score": 0.588,
+      "timestamp": "2025-10-01T18:03:20.389Z",
+      "uri": "at://did:plc:z72i7hdynmk6r22z27h6tvur/app.bsky.feed.post/3m25mrktygc2y"
+    },
+    {
+      "text": "All services should now be recovered!",
+      "handle": "atproto.com",
+      "category": "Other",
+      "label": "Neutral",
+      "score": 0.731,
+      "timestamp": "2025-09-24T13:16:28.213Z",
+      "uri": "at://did:plc:ewvi7nxzyoun6zhxrhs64oiz/app.bsky.feed.post/3lzlji5srt225"
+    },
+    {
+      "text": "An upstream network problem has been impacting almost all Bluesky network services for the past 3-4 hours. Posting and other public interactions are disrupted for many accounts.\n\nAs connectivity recovers, the firehose and other services will see large surges of events.",
+      "handle": "atproto.com",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.738,
+      "timestamp": "2025-09-24T12:37:16.101Z",
+      "uri": "at://did:plc:ewvi7nxzyoun6zhxrhs64oiz/app.bsky.feed.post/3lzlhc2o2gc2m"
+    },
+    {
+      "text": "Thank you to the 14,000+ people who shared feedback on our community guidelines! We\u2019re updating our rules for clarity, strengthening enforcement, and introducing product changes for healthier conversations. New guidelines kick in Oct 15. bsky.social/about/blog/0...",
+      "handle": "bsky.app",
+      "category": "Other",
+      "label": "Positive",
+      "score": 0.945,
+      "timestamp": "2025-09-19T23:08:50.497Z",
+      "uri": "at://did:plc:z72i7hdynmk6r22z27h6tvur/app.bsky.feed.post/3lz7yasblh22p"
+    },
+    {
+      "text": "If you've been using a \ud83d\udccc emoji to bookmark posts, @rafael.my and @samuel.bsky.team cooked up a special tool you can use to migrate them to your Saved Posts.\n\nTry it here: pin2saved.vercel.app",
+      "handle": "bsky.app",
+      "category": "Book",
+      "label": "Neutral",
+      "score": 0.766,
+      "timestamp": "2025-09-08T18:24:47.621Z",
+      "uri": "at://did:plc:z72i7hdynmk6r22z27h6tvur/app.bsky.feed.post/3lydtaqtzu22f"
+    },
+    {
+      "text": "v1.108 is rolling out today \ud83d\ude9a\n\nNow live, at long last: Bookmarks, aka Saved Posts. For all those posts you'll definitely plan to come back to!\n\nUpdate the app and give it a try. The button is right down there \ud83d\udc47",
+      "handle": "bsky.app",
+      "category": "Book",
+      "label": "Positive",
+      "score": 0.793,
+      "timestamp": "2025-09-08T18:24:18.334Z",
+      "uri": "at://did:plc:z72i7hdynmk6r22z27h6tvur/app.bsky.feed.post/3lydt7uwac22f"
+    },
+    {
+      "text": "Quick Tip: You can control who replies to your post on Bluesky. \n\nJust tap the \ud83c\udf10 icon on your post to choose: everyone, followers, people you follow, mentioned users - or turn off replies entirely \u2728",
+      "handle": "bsky.app",
+      "category": "Other",
+      "label": "Neutral",
+      "score": 0.816,
+      "timestamp": "2025-09-08T17:27:18.225Z",
+      "uri": "at://did:plc:z72i7hdynmk6r22z27h6tvur/app.bsky.feed.post/3lydpzxb3uc2f"
+    },
+    {
+      "text": "what\u2019s the most unhinged VMAs moment of all time?",
+      "handle": "bsky.app",
+      "category": "Other",
+      "label": "Neutral",
+      "score": 0.6,
+      "timestamp": "2025-09-06T19:56:37.449Z",
+      "uri": "at://did:plc:z72i7hdynmk6r22z27h6tvur/app.bsky.feed.post/3ly6xh4j2dc2v"
+    },
+    {
+      "text": "We've also included some performance improvements in this release to make the experience in the app a bit smoother.\n\nWe've got another release coming soon with some big stuff! Stay tuned \ud83e\udd8b",
+      "handle": "bsky.app",
+      "category": "Other",
+      "label": "Positive",
+      "score": 0.966,
+      "timestamp": "2025-09-03T22:20:25.134Z",
+      "uri": "at://did:plc:z72i7hdynmk6r22z27h6tvur/app.bsky.feed.post/3lxxo3qhpys2c"
+    },
+    {
+      "text": "You can now add people to a Starter Pack directly from their profile. \n\nStarter Packs make it easy to recommend accounts to follow. They already drive nearly 20% of all follows on Bluesky!",
+      "handle": "bsky.app",
+      "category": "Book",
+      "label": "Positive",
+      "score": 0.902,
+      "timestamp": "2025-09-03T22:20:25.133Z",
+      "uri": "at://did:plc:z72i7hdynmk6r22z27h6tvur/app.bsky.feed.post/3lxxo3mwe322c"
+    },
+    {
+      "text": "If you're a custom feed creator, you can now enable \"show more\" and \"show less\" buttons in your feeds. This gives people using your feed a simple way to tell you what they love \u2014 and what they want less of.",
+      "handle": "bsky.app",
+      "category": "Movie/TV",
+      "label": "Neutral",
+      "score": 0.623,
+      "timestamp": "2025-09-03T22:20:25.132Z",
+      "uri": "at://did:plc:z72i7hdynmk6r22z27h6tvur/app.bsky.feed.post/3lxxo3i5pck2c"
+    },
+    {
+      "text": "\ud83d\udce2 v1.107 is rolling out now! \n\nWe've done what was previously thought to be impossible: you can now add image or videos to your post using one magical button.\n\nJust one step in making posting simpler and more enjoyable.",
+      "handle": "bsky.app",
+      "category": "Other",
+      "label": "Positive",
+      "score": 0.89,
+      "timestamp": "2025-09-03T22:20:25.131Z",
+      "uri": "at://did:plc:z72i7hdynmk6r22z27h6tvur/app.bsky.feed.post/3lxxo3i4qzs2c"
+    },
+    {
+      "text": "\u2728FEATURED FEED: Catch Up \u2728\n\nWant to see what everyone\u2019s talking about? The Catch Up feed shows you the most popular posts from the last 24 hours.",
+      "handle": "bsky.app",
+      "category": "Movie/TV",
+      "label": "Neutral",
+      "score": 0.793,
+      "timestamp": "2025-09-02T17:02:32.080Z",
+      "uri": "at://did:plc:z72i7hdynmk6r22z27h6tvur/app.bsky.feed.post/3lxulu56oo22z"
+    },
+    {
+      "text": "Quick Tip: Did you know you can hide posts by keywords? Under Settings \u2192 Moderation \u2192 Muted Words & Tags, set keywords you never want to see. Perfect for avoiding spoilers! \ud83d\ude48",
+      "handle": "bsky.app",
+      "category": "Other",
+      "label": "Positive",
+      "score": 0.496,
+      "timestamp": "2025-08-29T16:49:14.626Z",
+      "uri": "at://did:plc:z72i7hdynmk6r22z27h6tvur/app.bsky.feed.post/3lxkjaotopk2v"
+    },
+    {
+      "text": "Quick update on Auth Scopes!\n\nCovering the granular permissions roll out for end users and client app devs. Permission Sets and formal specifications are still being worked on. We recommend devs start exploring and experimenting, but hold off on shipping major production app updates for now.",
+      "handle": "atproto.com",
+      "category": "Other",
+      "label": "Neutral",
+      "score": 0.872,
+      "timestamp": "2025-08-18T19:04:25.084Z",
+      "uri": "at://did:plc:ewvi7nxzyoun6zhxrhs64oiz/app.bsky.feed.post/3lwp3obin4c2j"
+    },
+    {
+      "text": "we just published an updated proposal for \"Auth Scopes\", and are interested in your feedback!\n\nthis is a mechanism for OAuth clients to request granular permissions to PDS resources. for example, only write repo records of specific types, or only authenticate to specific remote endpoints",
+      "handle": "atproto.com",
+      "category": "Other",
+      "label": "Positive",
+      "score": 0.53,
+      "timestamp": "2025-07-01T23:12:13.670Z",
+      "uri": "at://did:plc:ewvi7nxzyoun6zhxrhs64oiz/app.bsky.feed.post/3lswt575ums22"
+    },
+    {
+      "text": "OAuth updates for app devs!\n\nOver the past few weeks we've been chatting with devs and doing a pass over our SDKs and docs to address issues. This blog post summarizes the main changes we've made, some tweaks still in flight, and links to longer form writing about security and design trade-offs",
+      "handle": "atproto.com",
+      "category": "Other",
+      "label": "Neutral",
+      "score": 0.818,
+      "timestamp": "2025-06-13T19:26:06.586Z",
+      "uri": "at://did:plc:ewvi7nxzyoun6zhxrhs64oiz/app.bsky.feed.post/3lrj64cbt5s2d"
+    },
+    {
+      "text": "We hope this sheds some light for app devs on some protocol design decisions which have caused some friction.\n\nWe'll have a separate update soon summarizing recent improvements to the OAuth developer and user experiences",
+      "handle": "atproto.com",
+      "category": "Other",
+      "label": "Neutral",
+      "score": 0.561,
+      "timestamp": "2025-06-13T00:17:13.736Z",
+      "uri": "at://did:plc:ewvi7nxzyoun6zhxrhs64oiz/app.bsky.feed.post/3lrh5vws5u22o"
+    },
+    {
+      "text": "Two types of OAuth client are supported by atproto: \"public\" and \"confidential\"\n\nThis new article digs in to the security trade-offs and safety mechanisms at play, and how they impact different app architectures: TMBs, BFFs, SPAs, etc",
+      "handle": "atproto.com",
+      "category": "Game",
+      "label": "Neutral",
+      "score": 0.907,
+      "timestamp": "2025-06-13T00:14:52.409Z",
+      "uri": "at://did:plc:ewvi7nxzyoun6zhxrhs64oiz/app.bsky.feed.post/3lrh5rpza6k2o"
+    },
+    {
+      "text": "bsky.storage is an independent project that automates periodic account data backups to a storage network, and has a UI for PLC identity backup and recovery\n\ntools like this give users stronger control of their online future, without needing to self-host an entire PDS",
+      "handle": "atproto.com",
+      "category": "Other",
+      "label": "Neutral",
+      "score": 0.65,
+      "timestamp": "2025-06-12T18:13:01.753Z",
+      "uri": "at://did:plc:ewvi7nxzyoun6zhxrhs64oiz/app.bsky.feed.post/3lrgjkp4jq22l"
+    },
+    {
+      "text": "we've rolled out some small changes to the DID PLC directory which make it possible to register new key types as verificationMethod entries, for non-atproto use cases.\n\n(this does not impact the PLC rotation key mechanism itself; that is still limited to P-256 and K-256)\n\nhave fun building on PLC!",
+      "handle": "atproto.com",
+      "category": "Other",
+      "label": "Positive",
+      "score": 0.632,
+      "timestamp": "2025-06-05T20:59:38.947Z",
+      "uri": "at://did:plc:ewvi7nxzyoun6zhxrhs64oiz/app.bsky.feed.post/3lqv7m6xih22t"
+    },
+    {
+      "text": "we've got a new proposal up with more Ozone moderation report reasons!\n\nif you run a labeler, or develop a client which submits mod reports, take a look, and leave feedback on the linked Github discussion",
+      "handle": "atproto.com",
+      "category": "Other",
+      "label": "Neutral",
+      "score": 0.583,
+      "timestamp": "2025-05-21T18:21:54.342Z",
+      "uri": "at://did:plc:ewvi7nxzyoun6zhxrhs64oiz/app.bsky.feed.post/3lpp7scvf5k2e"
+    },
+    {
+      "text": "are you a dev building an independent app on atproto and want a smoother OAuth account sign-up flow?\n\nare you a user wanting visibility and control over OAuth sessions?\n\nPDS operator wanting to add some \u2728sparkle\u2728?\n\nthis blog post is for you!",
+      "handle": "atproto.com",
+      "category": "Other",
+      "label": "Neutral",
+      "score": 0.666,
+      "timestamp": "2025-05-09T17:34:09.818Z",
+      "uri": "at://did:plc:ewvi7nxzyoun6zhxrhs64oiz/app.bsky.feed.post/3loqxjvk3fs2c"
+    },
+    {
+      "text": "interested in relay infrastructure and firehose protocol details?\n\nwe have an update for you about our new relay implementation, and progress on rolling out Sync v1.1",
+      "handle": "atproto.com",
+      "category": "Other",
+      "label": "Neutral",
+      "score": 0.833,
+      "timestamp": "2025-05-02T16:28:47.204Z",
+      "uri": "at://did:plc:ewvi7nxzyoun6zhxrhs64oiz/app.bsky.feed.post/3lo7amkg4p22g"
+    },
+    {
+      "text": "2024 was a big year for atproto!\n\nWe've got an update looking back at progress that has been made, and some protocol work in progress. Will have a 2025 roadmap to share soon.",
+      "handle": "atproto.com",
+      "category": "Other",
+      "label": "Positive",
+      "score": 0.916,
+      "timestamp": "2025-01-10T20:30:13.904Z",
+      "uri": "at://did:plc:ewvi7nxzyoun6zhxrhs64oiz/app.bsky.feed.post/3lffzv6f4o22r"
+    },
+    {
+      "text": "Yes, so annoying \ud83d\ude14\ud83d\ude14 I hope they go away and never come back.",
+      "handle": "alice.bsky.social",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.951,
+      "timestamp": "2024-11-17T00:30:29.499Z",
+      "uri": "at://did:plc:vdjlpwlhbnug4fnjodwr3vzh/app.bsky.feed.post/3lb45o5sv6k2q"
+    },
+    {
+      "text": "(Where is your answer)",
+      "handle": "alice.bsky.social",
+      "category": "Other",
+      "label": "Neutral",
+      "score": 0.804,
+      "timestamp": "2023-05-12T02:21:41.601Z",
+      "uri": "at://did:plc:vdjlpwlhbnug4fnjodwr3vzh/app.bsky.feed.post/3jvir42jadx2d"
+    },
+    {
+      "text": "Oh there are so many Steven in the world",
+      "handle": "alice.bsky.social",
+      "category": "Other",
+      "label": "Positive",
+      "score": 0.462,
+      "timestamp": "2023-05-12T02:21:07.689Z",
+      "uri": "at://did:plc:vdjlpwlhbnug4fnjodwr3vzh/app.bsky.feed.post/3jvir32bugs2i"
+    },
+    {
+      "text": "Thank you but can you give me more formal recommendation?",
+      "handle": "alice.bsky.social",
+      "category": "Other",
+      "label": "Positive",
+      "score": 0.583,
+      "timestamp": "2023-05-12T02:20:13.817Z",
+      "uri": "at://did:plc:vdjlpwlhbnug4fnjodwr3vzh/app.bsky.feed.post/3jviqzgvt2s2i"
+    },
+    {
+      "text": "Recommend me some menu for breakfast!",
+      "handle": "alice.bsky.social",
+      "category": "Other",
+      "label": "Positive",
+      "score": 0.537,
+      "timestamp": "2023-05-10T13:24:26.229Z",
+      "uri": "at://did:plc:vdjlpwlhbnug4fnjodwr3vzh/app.bsky.feed.post/3jvev7c3rcu2h"
+    },
+    {
+      "text": "@berduck.deepfates.com hello!",
+      "handle": "alice.bsky.social",
+      "category": "Other",
+      "label": "Positive",
+      "score": 0.58,
+      "timestamp": "2023-05-10T13:21:34.557Z",
+      "uri": "at://did:plc:vdjlpwlhbnug4fnjodwr3vzh/app.bsky.feed.post/3jvev26jura26"
+    },
+    {
+      "text": "French earl grey is good for me",
+      "handle": "alice.bsky.social",
+      "category": "Other",
+      "label": "Positive",
+      "score": 0.882,
+      "timestamp": "2023-05-10T13:20:01.737Z",
+      "uri": "at://did:plc:vdjlpwlhbnug4fnjodwr3vzh/app.bsky.feed.post/3jveuxfpugm2k"
+    },
+    {
+      "text": "I always buy a book and never read it \ud83d\ude29 Am I a book hoarder?",
+      "handle": "alice.bsky.social",
+      "category": "Book",
+      "label": "Negative",
+      "score": 0.772,
+      "timestamp": "2023-05-01T23:00:22.958Z",
+      "uri": "at://did:plc:vdjlpwlhbnug4fnjodwr3vzh/app.bsky.feed.post/3jupb6v44fc2t"
+    },
     {
       "text": "\ud83d\udccc Feed Works with keyword COMBOS ie:\n[Book] + [Review] or\n[Anyone Got] + [Movie Idea]\n\nAttempts to pick up on reviews and suggestion requests for everything I can think of: Movies, Books, Games, Theatre, Albums etc. Ideally this will help people easily find ideas for new media to engage with.",
       "handle": "tactwo.bsky.social",
