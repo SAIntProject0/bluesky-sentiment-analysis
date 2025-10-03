@@ -1,41 +1,36 @@
-name: Scheduled Sentiment Analysis
-
+name: ReviewSky Sentiment Analysis
 on:
   schedule:
-    - cron: '0 */2 * * *'    # At minute 0 every 2nd hour
-  workflow_dispatch:         # Allows manual trigger
+    - cron: '0 */2 * * *'  # Every 2 hours
+  workflow_dispatch:       # Allow manual run
 
 jobs:
   analyze:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Check out repository
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.x'
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
 
-    - name: Create venv & install dependencies
-      run: |
-        python -m venv venv
-        source venv/bin/activate
-        pip install requests
+      - name: Install dependencies
+        run: pip install requests
 
-    - name: Debug secrets
-      run: |
-        echo "User handle: '${BSKY_HANDLE}'"
-        echo "Pass prefix: '${BSKY_APP_PASSWORD:0:4}****'"
-      env:
-        BSKY_HANDLE: ${{ secrets.BSKY_HANDLE }}
-        BSKY_APP_PASSWORD: ${{ secrets.BSKY_APP_PASSWORD }}
+      - name: Run sentiment analysis
+        env:
+          BSKY_HANDLE: ${{ secrets.BSKY_HANDLE }}
+          BSKY_APP_PASSWORD: ${{ secrets.BSKY_APP_PASSWORD }}
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          chmod +x sentiment.sh
+          ./sentiment.sh
 
-    - name: Run sentiment analysis
-      run: bash sentiment.sh
-      env:
-        BSKY_HANDLE: ${{ secrets.BSKY_HANDLE }}
-        BSKY_APP_PASSWORD: ${{ secrets.BSKY_APP_PASSWORD }}
-        HF_TOKEN: ${{ secrets.HF_TOKEN }}
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Commit updated data
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "actions@github.com"
+          git add data/sentiment.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update sentiment data - $(date)" && git push)
