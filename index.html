@@ -3,340 +3,295 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ReviewSky Sentiment Dashboard</title>
-  <!-- explicit Chart.js version -->
+  <title>Sentiment analysis Dashboard</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8E%AD%3C/text%3E%3C/svg%3E">
-  <meta name="description" content="Dashboard showing realtime sentiment and category view for ReviewSky data" />
+  <meta name="description" content="ReviewSky — a modern, responsive dashboard for realtime sentiment + categories" />
   <style>
+    /* --- Design system --- */
     :root{
-      --bg:#fafafa; --text:#0f172a; --card:#fff; --border:#e6edf3;
-      --positive:#10b981; --neutral:#64748b; --negative:#ef4444;
-      --movie:#8b5cf6; --book:#ec4899; --music:#f97316; --game:#0ea5e9; --other:#64748b;
-      --shadow:0 10px 25px -5px rgba(0,0,0,0.08); --transition:all .25s ease;
-    }
-    [data-theme="dark"]{
-      --bg:#071025; --text:#e6eef7; --card:#0f1724; --border:#153044; --shadow:0 10px 25px -5px rgba(0,0,0,0.5);
+      --bg:linear-gradient(180deg,#fbfdff 0%, #f7fbff 100%);
+      --glass: rgba(255,255,255,0.75);
+      --muted:#6b7280; --text:#06202a; --card:#ffffff;
+      --accent1:#7c3aed; --accent2:#06b6d4; --good:#10b981; --warn:#f59e0b; --bad:#ef4444;
+      --shadow:0 8px 28px rgba(9,30,66,0.08);
+      --radius:14px; --pad:16px; --transition:all .22s cubic-bezier(.2,.9,.2,1);
     }
     *{box-sizing:border-box}
-    body{font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; background:var(--bg); color:var(--text); margin:0; padding:28px; transition:var(--transition);}
+    html,body{height:100%}
+    body{font-family:Inter,ui-sans-serif,system-ui, -apple-system, 'Segoe UI', Roboto; margin:0; padding:28px; background:var(--bg); color:var(--text);}
     .container{max-width:1200px;margin:0 auto}
-    header{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:28px}
-    h1{font-size:1.9rem;margin:0;font-weight:800;letter-spacing:-0.02em;background:linear-gradient(90deg,var(--movie),var(--book),var(--music),var(--game));-webkit-background-clip:text;background-clip:text;color:transparent}
-    .controls{display:flex;gap:10px;align-items:center}
-    button,select{background:var(--card);border:1px solid var(--border);padding:8px 12px;border-radius:10px;cursor:pointer;box-shadow:var(--shadow);transition:var(--transition);color:var(--text)}
-    button:active{transform:translateY(1px)}
-    .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:18px;margin-bottom:26px}
-    .stat-card{background:var(--card);border-radius:14px;padding:18px;text-align:center;border:1px solid var(--border);box-shadow:var(--shadow)}
-    .stat-label{font-size:.95rem;opacity:.8}
-    .stat-value{font-size:2.2rem;font-weight:800;margin-top:6px}
-    .charts{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin-bottom:28px}
-    .chart-card{background:var(--card);padding:18px;border-radius:14px;border:1px solid var(--border);box-shadow:var(--shadow)}
-    .chart-card h3{margin:0 0 12px 0;font-size:1.1rem}
-    .posts-section h2{font-size:1.25rem;margin:6px 0 12px}
-    .posts-grid{display:grid;gap:14px}
-    .post-card{background:var(--card);padding:14px;border-radius:12px;border:1px solid var(--border);box-shadow:var(--shadow);display:flex;flex-direction:column;gap:10px}
-    .post-header{display:flex;justify-content:space-between;align-items:center;font-weight:700}
-    .post-meta{display:flex;gap:8px;align-items:center}
-    .category-badge{padding:6px 10px;border-radius:999px;color:white;font-weight:700;font-size:.8rem}
-    .cat-movie{background:var(--movie)} .cat-book{background:var(--book)} .cat-music{background:var(--music)} .cat-game{background:var(--game)} .cat-other{background:var(--other)}
-    .sent-pos{color:var(--positive)} .sent-neut{color:var(--neutral)} .sent-neg{color:var(--negative)}
-    .post-text{font-size:1rem;line-height:1.5}
-    .last-update{margin-top:18px;padding-top:12px;border-top:1px solid var(--border);opacity:.85;font-style:italic}
-    .loading{text-align:center;padding:40px;color:var(--neutral)}
-    .error{background:#fee;padding:12px;border-radius:10px;color:#900}
-    .chart-card canvas {
-      display: block;        /* prevents inline baseline spacing oddness */
-      width: 100% !important;/* fill available width */
-      height: 220px !important; /* fixed visual height so Chart.js won't expand parent */
-      max-height: 380px;     /* safety cap for very tall screens */
-      object-fit: contain;   /* safe fallback */
-    }
-    #trendCard canvas { height: 260px !important; }
-    @media (max-width:480px){h1{font-size:1.3rem}}
+
+    /* Header */
+    header{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:22px}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,var(--accent1),var(--accent2));display:flex;align-items:center;justify-content:center;color:white;font-weight:800;box-shadow:var(--shadow)}
+    h1{font-size:1.4rem;margin:0}
+    .controls{display:flex;gap:8px;align-items:center}
+    .controls input[type="search"]{padding:8px 12px;border-radius:10px;border:1px solid rgba(7,22,34,0.06);min-width:220px}
+    .chip{background:var(--card);padding:9px 12px;border-radius:999px;border:1px solid rgba(7,22,34,0.06);box-shadow:var(--shadow);display:inline-flex;align-items:center;gap:8px}
+    .btn{background:var(--card);border:1px solid rgba(7,22,34,0.06);padding:8px 12px;border-radius:10px;cursor:pointer;box-shadow:var(--shadow);transition:var(--transition)}
+
+    /* Stats */
+    .stats{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin:18px 0 26px}
+    .stat{background:var(--glass);backdrop-filter:blur(6px);padding:14px;border-radius:12px;border:1px solid rgba(9,30,66,0.04);box-shadow:var(--shadow);display:flex;flex-direction:column;gap:6px}
+    .stat .label{font-size:.85rem;color:var(--muted)}
+    .stat .value{font-size:1.6rem;font-weight:800}
+    .spark{height:36px}
+
+    /* Charts */
+    .charts{display:grid;grid-template-columns:2fr 1fr;gap:18px}
+    .card{background:var(--card);border-radius:var(--radius);padding:18px;border:1px solid rgba(9,30,66,0.04);box-shadow:var(--shadow)}
+    .card h3{margin:0 0 12px;font-size:1rem}
+    .small{font-size:.9rem;color:var(--muted)}
+
+    /* Posts */
+    .posts-area{margin-top:18px}
+    .posts-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+    .post{padding:12px;border-radius:12px;background:linear-gradient(180deg,#fff,#fcfeff);border:1px solid rgba(9,30,66,0.03);box-shadow:0 6px 20px rgba(9,30,66,0.04);display:flex;flex-direction:column;gap:8px}
+    .post .meta{display:flex;justify-content:space-between;align-items:center}
+    .badges{display:flex;gap:8px;align-items:center}
+    .category-badge{padding:6px 10px;border-radius:999px;color:white;font-weight:700;font-size:.78rem}
+    .cat-movie{background:#8b5cf6} .cat-book{background:#ec4899} .cat-music{background:#f97316} .cat-game{background:#0ea5e9} .cat-other{background:#64748b}
+    .sent-pos{color:var(--good)} .sent-neut{color:var(--muted)} .sent-neg{color:var(--bad)}
+    .post .text{white-space:pre-wrap}
+
+    /* Footer */
+    .last-update{margin-top:14px;color:var(--muted);font-size:.88rem}
+
+    @media (max-width:980px){.charts{grid-template-columns:1fr;}.stats{grid-template-columns:repeat(3,1fr)}.controls input[type="search"]{min-width:120px}}
   </style>
 </head>
 <body>
   <div class="container">
     <header>
-      <h1>ReviewSky Sentiment Dashboard</h1>
+      <div class="brand">
+        <div class="logo">RS</div>
+        <div>
+          <h1>ReviewSky Dashboard</h1>
+          <div class="small">Realtime sentiment + category explorer</div>
+        </div>
+      </div>
+
       <div class="controls" role="toolbar" aria-label="dashboard controls">
-        <select id="vizSelect" title="Choose visualization">
-          <option value="default">Default (Category + Sentiment)</option>
-          <option value="stacked">Category × Sentiment (Stacked)</option>
-          <option value="trend">Sentiment Trend (time series)</option>
-        </select>
-        <button id="refreshBtn" title="Refresh data now">🔁 Refresh</button>
-        <button id="exportBtn" title="Download posts as CSV">⬇️ Export CSV</button>
-        <button id="themeToggle" aria-pressed="false">🌓 Theme</button>
+        <input id="searchInput" type="search" placeholder="Search posts, handles, text..." aria-label="Search posts" />
+        <div class="chip">
+          <label for="vizSelect" class="small">View</label>
+          <select id="vizSelect" title="Choose visualization">
+            <option value="default">Default</option>
+            <option value="stacked">Category × Sentiment</option>
+            <option value="trend">Trend</option>
+          </select>
+        </div>
+        <button id="refreshBtn" class="btn" title="Refresh data">🔁</button>
+        <button id="exportBtn" class="btn" title="Export CSV">⬇️</button>
+        <button id="shareBtn" class="btn" title="Share dashboard">🔗</button>
       </div>
     </header>
 
-    <section class="stats-grid" aria-live="polite">
-      <div class="stat-card" aria-label="positive count">
-        <div class="stat-label">Positive</div>
-        <div class="stat-value" id="positiveCount">0</div>
+    <section class="stats" aria-live="polite">
+      <div class="stat">
+        <div class="label">Positive</div>
+        <div class="value" id="positiveCount">0</div>
+        <canvas id="sparkPos" class="spark" aria-hidden="true"></canvas>
       </div>
-      <div class="stat-card" aria-label="neutral count">
-        <div class="stat-label">Neutral</div>
-        <div class="stat-value" id="neutralCount">0</div>
+      <div class="stat">
+        <div class="label">Neutral</div>
+        <div class="value" id="neutralCount">0</div>
+        <canvas id="sparkNeut" class="spark" aria-hidden="true"></canvas>
       </div>
-      <div class="stat-card" aria-label="negative count">
-        <div class="stat-label">Negative</div>
-        <div class="stat-value" id="negativeCount">0</div>
+      <div class="stat">
+        <div class="label">Negative</div>
+        <div class="value" id="negativeCount">0</div>
+        <canvas id="sparkNeg" class="spark" aria-hidden="true"></canvas>
       </div>
-    </section>
-
-    <section class="charts" id="chartsArea">
-      <div class="chart-card">
-        <h3 id="chartTitle">Reviews by Category</h3>
-        <canvas id="categoryChart" aria-label="Category chart" height="220"></canvas>
+      <div class="stat">
+        <div class="label">Total</div>
+        <div class="value" id="totalCount">0</div>
+        <div class="small">Avg confidence <strong id="avgScore">0</strong></div>
       </div>
-
-      <div class="chart-card">
-        <h3>Sentiment Distribution</h3>
-        <canvas id="sentimentChart" aria-label="Sentiment donut" height="220"></canvas>
-      </div>
-
-      <div class="chart-card" id="trendCard" style="display:none">
-        <h3>Sentiment over Time</h3>
-        <canvas id="trendChart" aria-label="Sentiment trend" height="220"></canvas>
+      <div class="stat">
+        <div class="label">Top Handles</div>
+        <div id="topHandles" class="small">—</div>
       </div>
     </section>
 
-    <section class="posts-section">
-      <h2>Latest Reviews from #ReviewSky</h2>
-      <div class="posts-grid" id="postsContainer">
-        <div class="loading">Loading real-time sentiment data...</div>
+    <section class="charts">
+      <div class="card">
+        <h3 id="chartTitle">Category breakdown</h3>
+        <canvas id="categoryChart" height="300" aria-label="Category chart"></canvas>
+        <div class="small" style="margin-top:10px">Tip: try the <em>Category × Sentiment</em> view for stacked counts.</div>
+      </div>
+
+      <div class="card">
+        <h3>Sentiment distribution</h3>
+        <canvas id="sentimentChart" height="240" aria-label="Sentiment donut"></canvas>
+        <h3 style="margin-top:14px">Trend</h3>
+        <canvas id="trendChartMini" height="120" aria-label="Mini trend"></canvas>
       </div>
     </section>
 
-    <div class="last-update" id="lastUpdate">Auto-refreshes every 30 seconds • Updated every 2 hours via UNIX cron</div>
+    <section class="posts-area">
+      <h3 style="margin-top:18px">Latest reviews</h3>
+      <div id="postsContainer" class="posts-grid">
+        <div class="post">Loading &hellip;</div>
+      </div>
+      <div class="last-update" id="lastUpdate">—</div>
+    </section>
   </div>
 
   <script>
-    // --- Config & globals ---
-    const DATA_PATH = 'data/sentiment.json'; // change if needed
-    let categoryChart = null, sentimentChart = null, trendChart = null;
-
-    // Theme initialization
-    const themeToggle = document.getElementById('themeToggle');
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    document.documentElement.setAttribute('data-theme', savedTheme);
-    themeToggle.textContent = savedTheme === 'light' ? '🌙 Dark' : '☀️ Light';
-    themeToggle.setAttribute('aria-pressed', savedTheme === 'dark');
-
-    themeToggle.addEventListener('click', () => {
-      const next = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
-      document.documentElement.setAttribute('data-theme', next);
-      localStorage.setItem('theme', next);
-      themeToggle.textContent = next === 'light' ? '🌙 Dark' : '☀️ Light';
-      themeToggle.setAttribute('aria-pressed', next === 'dark');
-    });
+    // --- CONFIG ---
+    const DATA_PATH = 'data/sentiment.json';
+    let categoryChart=null, sentimentChart=null, trendChartMini=null;
 
     // Helpers
-    const by = (arr, fn) => arr.reduce((acc, x) => { const k = fn(x); acc[k] = (acc[k] || 0) + 1; return acc; }, {});
-    const safeGetEl = (id) => document.getElementById(id);
-    const formatTime = (iso) => new Date(iso).toLocaleString();
+    const el = id => document.getElementById(id);
+    const clamp = (v,a,b)=> Math.max(a, Math.min(b, v));
+    const fmt = (iso)=>{ try{ return new Date(iso).toLocaleString(); }catch(e){return String(iso);} };
 
-    // --- Rendering posts safely (avoid innerHTML injection) ---
-    function renderPosts(posts){
-      const container = safeGetEl('postsContainer');
-      if(!container) return;
-      container.innerHTML = '';
-      if(!posts || posts.length === 0){
-        container.innerHTML = '<div class="loading">No reviews available yet.</div>';
-        return;
-      }
-
-      posts.forEach(post => {
-        const card = document.createElement('article');
-        card.className = 'post-card';
-
-        const header = document.createElement('div'); header.className = 'post-header';
-        const handle = document.createElement('div'); handle.textContent = `@${post.handle || 'unknown'}`;
-        const sentiment = document.createElement('div');
-        sentiment.className = 'sentiment ' + (post.label === 'Positive' ? 'sent-pos' : post.label === 'Negative' ? 'sent-neg' : 'sent-neut');
-        sentiment.textContent = post.label ? `${post.label} (${Math.round((post.score||0)*100)}%)` : 'Unknown';
-        header.append(handle, sentiment);
-
-        const meta = document.createElement('div'); meta.className = 'post-meta';
-        const badge = document.createElement('span');
-        const cat = post.category || 'Other';
-        badge.className = 'category-badge ' + (cat === 'Movie/TV' ? 'cat-movie' : cat === 'Book' ? 'cat-book' : cat === 'Music' ? 'cat-music' : cat === 'Game' ? 'cat-game' : 'cat-other');
-        badge.textContent = cat;
-        meta.append(badge);
-
-        const text = document.createElement('div'); text.className = 'post-text';
-        // preserve newlines safely
-        (post.text || '').split('\n').forEach((line,i) => { if(i) text.appendChild(document.createElement('br')); text.appendChild(document.createTextNode(line)); });
-
-        card.append(header, meta, text);
-        container.appendChild(card);
-      });
+    // animate numeric counters
+    function animateCount(node, to){
+      if(!node) return; const start = Number(node.textContent)||0; const dur=600; const startT = performance.now();
+      requestAnimationFrame(function tick(t){ const p = clamp((t-startT)/dur,0,1); node.textContent = Math.round(start + (to-start)* (1 - Math.pow(1-p,3))); if(p<1) requestAnimationFrame(tick); });
     }
 
-    // --- CSV Export ---
+    // CSV export
     function exportCSV(posts){
-      if(!posts || posts.length === 0) return alert('No posts to export');
-      const keys = ['handle','category','label','score','text','timestamp'];
-      const rows = [keys.join(',')];
-      posts.forEach(p => {
-        const row = keys.map(k => {
-          const v = p[k] == null ? '' : String(p[k]).replace(/"/g,'""');
-          return `"${v}"`;
-        }).join(',');
-        rows.push(row);
-      });
-      const blob = new Blob([rows.join('\n')],{type:'text/csv;charset=utf-8;'});
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a'); a.href = url; a.download = 'reviews.csv'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+      if(!posts || posts.length===0) return alert('No posts to export');
+      const keys=['handle','category','label','score','text','timestamp','uri'];
+      const rows=[keys.join(',')];
+      posts.forEach(p=>{ const row = keys.map(k=>`"${String(p[k]??'').replace(/"/g,'""')}"`).join(','); rows.push(row); });
+      const blob = new Blob([rows.join('\n')],{type:'text/csv'}); const url = URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download='reviews.csv'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
     }
 
-    // --- Chart rendering logic ---
-    function destroyIf(chart){ if(chart && typeof chart.destroy === 'function') chart.destroy(); }
+    // destroy chart if exists
+    function destroyIf(c){ if(c && typeof c.destroy==='function') c.destroy(); }
 
-    function renderCharts(data, mode = 'default'){
-      // guard elements
-      const catEl = safeGetEl('categoryChart');
-      const sentEl = safeGetEl('sentimentChart');
-      const trendEl = safeGetEl('trendChart');
-      if(!catEl || !sentEl) return;
+    // render small sparkline
+    function drawSpark(canvas, data, color){ if(!canvas) return; destroyIf(canvas._chart); try{ const ctx = canvas.getContext('2d'); canvas.width = canvas.clientWidth * devicePixelRatio; canvas.height = canvas.clientHeight * devicePixelRatio; new Chart(ctx, { type:'bar', data:{ labels:data.map((_,i)=>i), datasets:[{ data, backgroundColor:color, barPercentage:1, categoryPercentage:1 }]}, options:{responsive:false, animation:false, plugins:{legend:{display:false}}, scales:{x:{display:false}, y:{display:false}}, layout:{padding:0} } }); }catch(e){/* ignore */} }
 
-      // Prepare data
-      const posts = data.posts || [];
-      // category counts from categories key if present, else from posts
-      const categoryCounts = {};
-      posts.forEach(p => {
-        const cat = p.category || 'Other';
-        categoryCounts[cat] = (categoryCounts[cat] || 0) + 1;
+    // Render posts grid (with filtering)
+    let latestData = { posts:[] };
+    function renderPosts(posts, opts={search:''}){
+      const container = el('postsContainer'); container.innerHTML='';
+      if(!posts || posts.length===0){ container.innerHTML='<div class="post">No posts</div>'; return; }
+      const q = String(opts.search||'').toLowerCase().trim();
+      const filtered = posts.filter(p=>{
+        if(!q) return true; return (String(p.handle||'')+String(p.text||'')+String(p.category||'')).toLowerCase().includes(q);
       });
-      const categories = Object.keys(categoryCounts);
-      const categoryValues = categories.map(c => categoryCounts[c]);
+      filtered.forEach(p=>{
+        const node = document.createElement('article'); node.className='post';
+        const meta = document.createElement('div'); meta.className='meta';
+        const left = document.createElement('div');
+        const handle = document.createElement('strong'); handle.textContent='@'+(p.handle||'unknown'); left.appendChild(handle);
+        const time = document.createElement('div'); time.className='small'; time.style.marginTop='6px'; time.textContent = fmt(p.timestamp||p.ts||''); left.appendChild(time);
+        const badges = document.createElement('div'); badges.className='badges';
+        const cat = document.createElement('span'); cat.className='category-badge ' + (p.category==='Movie/TV'? 'cat-movie' : p.category==='Book'? 'cat-book' : p.category==='Music'? 'cat-music' : p.category==='Game'? 'cat-game' : 'cat-other'); cat.textContent = p.category || 'Other';
+        const sent = document.createElement('span'); sent.textContent = p.label ? p.label + ' • ' + Math.round((p.score||0)*100) + '%' : '—'; sent.className = p.label==='Positive' ? 'sent-pos' : p.label==='Negative' ? 'sent-neg' : 'sent-neut';
+        badges.append(cat, sent);
+        meta.append(left, badges);
 
-      // trend data: expects data.history = [{ts: ISO, Positive,Neutral,Negative}, ...]
-      const history = Array.isArray(data.history) && data.history.length ? data.history : null;
+        const text = document.createElement('div'); text.className='text'; text.textContent = p.text || '';
+        const actions = document.createElement('div'); actions.style.display='flex'; actions.style.justifyContent='space-between'; actions.style.alignItems='center'; actions.style.marginTop='8px';
+        const uri = document.createElement('a'); uri.href = p.uri || '#'; uri.textContent = 'open'; uri.target='_blank'; uri.rel='noopener noreferrer';
+        const scoreBar = document.createElement('div'); scoreBar.className='small'; scoreBar.textContent = 'confidence: ' + ((p.score||0)*100).toFixed(0) + '%';
+        actions.append(scoreBar, uri);
 
-      // destroy old charts
-      destroyIf(categoryChart); destroyIf(sentimentChart); destroyIf(trendChart);
+        node.append(meta, text, actions);
+        container.appendChild(node);
+      });
+      if(filtered.length===0) container.innerHTML='<div class="post">No posts match your search.</div>';
+    }
 
-      // category chart (bar or stacked if mode=stacked)
-      const catCtx = catEl.getContext('2d');
-      categoryChart = new Chart(catCtx, {
-        type: 'bar',
-         {
+    // Render charts
+    function renderCharts(data, mode='default'){
+      const posts = Array.isArray(data.posts)? data.posts : [];
+      // categories
+      const catCounts = {};
+      posts.forEach(p=>{ const c = p.category||'Other'; catCounts[c] = (catCounts[c]||0)+1; });
+      const categories = Object.keys(catCounts).length ? Object.keys(catCounts) : ['Other'];
+      const values = categories.map(c=>catCounts[c]||0);
+
+      destroyIf(categoryChart);
+      const ctx = el('categoryChart').getContext('2d');
+      const colorMap = {'Movie/TV':'#8b5cf6','Book':'#ec4899','Music':'#f97316','Game':'#0ea5e9','Other':'#64748b'};
+      categoryChart = new Chart(ctx, {
+        type: mode==='stacked' ? 'bar' : 'bar',
+        data: {
           labels: categories,
-          datasets: [{
-            label: 'Count',
-             categoryValues,
-            backgroundColor: categories.map(c => 
-              ({'Movie/TV':'#8b5cf6','Book':'#ec4899','Music':'#f97316','Game':'#0ea5e9','Other':'#64748b'}[c] || '#64748b')
-            ),
-            borderRadius: 8,
-            borderSkipped: false
-          }]
+          datasets: [{ label:'Count', data: values, backgroundColor: categories.map(c=>colorMap[c]||'#64748b'), borderRadius:8 }]
         },
-        options: {
-          responsive: true,
-          maintainAspectRatio: true,
-          scales: {
-            y: {
-              beginAtZero: true,
-              ticks: { stepSize: 1 }
-            }
-          },
-          plugins: { legend: { display: false } }
-        }
-      });
-      
-      // Sentiment doughnut
-      const sentCtx = sentEl.getContext('2d');
-      sentimentChart = new Chart(sentCtx, {
-        type: 'doughnut',
-         {
-          labels: ['Positive', 'Neutral', 'Negative'],
-          datasets: [{
-             sentCounts,
-            backgroundColor: ['#10b981', '#64748b', '#ef4444'],
-            borderWidth: 0
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: true,
-          plugins: { legend: { position: 'bottom' } }
-        }
+        options: { responsive:true, maintainAspectRatio:true, plugins:{legend:{display:false}}, scales:{ y:{ beginAtZero:true, ticks:{precision:0}} } }
       });
 
-      // trend chart (only show if history present or mode=trend)
-      const trendCard = safeGetEl('trendCard');
-      if(mode === 'trend' || history){
-        trendCard.style.display = '';
-        const tctx = trendEl.getContext('2d');
-        const times = history ? history.map(h=>h.ts) : posts.slice(-30).map(p=>p.timestamp || new Date().toISOString());
-        const posSeries = history ? history.map(h=>h.Positive||0) : posts.slice(-30).map(p=>p.label==='Positive'?1:0);
-        const neutSeries = history ? history.map(h=>h.Neutral||0) : posts.slice(-30).map(p=>p.label==='Neutral'?1:0);
-        const negSeries = history ? history.map(h=>h.Negative||0) : posts.slice(-30).map(p=>p.label==='Negative'?1:0);
-        trendChart = new Chart(tctx, { type:'line', data:{ labels: times.map(t=>new Date(t).toLocaleTimeString()), datasets:[ { label:'Positive', data:posSeries, tension:0.3, fill:false }, { label:'Neutral', data:neutSeries, tension:0.3, fill:false }, { label:'Negative', data:negSeries, tension:0.3, fill:false } ]}, options:{ responsive:true, maintainAspectRatio: true, plugins:{legend:{position:'bottom'}}, scales:{ y:{ beginAtZero:true } } } });
-      } else {
-        if(trendCard) trendCard.style.display = 'none';
+      // Sentiment doughnut
+      const pos = data.positive ?? (data.sentiment?.positive ?? posts.filter(p=>String(p.label).toLowerCase()==='positive').length);
+      const neut = data.neutral ?? (data.sentiment?.neutral ?? posts.filter(p=>String(p.label).toLowerCase()==='neutral').length);
+      const neg = data.negative ?? (data.sentiment?.negative ?? posts.filter(p=>String(p.label).toLowerCase()==='negative').length);
+      destroyIf(sentimentChart);
+      const sc = el('sentimentChart').getContext('2d');
+      sentimentChart = new Chart(sc, { type:'doughnut', data:{ labels:['Positive','Neutral','Negative'], datasets:[{ data:[pos||0,neut||0,neg||0], backgroundColor:['#10b981','#94a3b8','#ef4444'] }]}, options:{responsive:true, maintainAspectRatio:true, plugins:{legend:{position:'bottom'}}} });
+
+      // mini trend spark
+      const times = posts.slice(-30).map(p=>p.timestamp||p.ts||new Date().toISOString());
+      const posSeries = posts.slice(-30).map(p=> p.label==='Positive'?1:0);
+      const neutSeries = posts.slice(-30).map(p=> p.label==='Neutral'?1:0);
+      const negSeries = posts.slice(-30).map(p=> p.label==='Negative'?1:0);
+      drawSpark(el('trendChartMini'), times.map((t,i)=> posSeries[i] - negSeries[i]), '#8b5cf6');
+
+      // sparks for stats
+      drawSpark(el('sparkPos'), posts.slice(-20).map(p=> p.label==='Positive'?1:0), '#10b981');
+      drawSpark(el('sparkNeut'), posts.slice(-20).map(p=> p.label==='Neutral'?1:0), '#94a3b8');
+      drawSpark(el('sparkNeg'), posts.slice(-20).map(p=> p.label==='Negative'?1:0), '#ef4444');
+    }
+
+    // update UI
+    function updateUI(data){
+      latestData = data || { posts:[] };
+      const posts = latestData.posts || [];
+      const pos = data.positive ?? posts.filter(p=>String(p.label).toLowerCase()==='positive').length;
+      const neut = data.neutral ?? posts.filter(p=>String(p.label).toLowerCase()==='neutral').length;
+      const neg = data.negative ?? posts.filter(p=>String(p.label).toLowerCase()==='negative').length;
+      const total = pos + neut + neg || posts.length || 0;
+      animateCount(el('positiveCount'), pos||0); animateCount(el('neutralCount'), neut||0); animateCount(el('negativeCount'), neg||0); animateCount(el('totalCount'), total);
+      el('avgScore').textContent = ((posts.reduce((s,p)=>s+(p.score||0),0)/(posts.length||1))*100).toFixed(0)+'%';
+
+      // top handles
+      const handleCounts = {}; posts.forEach(p=>{ const h=p.handle||'unknown'; handleCounts[h]=(handleCounts[h]||0)+1; });
+      const top = Object.entries(handleCounts).sort((a,b)=>b[1]-a[1]).slice(0,5).map(x=>`${x[0]} (${x[1]})`).join(', ');
+      el('topHandles').textContent = top || '—';
+
+      renderCharts(data, el('vizSelect')?.value || 'default');
+      renderPosts(posts, { search: el('searchInput')?.value || '' });
+      el('lastUpdate').textContent = 'Last fetched: ' + new Date().toLocaleString();
+    }
+
+    // data loader
+    async function loadData(){
+      try{
+        const res = await fetch(`${DATA_PATH}?_=${Date.now()}`);
+        if(!res.ok) throw new Error('Load failed: '+res.status);
+        const data = await res.json();
+        console.log('Fetched', data);
+        updateUI(data);
+        return data;
+      }catch(err){
+        console.error(err);
+        el('postsContainer').innerHTML = `<div class="post">⚠️ Failed to load data: ${err.message}</div>`;
+        return { posts: [] };
       }
     }
 
-    // --- UI update pipeline ---
-    function updateUI(data, mode='default'){
-    // Safely extract sentiment counts (case-insensitive fallback)
-    const sent = data.sentiment || {};
-    const getSentimentCount = (key) => {
-      // Try exact match first (e.g., "Positive")
-      if (sent[key] !== undefined) return sent[key];
-      // Try lowercase (e.g., "positive")
-      if (sent[key.toLowerCase()] !== undefined) return sent[key.toLowerCase()];
-      // Try title case (e.g., "positive" → "Positive")
-      const titleKey = key.toLowerCase();
-      if (sent[titleKey] !== undefined) return sent[titleKey];
-      return 0;
-    };
-  
-    safeGetEl('positiveCount').textContent = data.positive || 0;
-    safeGetEl('neutralCount').textContent = data.neutral || 0;
-    safeGetEl('negativeCount').textContent = data.negative || 0;
-  
-    renderPosts(data.posts || []);
-    renderCharts(data, mode);
-    const lu = safeGetEl('lastUpdate');
-    if (lu) {
-      lu.textContent = 'Last fetched: ' + new Date().toLocaleString();
-    }
-  }
+    // controls
+    el('refreshBtn')?.addEventListener('click', ()=> loadData());
+    el('exportBtn')?.addEventListener('click', async ()=> { const d = await loadData(); exportCSV(d.posts||[]); });
+    el('vizSelect')?.addEventListener('change', ()=> renderCharts(latestData, el('vizSelect').value));
+    el('searchInput')?.addEventListener('input', ()=> renderPosts(latestData.posts || [], { search: el('searchInput').value }));
+    el('shareBtn')?.addEventListener('click', ()=>{ if(navigator.share){ navigator.share({ title: document.title, url: location.href }).catch(()=>{}); } else { navigator.clipboard?.writeText(location.href); alert('Link copied to clipboard'); } });
 
-    // --- Data loader ---
-    async function loadData(){
-  try {
-    const res = await fetch(`${DATA_PATH}?_=${Date.now()}`);
-    if (!res.ok) throw new Error(`Failed to load (${res.status})`);
-    const data = await res.json();
-    console.log("Fetched sentiment.json data:", data); // Add this log to check data
-    updateUI(data, safeGetEl('vizSelect').value);
-    return data;
-  } catch (err) {
-    console.error(err);
-    const posts = safeGetEl('postsContainer');
-    if (posts) posts.innerHTML = `<div class="error">⚠️ Failed to load data: ${err.message}</div>`;
-    return { posts: [] };
-  }
-}
-
-
-    // --- Controls ---
-    const vizSelect = safeGetEl('vizSelect');
-    vizSelect.addEventListener('change', async () => { const data = await loadData(); updateUI(data, vizSelect.value); });
-    safeGetEl('refreshBtn').addEventListener('click', () => loadData());
-    safeGetEl('exportBtn').addEventListener('click', async () => { const d = await loadData(); exportCSV(d.posts || []); });
-
-    // initial load + polling
-    loadData();
-    setInterval(() => loadData(), 30000);
+    // initial load and poll
+    loadData(); setInterval(()=> loadData(), 30000);
   </script>
 </body>
 </html>
