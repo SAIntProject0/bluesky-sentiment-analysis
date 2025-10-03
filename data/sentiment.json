@@ -1,9 +1,18 @@
 {
-  "timestamp": "2025-10-03T16:15:41.876363Z",
-  "positive": 29,
+  "timestamp": "2025-10-03T17:15:43.793998Z",
+  "positive": 30,
   "neutral": 28,
   "negative": 19,
   "posts": [
+    {
+      "text": "Do it! This is perfect and straight out of the CIA sabotage playbook.",
+      "handle": "paul.bsky.social",
+      "category": "Book",
+      "label": "Positive",
+      "score": 0.655,
+      "timestamp": "2025-10-03T17:00:46.476Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2ck7jr4rs2r"
+    },
     {
       "text": "Oh and with the government shut down, U.S. Customs is probably at a standstill.",
       "handle": "paul.bsky.social",
