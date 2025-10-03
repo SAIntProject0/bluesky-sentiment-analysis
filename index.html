@@ -3,52 +3,60 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Sentiment analysis Dashboard</title>
+  <title>Sentiment Analysis Dashboard</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8E%AD%3C/text%3E%3C/svg%3E">
   <meta name="description" content="ReviewSky — a modern, responsive dashboard for realtime sentiment + categories" />
   <style>
-    /* --- Design system --- */
+    /* --- Design system + Dark mode --- */
     :root{
       --bg:linear-gradient(180deg,#fbfdff 0%, #f7fbff 100%);
-      --glass: rgba(255,255,255,0.75);
-      --muted:#6b7280; --text:#06202a; --card:#ffffff;
+      --page-bg:#f3f7fb; --card-bg:rgba(255,255,255,0.9);
+      --text:#06202a; --muted:#6b7280; --glass: rgba(255,255,255,0.75);
       --accent1:#7c3aed; --accent2:#06b6d4; --good:#10b981; --warn:#f59e0b; --bad:#ef4444;
-      --shadow:0 8px 28px rgba(9,30,66,0.08);
-      --radius:14px; --pad:16px; --transition:all .22s cubic-bezier(.2,.9,.2,1);
+      --shadow:0 8px 28px rgba(9,30,66,0.06);
+      --radius:12px; --pad:14px; --transition:all .22s cubic-bezier(.2,.9,.2,1);
     }
+    [data-theme='dark']{
+      --bg:linear-gradient(180deg,#06121a 0%, #071a23 100%);
+      --page-bg:transparent; --card-bg:rgba(8,16,20,0.6);
+      --text:#e6eef7; --muted:#94a3b8; --glass: rgba(255,255,255,0.03);
+      --shadow:0 8px 28px rgba(2,6,23,0.7);
+    }
+
     *{box-sizing:border-box}
     html,body{height:100%}
-    body{font-family:Inter,ui-sans-serif,system-ui, -apple-system, 'Segoe UI', Roboto; margin:0; padding:28px; background:var(--bg); color:var(--text);}
+    body{font-family:Inter,ui-sans-serif,system-ui, -apple-system, 'Segoe UI', Roboto; margin:0; padding:20px; background:var(--bg); color:var(--text);}
     .container{max-width:1200px;margin:0 auto}
 
     /* Header */
-    header{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:22px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:18px}
     .brand{display:flex;gap:12px;align-items:center}
-    .logo{width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,var(--accent1),var(--accent2));display:flex;align-items:center;justify-content:center;color:white;font-weight:800;box-shadow:var(--shadow)}
-    h1{font-size:1.4rem;margin:0}
+    .logo{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent1),var(--accent2));display:flex;align-items:center;justify-content:center;color:white;font-weight:800;box-shadow:var(--shadow)}
+    h1{font-size:1.25rem;margin:0}
     .controls{display:flex;gap:8px;align-items:center}
-    .controls input[type="search"]{padding:8px 12px;border-radius:10px;border:1px solid rgba(7,22,34,0.06);min-width:220px}
-    .chip{background:var(--card);padding:9px 12px;border-radius:999px;border:1px solid rgba(7,22,34,0.06);box-shadow:var(--shadow);display:inline-flex;align-items:center;gap:8px}
-    .btn{background:var(--card);border:1px solid rgba(7,22,34,0.06);padding:8px 12px;border-radius:10px;cursor:pointer;box-shadow:var(--shadow);transition:var(--transition)}
+    .controls input[type="search"]{padding:8px 12px;border-radius:10px;border:1px solid rgba(7,22,34,0.06);min-width:220px;background:var(--card-bg);color:var(--text)}
+    .chip{background:var(--card-bg);padding:8px 10px;border-radius:999px;border:1px solid rgba(7,22,34,0.04);display:inline-flex;align-items:center;gap:8px}
+    .btn{background:var(--card-bg);border:1px solid rgba(7,22,34,0.04);padding:8px 10px;border-radius:10px;cursor:pointer;transition:var(--transition)}
 
     /* Stats */
-    .stats{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin:18px 0 26px}
-    .stat{background:var(--glass);backdrop-filter:blur(6px);padding:14px;border-radius:12px;border:1px solid rgba(9,30,66,0.04);box-shadow:var(--shadow);display:flex;flex-direction:column;gap:6px}
-    .stat .label{font-size:.85rem;color:var(--muted)}
-    .stat .value{font-size:1.6rem;font-weight:800}
-    .spark{height:36px}
+    .stats{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:12px 0}
+    .stat{background:var(--card-bg);backdrop-filter:blur(6px);padding:12px;border-radius:10px;border:1px solid rgba(9,30,66,0.04);box-shadow:var(--shadow);display:flex;flex-direction:column;gap:6px}
+    .stat .label{font-size:.82rem;color:var(--muted)}
+    .stat .value{font-size:1.4rem;font-weight:700}
+    .spark{height:34px}
 
     /* Charts */
-    .charts{display:grid;grid-template-columns:2fr 1fr;gap:18px}
-    .card{background:var(--card);border-radius:var(--radius);padding:18px;border:1px solid rgba(9,30,66,0.04);box-shadow:var(--shadow)}
-    .card h3{margin:0 0 12px;font-size:1rem}
-    .small{font-size:.9rem;color:var(--muted)}
+    .charts{display:grid;grid-template-columns:2fr 1fr;gap:14px}
+    .card{background:var(--card-bg);border-radius:10px;padding:14px;border:1px solid rgba(9,30,66,0.04);box-shadow:var(--shadow)}
+    .card h3{margin:0 0 10px;font-size:1rem}
+    .small{font-size:.85rem;color:var(--muted)}
 
     /* Posts */
-    .posts-area{margin-top:18px}
-    .posts-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
-    .post{padding:12px;border-radius:12px;background:linear-gradient(180deg,#fff,#fcfeff);border:1px solid rgba(9,30,66,0.03);box-shadow:0 6px 20px rgba(9,30,66,0.04);display:flex;flex-direction:column;gap:8px}
+    .posts-area{margin-top:16px}
+    .posts-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px}
+    .post{padding:12px;border-radius:10px;background:linear-gradient(180deg,rgba(255,255,255,0.85),rgba(252,254,255,0.9));border:1px solid rgba(9,30,66,0.03);box-shadow:0 6px 18px rgba(9,30,66,0.04);display:flex;flex-direction:column;gap:8px}
+    [data-theme='dark'] .post{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));}
     .post .meta{display:flex;justify-content:space-between;align-items:center}
     .badges{display:flex;gap:8px;align-items:center}
     .category-badge{padding:6px 10px;border-radius:999px;color:white;font-weight:700;font-size:.78rem}
@@ -57,7 +65,10 @@
     .post .text{white-space:pre-wrap}
 
     /* Footer */
-    .last-update{margin-top:14px;color:var(--muted);font-size:.88rem}
+    .last-update{margin-top:12px;color:var(--muted);font-size:.85rem}
+
+    /* small tweaks */
+    .card:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(2,6,23,0.08)}
 
     @media (max-width:980px){.charts{grid-template-columns:1fr;}.stats{grid-template-columns:repeat(3,1fr)}.controls input[type="search"]{min-width:120px}}
   </style>
@@ -86,6 +97,7 @@
         <button id="refreshBtn" class="btn" title="Refresh data">🔁</button>
         <button id="exportBtn" class="btn" title="Export CSV">⬇️</button>
         <button id="shareBtn" class="btn" title="Share dashboard">🔗</button>
+        <button id="themeToggle" class="btn" title="Toggle theme">🌓</button>
       </div>
     </header>
 
@@ -120,19 +132,25 @@
       <div class="card">
         <h3 id="chartTitle">Category breakdown</h3>
         <canvas id="categoryChart" height="300" aria-label="Category chart"></canvas>
+        <div style="display:flex;gap:8px;margin-top:10px;align-items:center">
+          <button id="showStacked" class="btn">Toggle stacked</button>
+          <button id="showHandles" class="btn">Top Handles</button>
+          <button id="showScores" class="btn">Score distribution</button>
+        </div>
         <div class="small" style="margin-top:10px">Tip: try the <em>Category × Sentiment</em> view for stacked counts.</div>
+        <div id="auxChartContainer" style="margin-top:12px"></div>
       </div>
 
       <div class="card">
         <h3>Sentiment distribution</h3>
         <canvas id="sentimentChart" height="240" aria-label="Sentiment donut"></canvas>
-        <h3 style="margin-top:14px">Trend</h3>
-        <canvas id="trendChartMini" height="120" aria-label="Mini trend"></canvas>
+        <h3 style="margin-top:12px">Sentiment over time</h3>
+        <canvas id="trendChart" height="180" aria-label="Sentiment trend"></canvas>
       </div>
     </section>
 
     <section class="posts-area">
-      <h3 style="margin-top:18px">Latest reviews</h3>
+      <h3 style="margin-top:16px">Latest reviews</h3>
       <div id="postsContainer" class="posts-grid">
         <div class="post">Loading &hellip;</div>
       </div>
@@ -141,9 +159,25 @@
   </div>
 
   <script>
-    // --- CONFIG ---
+    // CONFIG
     const DATA_PATH = 'data/sentiment.json';
-    let categoryChart=null, sentimentChart=null, trendChartMini=null;
+    let categoryChart=null, sentimentChart=null, trendChart=null, auxChart=null;
+
+    // Theme
+    const themeToggle = document.getElementById('themeToggle');
+    const initTheme = () => {
+      const saved = localStorage.getItem('rs_theme') || 'light';
+      document.documentElement.setAttribute('data-theme', saved === 'dark' ? 'dark' : 'light');
+      themeToggle.textContent = saved === 'dark' ? '☀️ Light' : '🌙 Dark';
+    };
+    initTheme();
+    themeToggle.addEventListener('click', ()=>{
+      const current = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+      const next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('rs_theme', next);
+      themeToggle.textContent = next === 'dark' ? '☀️ Light' : '🌙 Dark';
+    });
 
     // Helpers
     const el = id => document.getElementById(id);
@@ -151,35 +185,25 @@
     const fmt = (iso)=>{ try{ return new Date(iso).toLocaleString(); }catch(e){return String(iso);} };
 
     // animate numeric counters
-    function animateCount(node, to){
-      if(!node) return; const start = Number(node.textContent)||0; const dur=600; const startT = performance.now();
-      requestAnimationFrame(function tick(t){ const p = clamp((t-startT)/dur,0,1); node.textContent = Math.round(start + (to-start)* (1 - Math.pow(1-p,3))); if(p<1) requestAnimationFrame(tick); });
-    }
+    function animateCount(node, to){ if(!node) return; const start = Number(node.textContent)||0; const dur=600; const startT = performance.now();
+      requestAnimationFrame(function tick(t){ const p = clamp((t-startT)/dur,0,1); node.textContent = Math.round(start + (to-start)* (1 - Math.pow(1-p,3))); if(p<1) requestAnimationFrame(tick); }); }
 
     // CSV export
-    function exportCSV(posts){
-      if(!posts || posts.length===0) return alert('No posts to export');
-      const keys=['handle','category','label','score','text','timestamp','uri'];
-      const rows=[keys.join(',')];
-      posts.forEach(p=>{ const row = keys.map(k=>`"${String(p[k]??'').replace(/"/g,'""')}"`).join(','); rows.push(row); });
-      const blob = new Blob([rows.join('\n')],{type:'text/csv'}); const url = URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download='reviews.csv'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
-    }
+    function exportCSV(posts){ if(!posts || posts.length===0) return alert('No posts to export'); const keys=['handle','category','label','score','text','timestamp','uri']; const rows=[keys.join(',')]; posts.forEach(p=>{ const row = keys.map(k=>`"${String(p[k]??'').replace(/"/g,'""')}"`).join(','); rows.push(row); }); const blob = new Blob([rows.join('
+')],{type:'text/csv'}); const url = URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download='reviews.csv'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url); }
 
-    // destroy chart if exists
     function destroyIf(c){ if(c && typeof c.destroy==='function') c.destroy(); }
 
-    // render small sparkline
-    function drawSpark(canvas, data, color){ if(!canvas) return; destroyIf(canvas._chart); try{ const ctx = canvas.getContext('2d'); canvas.width = canvas.clientWidth * devicePixelRatio; canvas.height = canvas.clientHeight * devicePixelRatio; new Chart(ctx, { type:'bar', data:{ labels:data.map((_,i)=>i), datasets:[{ data, backgroundColor:color, barPercentage:1, categoryPercentage:1 }]}, options:{responsive:false, animation:false, plugins:{legend:{display:false}}, scales:{x:{display:false}, y:{display:false}}, layout:{padding:0} } }); }catch(e){/* ignore */} }
+    // small sparkline (bar)
+    function drawSpark(canvas, data, color){ if(!canvas) return; destroyIf(canvas._chart); try{ const ctx = canvas.getContext('2d'); canvas.width = canvas.clientWidth * devicePixelRatio; canvas.height = canvas.clientHeight * devicePixelRatio; canvas._chart = new Chart(ctx, { type:'bar', data:{ labels:data.map((_,i)=>i), datasets:[{ data, backgroundColor:color, barPercentage:1, categoryPercentage:1 }]}, options:{responsive:false, animation:false, plugins:{legend:{display:false}}, scales:{x:{display:false}, y:{display:false}}, layout:{padding:0} } }); }catch(e){/* ignore */} }
 
-    // Render posts grid (with filtering)
+    // Render posts
     let latestData = { posts:[] };
     function renderPosts(posts, opts={search:''}){
       const container = el('postsContainer'); container.innerHTML='';
       if(!posts || posts.length===0){ container.innerHTML='<div class="post">No posts</div>'; return; }
       const q = String(opts.search||'').toLowerCase().trim();
-      const filtered = posts.filter(p=>{
-        if(!q) return true; return (String(p.handle||'')+String(p.text||'')+String(p.category||'')).toLowerCase().includes(q);
-      });
+      const filtered = posts.filter(p=>{ if(!q) return true; return (String(p.handle||'')+String(p.text||'')+String(p.category||'')).toLowerCase().includes(q); });
       filtered.forEach(p=>{
         const node = document.createElement('article'); node.className='post';
         const meta = document.createElement('div'); meta.className='meta';
@@ -191,20 +215,18 @@
         const sent = document.createElement('span'); sent.textContent = p.label ? p.label + ' • ' + Math.round((p.score||0)*100) + '%' : '—'; sent.className = p.label==='Positive' ? 'sent-pos' : p.label==='Negative' ? 'sent-neg' : 'sent-neut';
         badges.append(cat, sent);
         meta.append(left, badges);
-
         const text = document.createElement('div'); text.className='text'; text.textContent = p.text || '';
         const actions = document.createElement('div'); actions.style.display='flex'; actions.style.justifyContent='space-between'; actions.style.alignItems='center'; actions.style.marginTop='8px';
         const uri = document.createElement('a'); uri.href = p.uri || '#'; uri.textContent = 'open'; uri.target='_blank'; uri.rel='noopener noreferrer';
         const scoreBar = document.createElement('div'); scoreBar.className='small'; scoreBar.textContent = 'confidence: ' + ((p.score||0)*100).toFixed(0) + '%';
         actions.append(scoreBar, uri);
-
         node.append(meta, text, actions);
         container.appendChild(node);
       });
       if(filtered.length===0) container.innerHTML='<div class="post">No posts match your search.</div>';
     }
 
-    // Render charts
+    // Charts: category (switchable stacked), sentiment donut, top handles, score histogram, trend over time
     function renderCharts(data, mode='default'){
       const posts = Array.isArray(data.posts)? data.posts : [];
       // categories
@@ -213,84 +235,68 @@
       const categories = Object.keys(catCounts).length ? Object.keys(catCounts) : ['Other'];
       const values = categories.map(c=>catCounts[c]||0);
 
-      destroyIf(categoryChart);
-      const ctx = el('categoryChart').getContext('2d');
-      const colorMap = {'Movie/TV':'#8b5cf6','Book':'#ec4899','Music':'#f97316','Game':'#0ea5e9','Other':'#64748b'};
-      categoryChart = new Chart(ctx, {
-        type: mode==='stacked' ? 'bar' : 'bar',
-        data: {
-          labels: categories,
-          datasets: [{ label:'Count', data: values, backgroundColor: categories.map(c=>colorMap[c]||'#64748b'), borderRadius:8 }]
-        },
-        options: { responsive:true, maintainAspectRatio:true, plugins:{legend:{display:false}}, scales:{ y:{ beginAtZero:true, ticks:{precision:0}} } }
-      });
-
-      // Sentiment doughnut
+      // sentiment counts
       const pos = data.positive ?? (data.sentiment?.positive ?? posts.filter(p=>String(p.label).toLowerCase()==='positive').length);
       const neut = data.neutral ?? (data.sentiment?.neutral ?? posts.filter(p=>String(p.label).toLowerCase()==='neutral').length);
       const neg = data.negative ?? (data.sentiment?.negative ?? posts.filter(p=>String(p.label).toLowerCase()==='negative').length);
-      destroyIf(sentimentChart);
+
+      // destroy existing charts
+      destroyIf(categoryChart); destroyIf(sentimentChart); destroyIf(trendChart); destroyIf(auxChart);
+
+      // category chart: default or stacked
+      const ctx = el('categoryChart').getContext('2d');
+      const colorMap = {'Movie/TV':'#8b5cf6','Book':'#ec4899','Music':'#f97316','Game':'#0ea5e9','Other':'#64748b'};
+      if(mode === 'stacked'){
+        // build stacked by sentiment per category
+        const perCatPos = categories.map(c=> posts.filter(p=>p.category===c && String(p.label).toLowerCase()==='positive').length);
+        const perCatNeut = categories.map(c=> posts.filter(p=>p.category===c && String(p.label).toLowerCase()==='neutral').length);
+        const perCatNeg = categories.map(c=> posts.filter(p=>p.category===c && String(p.label).toLowerCase()==='negative').length);
+        categoryChart = new Chart(ctx, {
+          type:'bar', data:{ labels:categories, datasets:[ {label:'Positive', data:perCatPos, backgroundColor:'#10b981'}, {label:'Neutral', data:perCatNeut, backgroundColor:'#94a3b8'}, {label:'Negative', data:perCatNeg, backgroundColor:'#ef4444'} ] }, options:{ responsive:true, maintainAspectRatio:true, plugins:{legend:{position:'bottom'}}, scales:{ x:{ stacked:true }, y:{ stacked:true, beginAtZero:true } } }
+        });
+      } else {
+        categoryChart = new Chart(ctx, { type:'bar', data:{ labels:categories, datasets:[{ label:'Count', data: values, backgroundColor: categories.map(c=>colorMap[c]||'#64748b'), borderRadius:6 }] }, options:{ responsive:true, maintainAspectRatio:true, plugins:{legend:{display:false}}, scales:{ y:{ beginAtZero:true, ticks:{precision:0}} } } });
+      }
+
+      // sentiment donut
       const sc = el('sentimentChart').getContext('2d');
       sentimentChart = new Chart(sc, { type:'doughnut', data:{ labels:['Positive','Neutral','Negative'], datasets:[{ data:[pos||0,neut||0,neg||0], backgroundColor:['#10b981','#94a3b8','#ef4444'] }]}, options:{responsive:true, maintainAspectRatio:true, plugins:{legend:{position:'bottom'}}} });
 
-      // mini trend spark
-      const times = posts.slice(-30).map(p=>p.timestamp||p.ts||new Date().toISOString());
-      const posSeries = posts.slice(-30).map(p=> p.label==='Positive'?1:0);
-      const neutSeries = posts.slice(-30).map(p=> p.label==='Neutral'?1:0);
-      const negSeries = posts.slice(-30).map(p=> p.label==='Negative'?1:0);
-      drawSpark(el('trendChartMini'), times.map((t,i)=> posSeries[i] - negSeries[i]), '#8b5cf6');
+      // trend over time: aggregate by hour or day (choose sensible bucket)
+      const timesMap = {}; // isoHour -> {pos,neut,neg}
+      posts.forEach(p=>{ const ts = p.timestamp || p.ts; if(!ts) return; const d = new Date(ts); if(isNaN(d)) return; const key = d.toISOString().slice(0,13)+":00:00Z"; if(!timesMap[key]) timesMap[key] = {pos:0,neut:0,neg:0}; const lab = String(p.label).toLowerCase(); if(lab==='positive') timesMap[key].pos++; else if(lab==='neutral') timesMap[key].neut++; else timesMap[key].neg++; });
+      const timeKeys = Object.keys(timesMap).sort();
+      const tLabels = timeKeys.map(k=> new Date(k).toLocaleString());
+      const tPos = timeKeys.map(k=> timesMap[k].pos);
+      const tNeut = timeKeys.map(k=> timesMap[k].neut);
+      const tNeg = timeKeys.map(k=> timesMap[k].neg);
+      const tctx = el('trendChart').getContext('2d');
+      trendChart = new Chart(tctx, { type:'line', data:{ labels:tLabels, datasets:[ { label:'Positive', data:tPos, tension:0.3, fill:true, backgroundColor:'rgba(16,185,129,0.08)', borderColor:'#10b981' }, { label:'Neutral', data:tNeut, tension:0.3, fill:true, backgroundColor:'rgba(148,163,184,0.06)', borderColor:'#94a3b8' }, { label:'Negative', data:tNeg, tension:0.3, fill:true, backgroundColor:'rgba(239,68,68,0.06)', borderColor:'#ef4444' } ] }, options:{ responsive:true, maintainAspectRatio:true, plugins:{legend:{position:'bottom'}}, scales:{ y:{ beginAtZero:true } } } });
 
-      // sparks for stats
-      drawSpark(el('sparkPos'), posts.slice(-20).map(p=> p.label==='Positive'?1:0), '#10b981');
-      drawSpark(el('sparkNeut'), posts.slice(-20).map(p=> p.label==='Neutral'?1:0), '#94a3b8');
-      drawSpark(el('sparkNeg'), posts.slice(-20).map(p=> p.label==='Negative'?1:0), '#ef4444');
+      // aux charts placeholder: by default show top handles
+      showTopHandles(posts);
     }
 
-    // update UI
-    function updateUI(data){
-      latestData = data || { posts:[] };
-      const posts = latestData.posts || [];
-      const pos = data.positive ?? posts.filter(p=>String(p.label).toLowerCase()==='positive').length;
-      const neut = data.neutral ?? posts.filter(p=>String(p.label).toLowerCase()==='neutral').length;
-      const neg = data.negative ?? posts.filter(p=>String(p.label).toLowerCase()==='negative').length;
-      const total = pos + neut + neg || posts.length || 0;
-      animateCount(el('positiveCount'), pos||0); animateCount(el('neutralCount'), neut||0); animateCount(el('negativeCount'), neg||0); animateCount(el('totalCount'), total);
-      el('avgScore').textContent = ((posts.reduce((s,p)=>s+(p.score||0),0)/(posts.length||1))*100).toFixed(0)+'%';
+    // auxiliary viz: top handles
+    function showTopHandles(posts){ destroyIf(auxChart); const parent = document.getElementById('auxChartContainer'); parent.innerHTML = '<canvas id="handlesChart" height="120"></canvas>'; const counts = {}; posts.forEach(p=>{ const h = p.handle||'unknown'; counts[h] = (counts[h]||0)+1; }); const entries = Object.entries(counts).sort((a,b)=>b[1]-a[1]).slice(0,8); const labels = entries.map(e=>e[0]); const data = entries.map(e=>e[1]); const ctx = document.getElementById('handlesChart').getContext('2d'); auxChart = new Chart(ctx, { type:'bar', data:{ labels, datasets:[{ label:'Posts', data, backgroundColor:'#7c3aed' }]}, options:{responsive:true, maintainAspectRatio:true, plugins:{legend:{display:false}}, scales:{ y:{ beginAtZero:true, ticks:{precision:0}} } } }); }
 
-      // top handles
-      const handleCounts = {}; posts.forEach(p=>{ const h=p.handle||'unknown'; handleCounts[h]=(handleCounts[h]||0)+1; });
-      const top = Object.entries(handleCounts).sort((a,b)=>b[1]-a[1]).slice(0,5).map(x=>`${x[0]} (${x[1]})`).join(', ');
-      el('topHandles').textContent = top || '—';
+    // auxiliary viz: score histogram
+    function showScoreHist(posts){ destroyIf(auxChart); const parent = document.getElementById('auxChartContainer'); parent.innerHTML = '<canvas id="scoreChart" height="120"></canvas>'; const scores = posts.map(p=> Math.min(1, Math.max(0, Number(p.score)||0)) ); const bins = new Array(10).fill(0); scores.forEach(s=>{ const idx = Math.min(9, Math.floor(s*10)); bins[idx]++; }); const labels = bins.map((_,i)=> `${i/10}-${(i+1)/10}` ); const ctx = document.getElementById('scoreChart').getContext('2d'); auxChart = new Chart(ctx, { type:'bar', data:{ labels, datasets:[{ label:'Count', data:bins, backgroundColor:'#06b6d4' }]}, options:{responsive:true, maintainAspectRatio:true, plugins:{legend:{display:false}}, scales:{ y:{ beginAtZero:true } } } }); }
 
-      renderCharts(data, el('vizSelect')?.value || 'default');
-      renderPosts(posts, { search: el('searchInput')?.value || '' });
-      el('lastUpdate').textContent = 'Last fetched: ' + new Date().toLocaleString();
-    }
+    // controls + UI update
+    function updateUI(data){ latestData = data || { posts:[] }; const posts = latestData.posts || []; const pos = data.positive ?? posts.filter(p=>String(p.label).toLowerCase()==='positive').length; const neut = data.neutral ?? posts.filter(p=>String(p.label).toLowerCase()==='neutral').length; const neg = data.negative ?? posts.filter(p=>String(p.label).toLowerCase()==='negative').length; const total = pos + neut + neg || posts.length || 0; animateCount(el('positiveCount'), pos||0); animateCount(el('neutralCount'), neut||0); animateCount(el('negativeCount'), neg||0); animateCount(el('totalCount'), total); el('avgScore').textContent = ((posts.reduce((s,p)=>s+(p.score||0),0)/(posts.length||1))*100).toFixed(0)+'%'; const handleCounts = {}; posts.forEach(p=>{ const h=p.handle||'unknown'; handleCounts[h]=(handleCounts[h]||0)+1; }); const top = Object.entries(handleCounts).sort((a,b)=>b[1]-a[1]).slice(0,5).map(x=>`${x[0]} (${x[1]})`).join(', '); el('topHandles').textContent = top || '—'; renderCharts(data, el('vizSelect')?.value || 'default'); renderPosts(posts, { search: el('searchInput')?.value || '' }); el('lastUpdate').textContent = 'Last fetched: ' + new Date().toLocaleString(); }
 
-    // data loader
-    async function loadData(){
-      try{
-        const res = await fetch(`${DATA_PATH}?_=${Date.now()}`);
-        if(!res.ok) throw new Error('Load failed: '+res.status);
-        const data = await res.json();
-        console.log('Fetched', data);
-        updateUI(data);
-        return data;
-      }catch(err){
-        console.error(err);
-        el('postsContainer').innerHTML = `<div class="post">⚠️ Failed to load data: ${err.message}</div>`;
-        return { posts: [] };
-      }
-    }
+    async function loadData(){ try{ const res = await fetch(`${DATA_PATH}?_=${Date.now()}`); if(!res.ok) throw new Error('Load failed: '+res.status); const data = await res.json(); console.log('Fetched', data); updateUI(data); return data; }catch(err){ console.error(err); el('postsContainer').innerHTML = `<div class="post">⚠️ Failed to load data: ${err.message}</div>`; return { posts: [] }; } }
 
-    // controls
-    el('refreshBtn')?.addEventListener('click', ()=> loadData());
-    el('exportBtn')?.addEventListener('click', async ()=> { const d = await loadData(); exportCSV(d.posts||[]); });
-    el('vizSelect')?.addEventListener('change', ()=> renderCharts(latestData, el('vizSelect').value));
-    el('searchInput')?.addEventListener('input', ()=> renderPosts(latestData.posts || [], { search: el('searchInput').value }));
-    el('shareBtn')?.addEventListener('click', ()=>{ if(navigator.share){ navigator.share({ title: document.title, url: location.href }).catch(()=>{}); } else { navigator.clipboard?.writeText(location.href); alert('Link copied to clipboard'); } });
+    // interaction
+    el('refreshBtn')?.addEventListener('click', ()=> loadData()); el('exportBtn')?.addEventListener('click', async ()=> { const d = await loadData(); exportCSV(d.posts||[]); }); el('vizSelect')?.addEventListener('change', ()=> { const mode = el('vizSelect').value; renderCharts(latestData, mode); }); el('searchInput')?.addEventListener('input', ()=> renderPosts(latestData.posts || [], { search: el('searchInput').value })); el('shareBtn')?.addEventListener('click', ()=>{ if(navigator.share){ navigator.share({ title: document.title, url: location.href }).catch(()=>{}); } else { navigator.clipboard?.writeText(location.href); alert('Link copied to clipboard'); } });
 
-    // initial load and poll
+    // aux buttons
+    document.getElementById('showHandles').addEventListener('click', ()=> showTopHandles(latestData.posts || []));
+    document.getElementById('showScores').addEventListener('click', ()=> showScoreHist(latestData.posts || []));
+    document.getElementById('showStacked').addEventListener('click', ()=> { const current = el('vizSelect').value; el('vizSelect').value = current === 'stacked' ? 'default' : 'stacked'; renderCharts(latestData, el('vizSelect').value); });
+
+    // init
     loadData(); setInterval(()=> loadData(), 30000);
   </script>
 </body>
