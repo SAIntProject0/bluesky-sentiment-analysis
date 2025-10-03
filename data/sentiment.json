@@ -1,9 +1,18 @@
 {
-  "timestamp": "2025-10-03T11:00:55.130805Z",
+  "timestamp": "2025-10-03T12:00:43.149967Z",
   "positive": 29,
-  "neutral": 26,
+  "neutral": 27,
   "negative": 15,
   "posts": [
+    {
+      "text": "The villains are in the ones in charge.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Neutral",
+      "score": 0.577,
+      "timestamp": "2025-10-03T11:52:33.494Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2byyfi4zk23"
+    },
     {
       "text": "Wait, you mean the company who is completely reliant on Xi Jinping for its entire supply chain bows to dictators?\n\nI\u2019m shocked. SHOCKED I TELL YOU!",
       "handle": "paul.bsky.social",
