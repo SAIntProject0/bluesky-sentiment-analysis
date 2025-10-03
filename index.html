@@ -206,12 +206,13 @@
       // Prepare data
       const posts = data.posts || [];
       // category counts from categories key if present, else from posts
-      const categoriesFromData = data.categories || null;
-      const categories = categoriesFromData ? Object.keys(categoriesFromData) : Array.from(new Set(posts.map(p => p.category || 'Other')));
-      const categoryCounts = categories.map(c => categoriesFromData ? (categoriesFromData[c] || 0) : posts.filter(p => (p.category||'Other') === c).length);
-
-      const sentiment = data.sentiment || posts.reduce((acc,p) => { acc[p.label] = (acc[p.label]||0) + 1; return acc; }, {});
-      const sentCounts = [sentiment.Positive || 0, sentiment.Neutral || 0, sentiment.Negative || 0];
+      const categoryCounts = {};
+      posts.forEach(p => {
+        const cat = p.category || 'Other';
+        categoryCounts[cat] = (categoryCounts[cat] || 0) + 1;
+      });
+      const categories = Object.keys(categoryCounts);
+      const categoryValues = categories.map(c => categoryCounts[c]);
 
       // trend data: expects data.history = [{ts: ISO, Positive,Neutral,Negative}, ...]
       const history = Array.isArray(data.history) && data.history.length ? data.history : null;
@@ -221,32 +222,50 @@
 
       // category chart (bar or stacked if mode=stacked)
       const catCtx = catEl.getContext('2d');
-      if(mode === 'stacked'){
-        // compute per-category sentiment breakdown
-        const categoriesList = categories;
-        const pos = categoriesList.map(c => posts.filter(p => (p.category||'Other')===c && p.label==='Positive').length);
-        const neut = categoriesList.map(c => posts.filter(p => (p.category||'Other')===c && p.label==='Neutral').length);
-        const neg = categoriesList.map(c => posts.filter(p => (p.category||'Other')===c && p.label==='Negative').length);
-        categoryChart = new Chart(catCtx, {
-          type: 'bar', data: { labels: categoriesList, datasets: [
-            { label: 'Positive', data: pos, backgroundColor: 'rgba(16,185,129,0.9)' },
-            { label: 'Neutral', data: neut, backgroundColor: 'rgba(100,116,139,0.9)' },
-            { label: 'Negative', data: neg, backgroundColor: 'rgba(239,68,68,0.9)' }
-          ]}, options: { responsive:true, maintainAspectRatio: true, scales:{ x:{ stacked:true }, y:{ stacked:true, beginAtZero:true }}, plugins:{legend:{position:'bottom'}} }
-        });
-      } else {
-        categoryChart = new Chart(catCtx, {
-          type: 'bar', data: {
-            labels: categories,
-            datasets: [{ label:'Count', data: categoryCounts, backgroundColor: categories.map(c => ({'Movie/TV':'#8b5cf6','Book':'#ec4899','Music':'#f97316','Game':'#0ea5e9','Other':'#64748b'}[c] || '#64748b')), borderRadius:8, borderSkipped:false }]
-          }, options: { responsive:true, maintainAspectRatio: true, scales:{ y:{ beginAtZero:true, ticks:{ stepSize:1 } } }, plugins:{ legend:{ display:false } } }
-        });
-      }
-
-      // sentiment doughnut
+      categoryChart = new Chart(catCtx, {
+        type: 'bar',
+         {
+          labels: categories,
+          datasets: [{
+            label: 'Count',
+             categoryValues,
+            backgroundColor: categories.map(c => 
+              ({'Movie/TV':'#8b5cf6','Book':'#ec4899','Music':'#f97316','Game':'#0ea5e9','Other':'#64748b'}[c] || '#64748b')
+            ),
+            borderRadius: 8,
+            borderSkipped: false
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: { stepSize: 1 }
+            }
+          },
+          plugins: { legend: { display: false } }
+        }
+      });
+      
+      // Sentiment doughnut
       const sentCtx = sentEl.getContext('2d');
       sentimentChart = new Chart(sentCtx, {
-        type: 'doughnut', data: { labels:['Positive','Neutral','Negative'], datasets:[{ data: sentCounts, backgroundColor:['#10b981','#64748b','#ef4444'], borderWidth:0 }] }, options: { responsive:true, maintainAspectRatio: true, plugins:{legend:{position:'bottom'}} }
+        type: 'doughnut',
+         {
+          labels: ['Positive', 'Neutral', 'Negative'],
+          datasets: [{
+             sentCounts,
+            backgroundColor: ['#10b981', '#64748b', '#ef4444'],
+            borderWidth: 0
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+          plugins: { legend: { position: 'bottom' } }
+        }
       });
 
       // trend chart (only show if history present or mode=trend)
@@ -279,9 +298,9 @@
       return 0;
     };
   
-    safeGetEl('positiveCount').textContent = getSentimentCount('Positive');
-    safeGetEl('neutralCount').textContent = getSentimentCount('Neutral');
-    safeGetEl('negativeCount').textContent = getSentimentCount('Negative');
+    safeGetEl('positiveCount').textContent = data.positive || 0;
+    safeGetEl('neutralCount').textContent = data.neutral || 0;
+    safeGetEl('negativeCount').textContent = data.negative || 0;
   
     renderPosts(data.posts || []);
     renderCharts(data, mode);
