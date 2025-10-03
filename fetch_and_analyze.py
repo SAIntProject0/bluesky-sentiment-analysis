@@ -162,15 +162,16 @@ def main():
         print("No new unique posts.")
         return
 
-    label_map = {"LABEL_0": "Negative", "LABEL_1": "Neutral", "LABEL_2": "Positive"}
+    label_map = {"negative": "Negative", "neutral": "Neutral", "positive": "Positive"}
+
     processed = []
     for i, post in enumerate(unique_posts):
         # Ensure post has "text"
         if "text" not in post:
             print(f"⚠️ Skipping post without text: {post.get('uri', 'no uri')}")
             continue
-        result = analyze_sentiment_batch([post["text"]])[0][0]
-        label = label_map.get(result.get("label", "LABEL_1"), "Neutral")
+        result = analyze_sentiment_batch([post["text"]])[0]
+        label = label_map.get(result.get("label", "neutral"), "Neutral")
         score = result.get("score", 0.5)
         processed.append({
             "text": post["text"],
