@@ -3,302 +3,462 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Sentiment Analysis Dashboard</title>
+  <title>Sentiment Analysis and NLP Dashboard</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8E%AD%3C/text%3E%3C/svg%3E">
-  <meta name="description" content="ReviewSky — a modern, responsive dashboard for realtime sentiment + categories" />
+  <meta name="description" content="Dashboard showing realtime sentiment and category view for BlueSky data" />
   <style>
-    /* --- Design system + Dark mode --- */
     :root{
-      --bg:linear-gradient(180deg,#fbfdff 0%, #f7fbff 100%);
-      --page-bg:#f3f7fb; --card-bg:rgba(255,255,255,0.9);
-      --text:#06202a; --muted:#6b7280; --glass: rgba(255,255,255,0.75);
-      --accent1:#7c3aed; --accent2:#06b6d4; --good:#10b981; --warn:#f59e0b; --bad:#ef4444;
-      --shadow:0 8px 28px rgba(9,30,66,0.06);
-      --radius:12px; --pad:14px; --transition:all .22s cubic-bezier(.2,.9,.2,1);
+      --bg:#fafafa; --text:#0f172a; --card:#fff; --border:#e6edf3;
+      --positive:#10b981; --neutral:#64748b; --negative:#ef4444;
+      --movie:#8b5cf6; --book:#ec4899; --music:#f97316; --game:#0ea5e9; --other:#64748b;
+      --accent1:#7c3aed; --accent2:#06b6d4;
+      --shadow:0 10px 25px -5px rgba(0,0,0,0.08); --transition:all .25s ease;
+      --radius:12px;
     }
-    [data-theme='dark']{
-      --bg:linear-gradient(180deg,#06121a 0%, #071a23 100%);
-      --page-bg:transparent; --card-bg:rgba(8,16,20,0.6);
-      --text:#e6eef7; --muted:#94a3b8; --glass: rgba(255,255,255,0.03);
-      --shadow:0 8px 28px rgba(2,6,23,0.7);
+    [data-theme="dark"]{
+      --bg:#071025; --text:#e6eef7; --card:#0f1724; --border:#153044; --shadow:0 10px 25px -5px rgba(0,0,0,0.5);
+      --accent1:#8b5cf6; --accent2:#06b6d4;
     }
-
     *{box-sizing:border-box}
-    html,body{height:100%}
-    body{font-family:Inter,ui-sans-serif,system-ui, -apple-system, 'Segoe UI', Roboto; margin:0; padding:20px; background:var(--bg); color:var(--text);}
+    body{font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; background:var(--bg); color:var(--text); margin:0; padding:20px; transition:var(--transition);}
     .container{max-width:1200px;margin:0 auto}
-
-    /* Header */
-    header{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:18px}
-    .brand{display:flex;gap:12px;align-items:center}
-    .logo{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent1),var(--accent2));display:flex;align-items:center;justify-content:center;color:white;font-weight:800;box-shadow:var(--shadow)}
-    h1{font-size:1.25rem;margin:0}
-    .controls{display:flex;gap:8px;align-items:center}
-    .controls input[type="search"]{padding:8px 12px;border-radius:10px;border:1px solid rgba(7,22,34,0.06);min-width:220px;background:var(--card-bg);color:var(--text)}
-    .chip{background:var(--card-bg);padding:8px 10px;border-radius:999px;border:1px solid rgba(7,22,34,0.04);display:inline-flex;align-items:center;gap:8px}
-    .btn{background:var(--card-bg);border:1px solid rgba(7,22,34,0.04);padding:8px 10px;border-radius:10px;cursor:pointer;transition:var(--transition)}
-
-    /* Stats */
-    .stats{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:12px 0}
-    .stat{background:var(--card-bg);backdrop-filter:blur(6px);padding:12px;border-radius:10px;border:1px solid rgba(9,30,66,0.04);box-shadow:var(--shadow);display:flex;flex-direction:column;gap:6px}
-    .stat .label{font-size:.82rem;color:var(--muted)}
-    .stat .value{font-size:1.4rem;font-weight:700}
-    .spark{height:34px}
-
-    /* Charts */
-    .charts{display:grid;grid-template-columns:2fr 1fr;gap:14px}
-    .card{background:var(--card-bg);border-radius:10px;padding:14px;border:1px solid rgba(9,30,66,0.04);box-shadow:var(--shadow)}
-    .card h3{margin:0 0 10px;font-size:1rem}
-    .small{font-size:.85rem;color:var(--muted)}
-
-    /* Posts */
-    .posts-area{margin-top:16px}
-    .posts-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px}
-    .post{padding:12px;border-radius:10px;background:linear-gradient(180deg,rgba(255,255,255,0.85),rgba(252,254,255,0.9));border:1px solid rgba(9,30,66,0.03);box-shadow:0 6px 18px rgba(9,30,66,0.04);display:flex;flex-direction:column;gap:8px}
-    [data-theme='dark'] .post{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));}
-    .post .meta{display:flex;justify-content:space-between;align-items:center}
-    .badges{display:flex;gap:8px;align-items:center}
+    header{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:20px}
+    h1{font-size:1.6rem;margin:0;font-weight:800;letter-spacing:-0.02em;background:linear-gradient(90deg,var(--movie),var(--book),var(--music),var(--game));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .controls{display:flex;gap:10px;align-items:center}
+    .controls input[type="search"]{padding:8px 12px;border-radius:10px;border:1px solid var(--border);background:var(--card);color:var(--text)}
+    button,select{background:var(--card);border:1px solid var(--border);padding:8px 12px;border-radius:10px;cursor:pointer;box-shadow:var(--shadow);transition:var(--transition);color:var(--text)}
+    button:active{transform:translateY(1px)}
+    .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:20px}
+    .stat-card{background:var(--card);border-radius:14px;padding:14px;text-align:center;border:1px solid var(--border);box-shadow:var(--shadow)}
+    .stat-label{font-size:.85rem;opacity:.8}
+    .stat-value{font-size:1.6rem;font-weight:800;margin-top:6px}
+    .charts{display:grid;grid-template-columns:2fr 1fr;gap:18px;margin-bottom:20px}
+    .chart-card{background:var(--card);padding:14px;border-radius:14px;border:1px solid var(--border);box-shadow:var(--shadow)}
+    .chart-card h3{margin:0 0 10px 0;font-size:1.05rem}
+    .posts-section h2{font-size:1.1rem;margin:6px 0 12px}
+    .posts-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+    .post-card{background:var(--card);padding:12px;border-radius:12px;border:1px solid var(--border);box-shadow:var(--shadow);display:flex;flex-direction:column;gap:8px}
+    .post-header{display:flex;justify-content:space-between;align-items:center;font-weight:700}
+    .post-meta{display:flex;gap:8px;align-items:center}
     .category-badge{padding:6px 10px;border-radius:999px;color:white;font-weight:700;font-size:.78rem}
-    .cat-movie{background:#8b5cf6} .cat-book{background:#ec4899} .cat-music{background:#f97316} .cat-game{background:#0ea5e9} .cat-other{background:#64748b}
-    .sent-pos{color:var(--good)} .sent-neut{color:var(--muted)} .sent-neg{color:var(--bad)}
-    .post .text{white-space:pre-wrap}
-
-    /* Footer */
-    .last-update{margin-top:12px;color:var(--muted);font-size:.85rem}
-
-    /* small tweaks */
-    .card:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(2,6,23,0.08)}
-
-    @media (max-width:980px){.charts{grid-template-columns:1fr;}.stats{grid-template-columns:repeat(3,1fr)}.controls input[type="search"]{min-width:120px}}
+    .cat-movie{background:var(--movie)} .cat-book{background:var(--book)} .cat-music{background:var(--music)} .cat-game{background:var(--game)} .cat-other{background:var(--other)}
+    .sent-pos{color:var(--positive)} .sent-neut{color:var(--neutral)} .sent-neg{color:var(--negative)}
+    .post-text{font-size:.95rem;line-height:1.4;white-space:pre-wrap}
+    .last-update{margin-top:12px;padding-top:10px;border-top:1px solid var(--border);opacity:.85;font-style:italic}
+    .loading{text-align:center;padding:40px;color:var(--neutral)}
+    .error{background:#fee;padding:12px;border-radius:10px;color:#900}
+    .chart-card canvas { display:block;width:100% !important;height:220px !important;max-height:420px;object-fit:contain }
+    #trendCard canvas { height:260px !important }
+    .aux-controls{display:flex;gap:8px;margin-top:10px;align-items:center}
+    .aux-controls .btn-mini{padding:6px 8px;border-radius:8px;font-size:.9rem}
+    @media (max-width:980px){ .charts{grid-template-columns:1fr} .chart-card canvas{height:200px !important} }
   </style>
 </head>
 <body>
   <div class="container">
     <header>
-      <div class="brand">
-        <div class="logo">RS</div>
-        <div>
-          <h1>ReviewSky Dashboard</h1>
-          <div class="small">Realtime sentiment + category explorer</div>
-        </div>
+      <div>
+        <h1>ReviewSky Sentiment Dashboard</h1>
+        <div style="font-size:.85rem;color:var(--neutral)">Realtime sentiment + category explorer</div>
       </div>
 
       <div class="controls" role="toolbar" aria-label="dashboard controls">
         <input id="searchInput" type="search" placeholder="Search posts, handles, text..." aria-label="Search posts" />
-        <div class="chip">
-          <label for="vizSelect" class="small">View</label>
-          <select id="vizSelect" title="Choose visualization">
-            <option value="default">Default</option>
-            <option value="stacked">Category × Sentiment</option>
-            <option value="trend">Trend</option>
-          </select>
-        </div>
-        <button id="refreshBtn" class="btn" title="Refresh data">🔁</button>
-        <button id="exportBtn" class="btn" title="Export CSV">⬇️</button>
-        <button id="shareBtn" class="btn" title="Share dashboard">🔗</button>
-        <button id="themeToggle" class="btn" title="Toggle theme">🌓</button>
+        <select id="vizSelect" title="Choose visualization">
+          <option value="default">Default (Category + Sentiment)</option>
+          <option value="stacked">Category × Sentiment (Stacked)</option>
+          <option value="trend">Sentiment Trend (time series)</option>
+        </select>
+        <button id="refreshBtn" title="Refresh data now">🔁 Refresh</button>
+        <button id="exportBtn" title="Download posts as CSV">⬇️ Export CSV</button>
+        <button id="shareBtn" title="Share dashboard">🔗 Share</button>
+        <button id="themeToggle" aria-pressed="false">🌓 Theme</button>
       </div>
     </header>
 
-    <section class="stats" aria-live="polite">
-      <div class="stat">
-        <div class="label">Positive</div>
-        <div class="value" id="positiveCount">0</div>
-        <canvas id="sparkPos" class="spark" aria-hidden="true"></canvas>
+    <section class="stats-grid" aria-live="polite">
+      <div class="stat-card" aria-label="positive count">
+        <div class="stat-label">Positive</div>
+        <div class="stat-value" id="positiveCount">0</div>
       </div>
-      <div class="stat">
-        <div class="label">Neutral</div>
-        <div class="value" id="neutralCount">0</div>
-        <canvas id="sparkNeut" class="spark" aria-hidden="true"></canvas>
+      <div class="stat-card" aria-label="neutral count">
+        <div class="stat-label">Neutral</div>
+        <div class="stat-value" id="neutralCount">0</div>
       </div>
-      <div class="stat">
-        <div class="label">Negative</div>
-        <div class="value" id="negativeCount">0</div>
-        <canvas id="sparkNeg" class="spark" aria-hidden="true"></canvas>
+      <div class="stat-card" aria-label="negative count">
+        <div class="stat-label">Negative</div>
+        <div class="stat-value" id="negativeCount">0</div>
       </div>
-      <div class="stat">
-        <div class="label">Total</div>
-        <div class="value" id="totalCount">0</div>
-        <div class="small">Avg confidence <strong id="avgScore">0</strong></div>
+      <div class="stat-card" aria-label="total count">
+        <div class="stat-label">Total</div>
+        <div class="stat-value" id="totalCount">0</div>
+        <div style="font-size:.85rem;color:var(--neutral);margin-top:6px">Avg confidence <strong id="avgScore">0</strong></div>
       </div>
-      <div class="stat">
-        <div class="label">Top Handles</div>
-        <div id="topHandles" class="small">—</div>
+      <div class="stat-card" aria-label="top handles">
+        <div class="stat-label">Top Handles</div>
+        <div class="stat-value" id="topHandles">—</div>
       </div>
     </section>
 
-    <section class="charts">
-      <div class="card">
-        <h3 id="chartTitle">Category breakdown</h3>
-        <canvas id="categoryChart" height="300" aria-label="Category chart"></canvas>
-        <div style="display:flex;gap:8px;margin-top:10px;align-items:center">
-          <button id="showStacked" class="btn">Toggle stacked</button>
-          <button id="showHandles" class="btn">Top Handles</button>
-          <button id="showScores" class="btn">Score distribution</button>
+    <section class="charts" id="chartsArea">
+      <div class="chart-card">
+        <h3 id="chartTitle">Reviews by Category</h3>
+        <canvas id="categoryChart" aria-label="Category chart" height="300"></canvas>
+
+        <div class="aux-controls" style="margin-top:12px">
+          <button id="showStacked" class="btn-mini">Toggle stacked</button>
+          <button id="showHandles" class="btn-mini">Top Handles</button>
+          <button id="showScores" class="btn-mini">Score distribution</button>
         </div>
-        <div class="small" style="margin-top:10px">Tip: try the <em>Category × Sentiment</em> view for stacked counts.</div>
+
         <div id="auxChartContainer" style="margin-top:12px"></div>
       </div>
 
-      <div class="card">
-        <h3>Sentiment distribution</h3>
-        <canvas id="sentimentChart" height="240" aria-label="Sentiment donut"></canvas>
-        <h3 style="margin-top:12px">Sentiment over time</h3>
-        <canvas id="trendChart" height="180" aria-label="Sentiment trend"></canvas>
+      <div class="chart-card">
+        <h3>Sentiment Distribution</h3>
+        <canvas id="sentimentChart" aria-label="Sentiment donut" height="240"></canvas>
+
+        <div id="trendCard" style="margin-top:12px;display:none">
+          <h3 style="margin-top:8px;font-size:0.95rem">Sentiment over Time</h3>
+          <canvas id="trendChart" aria-label="Sentiment trend" height="180"></canvas>
+        </div>
       </div>
     </section>
 
-    <section class="posts-area">
-      <h3 style="margin-top:16px">Latest reviews</h3>
-      <div id="postsContainer" class="posts-grid">
-        <div class="post">Loading &hellip;</div>
+    <section class="posts-section">
+      <h2>Latest Reviews from #ReviewSky</h2>
+      <div class="posts-grid" id="postsContainer">
+        <div class="loading">Loading real-time sentiment data...</div>
       </div>
-      <div class="last-update" id="lastUpdate">—</div>
     </section>
+
+    <div class="last-update" id="lastUpdate">Auto-refreshes every 30 seconds • Updated every 2 hours via UNIX cron</div>
   </div>
 
   <script>
-    // CONFIG
-    const DATA_PATH = 'data/sentiment.json';
-    let categoryChart=null, sentimentChart=null, trendChart=null, auxChart=null;
+    // --- Config & globals ---
+    const DATA_PATH = 'data/sentiment.json'; // change if needed
+    let categoryChart = null, sentimentChart = null, trendChart = null, auxChart = null;
+    let latestData = { posts: [] };
 
-    // Theme
-    const themeToggle = document.getElementById('themeToggle');
-    const initTheme = () => {
+    // Helpers
+    const el = id => document.getElementById(id);
+    const safeGetEl = id => document.getElementById(id);
+    const clamp = (v,a,b) => Math.max(a, Math.min(b, v));
+
+    // Theme initialization (persisted)
+    const themeToggle = el('themeToggle');
+    (function initTheme(){
       const saved = localStorage.getItem('rs_theme') || 'light';
       document.documentElement.setAttribute('data-theme', saved === 'dark' ? 'dark' : 'light');
-      themeToggle.textContent = saved === 'dark' ? '☀️ Light' : '🌙 Dark';
-    };
-    initTheme();
-    themeToggle.addEventListener('click', ()=>{
+      if (themeToggle) {
+        themeToggle.textContent = saved === 'dark' ? '☀️ Light' : '🌙 Dark';
+        themeToggle.setAttribute('aria-pressed', saved === 'dark');
+      }
+    })();
+    themeToggle?.addEventListener('click', () => {
       const current = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
       const next = current === 'dark' ? 'light' : 'dark';
       document.documentElement.setAttribute('data-theme', next);
       localStorage.setItem('rs_theme', next);
       themeToggle.textContent = next === 'dark' ? '☀️ Light' : '🌙 Dark';
+      themeToggle.setAttribute('aria-pressed', next === 'dark');
     });
 
-    // Helpers
-    const el = id => document.getElementById(id);
-    const clamp = (v,a,b)=> Math.max(a, Math.min(b, v));
-    const fmt = (iso)=>{ try{ return new Date(iso).toLocaleString(); }catch(e){return String(iso);} };
-
-    // animate numeric counters
-    function animateCount(node, to){ if(!node) return; const start = Number(node.textContent)||0; const dur=600; const startT = performance.now();
-      requestAnimationFrame(function tick(t){ const p = clamp((t-startT)/dur,0,1); node.textContent = Math.round(start + (to-start)* (1 - Math.pow(1-p,3))); if(p<1) requestAnimationFrame(tick); }); }
-
-    // CSV export
-    function exportCSV(posts){ if(!posts || posts.length===0) return alert('No posts to export'); const keys=['handle','category','label','score','text','timestamp','uri']; const rows=[keys.join(',')]; posts.forEach(p=>{ const row = keys.map(k=>`"${String(p[k]??'').replace(/"/g,'""')}"`).join(','); rows.push(row); }); const blob = new Blob([rows.join('
-')],{type:'text/csv'}); const url = URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download='reviews.csv'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url); }"`).join(','); rows.push(row); }); const blob = new Blob([rows.join('
-')],{type:'text/csv'}); const url = URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download='reviews.csv'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url); }
-
-    function destroyIf(c){ if(c && typeof c.destroy==='function') c.destroy(); }
-
-    // small sparkline (bar)
-    function drawSpark(canvas, data, color){ if(!canvas) return; destroyIf(canvas._chart); try{ const ctx = canvas.getContext('2d'); canvas.width = canvas.clientWidth * devicePixelRatio; canvas.height = canvas.clientHeight * devicePixelRatio; canvas._chart = new Chart(ctx, { type:'bar', data:{ labels:data.map((_,i)=>i), datasets:[{ data, backgroundColor:color, barPercentage:1, categoryPercentage:1 }]}, options:{responsive:false, animation:false, plugins:{legend:{display:false}}, scales:{x:{display:false}, y:{display:false}}, layout:{padding:0} } }); }catch(e){/* ignore */} }
-
-    // Render posts
-    let latestData = { posts:[] };
-    function renderPosts(posts, opts={search:''}){
-      const container = el('postsContainer'); container.innerHTML='';
-      if(!posts || posts.length===0){ container.innerHTML='<div class="post">No posts</div>'; return; }
-      const q = String(opts.search||'').toLowerCase().trim();
-      const filtered = posts.filter(p=>{ if(!q) return true; return (String(p.handle||'')+String(p.text||'')+String(p.category||'')).toLowerCase().includes(q); });
-      filtered.forEach(p=>{
-        const node = document.createElement('article'); node.className='post';
-        const meta = document.createElement('div'); meta.className='meta';
-        const left = document.createElement('div');
-        const handle = document.createElement('strong'); handle.textContent='@'+(p.handle||'unknown'); left.appendChild(handle);
-        const time = document.createElement('div'); time.className='small'; time.style.marginTop='6px'; time.textContent = fmt(p.timestamp||p.ts||''); left.appendChild(time);
-        const badges = document.createElement('div'); badges.className='badges';
-        const cat = document.createElement('span'); cat.className='category-badge ' + (p.category==='Movie/TV'? 'cat-movie' : p.category==='Book'? 'cat-book' : p.category==='Music'? 'cat-music' : p.category==='Game'? 'cat-game' : 'cat-other'); cat.textContent = p.category || 'Other';
-        const sent = document.createElement('span'); sent.textContent = p.label ? p.label + ' • ' + Math.round((p.score||0)*100) + '%' : '—'; sent.className = p.label==='Positive' ? 'sent-pos' : p.label==='Negative' ? 'sent-neg' : 'sent-neut';
-        badges.append(cat, sent);
-        meta.append(left, badges);
-        const text = document.createElement('div'); text.className='text'; text.textContent = p.text || '';
-        const actions = document.createElement('div'); actions.style.display='flex'; actions.style.justifyContent='space-between'; actions.style.alignItems='center'; actions.style.marginTop='8px';
-        const uri = document.createElement('a'); uri.href = p.uri || '#'; uri.textContent = 'open'; uri.target='_blank'; uri.rel='noopener noreferrer';
-        const scoreBar = document.createElement('div'); scoreBar.className='small'; scoreBar.textContent = 'confidence: ' + ((p.score||0)*100).toFixed(0) + '%';
-        actions.append(scoreBar, uri);
-        node.append(meta, text, actions);
-        container.appendChild(node);
+    // --- Rendering posts safely (avoid innerHTML injection) ---
+    function renderPosts(posts, opts = { search: '' }) {
+      const container = el('postsContainer');
+      if (!container) return;
+      container.innerHTML = '';
+      if (!posts || posts.length === 0) {
+        container.innerHTML = '<div class="loading">No reviews available yet.</div>';
+        return;
+      }
+      const q = String(opts.search || '').toLowerCase().trim();
+      const filtered = posts.filter(p => {
+        if (!q) return true;
+        return ((p.handle||'') + ' ' + (p.text||'') + ' ' + (p.category||'')).toLowerCase().includes(q);
       });
-      if(filtered.length===0) container.innerHTML='<div class="post">No posts match your search.</div>';
+
+      filtered.forEach(post => {
+        const card = document.createElement('article');
+        card.className = 'post-card';
+
+        const header = document.createElement('div'); header.className = 'post-header';
+        const handle = document.createElement('div'); handle.textContent = `@${post.handle || 'unknown'}`;
+        const sentiment = document.createElement('div');
+        sentiment.className = 'sentiment ' + (post.label === 'Positive' ? 'sent-pos' : post.label === 'Negative' ? 'sent-neg' : 'sent-neut');
+        sentiment.textContent = post.label ? `${post.label} (${Math.round((post.score||0)*100)}%)` : 'Unknown';
+        header.append(handle, sentiment);
+
+        const meta = document.createElement('div'); meta.className = 'post-meta';
+        const badge = document.createElement('span');
+        const cat = post.category || 'Other';
+        badge.className = 'category-badge ' + (cat === 'Movie/TV' ? 'cat-movie' : cat === 'Book' ? 'cat-book' : cat === 'Music' ? 'cat-music' : cat === 'Game' ? 'cat-game' : 'cat-other');
+        badge.textContent = cat;
+        meta.append(badge);
+
+        const text = document.createElement('div'); text.className = 'post-text';
+        (post.text || '').split('\n').forEach((line,i) => { if(i) text.appendChild(document.createElement('br')); text.appendChild(document.createTextNode(line)); });
+
+        // optional timestamp + open link
+        const foot = document.createElement('div'); foot.style.display='flex'; foot.style.justifyContent='space-between'; foot.style.alignItems='center'; foot.style.marginTop='8px';
+        const ts = document.createElement('div'); ts.style.fontSize='.85rem'; ts.style.color='var(--neutral)'; if(post.timestamp) ts.textContent = new Date(post.timestamp).toLocaleString(); else ts.textContent='';
+        const openLink = document.createElement('a'); openLink.href = post.uri || '#'; openLink.textContent = 'open'; openLink.target = '_blank'; openLink.rel = 'noopener noreferrer';
+        foot.append(ts, openLink);
+
+        card.append(header, meta, text, foot);
+        container.appendChild(card);
+      });
+
+      if (filtered.length === 0) container.innerHTML = '<div class="post-card">No posts match your search.</div>';
     }
 
-    // Charts: category (switchable stacked), sentiment donut, top handles, score histogram, trend over time
-    function renderCharts(data, mode='default'){
-      const posts = Array.isArray(data.posts)? data.posts : [];
-      // categories
-      const catCounts = {};
-      posts.forEach(p=>{ const c = p.category||'Other'; catCounts[c] = (catCounts[c]||0)+1; });
-      const categories = Object.keys(catCounts).length ? Object.keys(catCounts) : ['Other'];
-      const values = categories.map(c=>catCounts[c]||0);
+    // --- CSV Export ---
+    function exportCSV(posts){
+      if(!posts || posts.length === 0) return alert('No posts to export');
+      const keys = ['handle','category','label','score','text','timestamp','uri'];
+      const rows = [keys.join(',')];
+      posts.forEach(p => {
+        const row = keys.map(k => {
+          const v = p[k] == null ? '' : String(p[k]).replace(/"/g,'""');
+          return `"${v}"`;
+        }).join(',');
+        rows.push(row);
+      });
+      const blob = new Blob([rows.join('\n')],{type:'text/csv;charset=utf-8;'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a'); a.href = url; a.download = 'reviews.csv'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+    }
 
-      // sentiment counts
+    // --- Chart helpers ---
+    function destroyIf(chart){ if(chart && typeof chart.destroy === 'function') chart.destroy(); }
+    function drawAuxBarCanvas(parentId, labels, data, color){
+      const parent = el(parentId);
+      if(!parent) return;
+      parent.innerHTML = '<canvas id="auxCanvas" height="120"></canvas>';
+      const ctx = el('auxCanvas').getContext('2d');
+      destroyIf(auxChart);
+      auxChart = new Chart(ctx, {
+        type: 'bar',
+        data: { labels, datasets: [{ data, backgroundColor: color }] },
+        options: { responsive:true, maintainAspectRatio:true, plugins:{legend:{display:false}}, scales:{ y:{ beginAtZero:true } } }
+      });
+    }
+
+    // --- Visualization functions ---
+    function showTopHandles(posts){
+      const counts = {};
+      (posts||[]).forEach(p => { const h = p.handle || 'unknown'; counts[h] = (counts[h]||0)+1; });
+      const entries = Object.entries(counts).sort((a,b)=>b[1]-a[1]).slice(0,8);
+      const labels = entries.map(e=>e[0]); const data = entries.map(e=>e[1]);
+      if(labels.length===0) { el('auxChartContainer').innerHTML = '<div style="color:var(--neutral)">No handles</div>'; return; }
+      drawAuxBarCanvas('auxChartContainer', labels, data, '#7c3aed');
+    }
+
+    function showScoreHist(posts){
+      const scores = (posts||[]).map(p => Math.min(1, Math.max(0, Number(p.score)||0)));
+      const bins = new Array(10).fill(0);
+      scores.forEach(s => { const idx = Math.min(9, Math.floor(s*10)); bins[idx]++; });
+      const labels = bins.map((_,i) => `${(i/10).toFixed(1)}-${((i+1)/10).toFixed(1)}`);
+      drawAuxBarCanvas('auxChartContainer', labels, bins, '#06b6d4');
+    }
+
+    // --- Main chart rendering logic ---
+    function renderCharts(data, mode = 'default'){
+      const catEl = safeGetEl('categoryChart');
+      const sentEl = safeGetEl('sentimentChart');
+      const trendEl = safeGetEl('trendChart');
+      if(!catEl || !sentEl) return;
+
+      const posts = Array.isArray(data.posts) ? data.posts : [];
+
+      // category counts
+      const categoryCounts = {};
+      posts.forEach(p => {
+        const cat = p.category || 'Other';
+        categoryCounts[cat] = (categoryCounts[cat] || 0) + 1;
+      });
+      const categories = Object.keys(categoryCounts).length ? Object.keys(categoryCounts) : ['Other'];
+      const categoryValues = categories.map(c => categoryCounts[c] || 0);
+
+      // sentiment counts (top-level -> fallback -> count posts)
+      const sentFromTop = { positive: data.positive, neutral: data.neutral, negative: data.negative };
+      const sentFromObj = data.sentiment || {};
+      const countFromPosts = {
+        positive: posts.filter(p => String(p.label).toLowerCase() === 'positive').length,
+        neutral: posts.filter(p => String(p.label).toLowerCase() === 'neutral').length,
+        negative: posts.filter(p => String(p.label).toLowerCase() === 'negative').length
+      };
+      const positiveCount = (sentFromTop.positive != null) ? sentFromTop.positive : (sentFromObj.Positive ?? sentFromObj.positive ?? countFromPosts.positive);
+      const neutralCount = (sentFromTop.neutral != null) ? sentFromTop.neutral : (sentFromObj.Neutral ?? sentFromObj.neutral ?? countFromPosts.neutral);
+      const negativeCount = (sentFromTop.negative != null) ? sentFromTop.negative : (sentFromObj.Negative ?? sentFromObj.negative ?? countFromPosts.negative);
+      const sentCounts = [positiveCount || 0, neutralCount || 0, negativeCount || 0];
+
+      // destroy previous charts
+      destroyIf(categoryChart); destroyIf(sentimentChart); destroyIf(trendChart); destroyIf(auxChart);
+      el('auxChartContainer').innerHTML = '';
+
+      // category chart: either stacked (by sentiment) or simple bar
+      const catCtx = catEl.getContext('2d');
+      const colorMap = {'Movie/TV':'#8b5cf6','Book':'#ec4899','Music':'#f97316','Game':'#0ea5e9','Other':'#64748b'};
+      if (mode === 'stacked') {
+        const perCatPos = categories.map(c=> posts.filter(p=>p.category===c && String(p.label).toLowerCase()==='positive').length);
+        const perCatNeut = categories.map(c=> posts.filter(p=>p.category===c && String(p.label).toLowerCase()==='neutral').length);
+        const perCatNeg = categories.map(c=> posts.filter(p=>p.category===c && String(p.label).toLowerCase()==='negative').length);
+        categoryChart = new Chart(catCtx, {
+          type: 'bar',
+          data: { labels: categories, datasets: [
+            { label:'Positive', data: perCatPos, backgroundColor:'#10b981' },
+            { label:'Neutral', data: perCatNeut, backgroundColor:'#94a3b8' },
+            { label:'Negative', data: perCatNeg, backgroundColor:'#ef4444' }
+          ]},
+          options: { responsive:true, maintainAspectRatio:true, plugins:{legend:{position:'bottom'}}, scales:{ x:{stacked:true}, y:{stacked:true, beginAtZero:true} } }
+        });
+      } else {
+        categoryChart = new Chart(catCtx, {
+          type: 'bar',
+          data: { labels: categories, datasets: [{ label:'Count', data: categoryValues, backgroundColor: categories.map(c => colorMap[c] || '#64748b'), borderRadius: 8 }]},
+          options: { responsive:true, maintainAspectRatio:true, plugins:{legend:{display:false}}, scales:{ y:{ beginAtZero:true, ticks:{precision:0} } } }
+        });
+      }
+
+      // Sentiment doughnut
+      const sentCtx = sentEl.getContext('2d');
+      sentimentChart = new Chart(sentCtx, {
+        type: 'doughnut',
+        data: { labels: ['Positive','Neutral','Negative'], datasets: [{ data: sentCounts, backgroundColor: ['#10b981','#94a3b8','#ef4444'] }]},
+        options: { responsive:true, maintainAspectRatio:true, plugins:{legend:{position:'bottom'}} }
+      });
+
+      // trend chart: aggregate by hour (or day depending on span)
+      const trendCard = safeGetEl('trendCard');
+      // build times map (hour buckets)
+      const timesMap = {};
+      posts.forEach(p => {
+        const ts = p.timestamp || p.ts;
+        if(!ts) return;
+        const d = new Date(ts);
+        if(isNaN(d)) return;
+        // bucket key: YYYY-MM-DDTHH
+        const key = d.toISOString().slice(0,13) + ':00:00Z';
+        if(!timesMap[key]) timesMap[key] = {pos:0,neut:0,neg:0};
+        const lab = String(p.label).toLowerCase();
+        if(lab === 'positive') timesMap[key].pos++;
+        else if(lab === 'neutral') timesMap[key].neut++;
+        else timesMap[key].neg++;
+      });
+      const timeKeys = Object.keys(timesMap).sort();
+      if (mode === 'trend' || timeKeys.length > 0) {
+        if(trendCard) trendCard.style.display = '';
+        const tLabels = timeKeys.map(k => new Date(k).toLocaleString());
+        const tPos = timeKeys.map(k => timesMap[k].pos);
+        const tNeut = timeKeys.map(k => timesMap[k].neut);
+        const tNeg = timeKeys.map(k => timesMap[k].neg);
+        const tctx = trendEl.getContext('2d');
+        trendChart = new Chart(tctx, {
+          type: 'line',
+          data: {
+            labels: tLabels,
+            datasets: [
+              { label:'Positive', data:tPos, tension:0.3, fill:true, backgroundColor:'rgba(16,185,129,0.08)', borderColor:'#10b981' },
+              { label:'Neutral', data:tNeut, tension:0.3, fill:true, backgroundColor:'rgba(148,163,184,0.06)', borderColor:'#94a3b8' },
+              { label:'Negative', data:tNeg, tension:0.3, fill:true, backgroundColor:'rgba(239,68,68,0.06)', borderColor:'#ef4444' }
+            ]
+          },
+          options: { responsive:true, maintainAspectRatio:true, plugins:{legend:{position:'bottom'}}, scales:{ y:{ beginAtZero:true } } }
+        });
+      } else {
+        if(trendCard) trendCard.style.display = 'none';
+      }
+
+      // show top handles by default in aux
+      showTopHandles(posts);
+    }
+
+    // --- UI update pipeline ---
+    function updateUI(data, mode='default'){
+      latestData = data || { posts: [] };
+      const posts = Array.isArray(data.posts) ? data.posts : [];
       const pos = data.positive ?? (data.sentiment?.positive ?? posts.filter(p=>String(p.label).toLowerCase()==='positive').length);
       const neut = data.neutral ?? (data.sentiment?.neutral ?? posts.filter(p=>String(p.label).toLowerCase()==='neutral').length);
       const neg = data.negative ?? (data.sentiment?.negative ?? posts.filter(p=>String(p.label).toLowerCase()==='negative').length);
 
-      // destroy existing charts
-      destroyIf(categoryChart); destroyIf(sentimentChart); destroyIf(trendChart); destroyIf(auxChart);
+      el('positiveCount').textContent = pos ?? 0;
+      el('neutralCount').textContent = neut ?? 0;
+      el('negativeCount').textContent = neg ?? 0;
+      el('totalCount').textContent = (Number(pos||0) + Number(neut||0) + Number(neg||0)) || posts.length || 0;
+      el('avgScore').textContent = ((posts.reduce((s,p)=>s+(p.score||0),0)/(posts.length||1))*100).toFixed(0) + '%';
 
-      // category chart: default or stacked
-      const ctx = el('categoryChart').getContext('2d');
-      const colorMap = {'Movie/TV':'#8b5cf6','Book':'#ec4899','Music':'#f97316','Game':'#0ea5e9','Other':'#64748b'};
-      if(mode === 'stacked'){
-        // build stacked by sentiment per category
-        const perCatPos = categories.map(c=> posts.filter(p=>p.category===c && String(p.label).toLowerCase()==='positive').length);
-        const perCatNeut = categories.map(c=> posts.filter(p=>p.category===c && String(p.label).toLowerCase()==='neutral').length);
-        const perCatNeg = categories.map(c=> posts.filter(p=>p.category===c && String(p.label).toLowerCase()==='negative').length);
-        categoryChart = new Chart(ctx, {
-          type:'bar', data:{ labels:categories, datasets:[ {label:'Positive', data:perCatPos, backgroundColor:'#10b981'}, {label:'Neutral', data:perCatNeut, backgroundColor:'#94a3b8'}, {label:'Negative', data:perCatNeg, backgroundColor:'#ef4444'} ] }, options:{ responsive:true, maintainAspectRatio:true, plugins:{legend:{position:'bottom'}}, scales:{ x:{ stacked:true }, y:{ stacked:true, beginAtZero:true } } }
-        });
-      } else {
-        categoryChart = new Chart(ctx, { type:'bar', data:{ labels:categories, datasets:[{ label:'Count', data: values, backgroundColor: categories.map(c=>colorMap[c]||'#64748b'), borderRadius:6 }] }, options:{ responsive:true, maintainAspectRatio:true, plugins:{legend:{display:false}}, scales:{ y:{ beginAtZero:true, ticks:{precision:0}} } } });
-      }
+      // top handles
+      const handleCounts = {};
+      posts.forEach(p => { const h = p.handle || 'unknown'; handleCounts[h] = (handleCounts[h] || 0) + 1; });
+      const top = Object.entries(handleCounts).sort((a,b)=>b[1]-a[1]).slice(0,5).map(x=>`${x[0]} (${x[1]})`).join(', ');
+      el('topHandles').textContent = top || '—';
 
-      // sentiment donut
-      const sc = el('sentimentChart').getContext('2d');
-      sentimentChart = new Chart(sc, { type:'doughnut', data:{ labels:['Positive','Neutral','Negative'], datasets:[{ data:[pos||0,neut||0,neg||0], backgroundColor:['#10b981','#94a3b8','#ef4444'] }]}, options:{responsive:true, maintainAspectRatio:true, plugins:{legend:{position:'bottom'}}} });
-
-      // trend over time: aggregate by hour or day (choose sensible bucket)
-      const timesMap = {}; // isoHour -> {pos,neut,neg}
-      posts.forEach(p=>{ const ts = p.timestamp || p.ts; if(!ts) return; const d = new Date(ts); if(isNaN(d)) return; const key = d.toISOString().slice(0,13)+":00:00Z"; if(!timesMap[key]) timesMap[key] = {pos:0,neut:0,neg:0}; const lab = String(p.label).toLowerCase(); if(lab==='positive') timesMap[key].pos++; else if(lab==='neutral') timesMap[key].neut++; else timesMap[key].neg++; });
-      const timeKeys = Object.keys(timesMap).sort();
-      const tLabels = timeKeys.map(k=> new Date(k).toLocaleString());
-      const tPos = timeKeys.map(k=> timesMap[k].pos);
-      const tNeut = timeKeys.map(k=> timesMap[k].neut);
-      const tNeg = timeKeys.map(k=> timesMap[k].neg);
-      const tctx = el('trendChart').getContext('2d');
-      trendChart = new Chart(tctx, { type:'line', data:{ labels:tLabels, datasets:[ { label:'Positive', data:tPos, tension:0.3, fill:true, backgroundColor:'rgba(16,185,129,0.08)', borderColor:'#10b981' }, { label:'Neutral', data:tNeut, tension:0.3, fill:true, backgroundColor:'rgba(148,163,184,0.06)', borderColor:'#94a3b8' }, { label:'Negative', data:tNeg, tension:0.3, fill:true, backgroundColor:'rgba(239,68,68,0.06)', borderColor:'#ef4444' } ] }, options:{ responsive:true, maintainAspectRatio:true, plugins:{legend:{position:'bottom'}}, scales:{ y:{ beginAtZero:true } } } });
-
-      // aux charts placeholder: by default show top handles
-      showTopHandles(posts);
+      renderPosts(posts, { search: el('searchInput')?.value || '' });
+      renderCharts(data, mode);
+      const lu = el('lastUpdate');
+      if (lu) lu.textContent = 'Last fetched: ' + new Date().toLocaleString();
     }
 
-    // auxiliary viz: top handles
-    function showTopHandles(posts){ destroyIf(auxChart); const parent = document.getElementById('auxChartContainer'); parent.innerHTML = '<canvas id="handlesChart" height="120"></canvas>'; const counts = {}; posts.forEach(p=>{ const h = p.handle||'unknown'; counts[h] = (counts[h]||0)+1; }); const entries = Object.entries(counts).sort((a,b)=>b[1]-a[1]).slice(0,8); const labels = entries.map(e=>e[0]); const data = entries.map(e=>e[1]); const ctx = document.getElementById('handlesChart').getContext('2d'); auxChart = new Chart(ctx, { type:'bar', data:{ labels, datasets:[{ label:'Posts', data, backgroundColor:'#7c3aed' }]}, options:{responsive:true, maintainAspectRatio:true, plugins:{legend:{display:false}}, scales:{ y:{ beginAtZero:true, ticks:{precision:0}} } } }); }
+    // --- Data loader ---
+    async function loadData(){
+      try {
+        const res = await fetch(`${DATA_PATH}?_=${Date.now()}`);
+        if (!res.ok) throw new Error(`Failed to load (${res.status})`);
+        const data = await res.json();
+        console.log("Fetched sentiment.json data:", data);
+        const viz = (el('vizSelect') && el('vizSelect').value) || 'default';
+        updateUI(data, viz);
+        return data;
+      } catch (err) {
+        console.error(err);
+        const posts = el('postsContainer');
+        if (posts) posts.innerHTML = `<div class="error">⚠️ Failed to load data: ${err.message}</div>`;
+        return { posts: [] };
+      }
+    }
 
-    // auxiliary viz: score histogram
-    function showScoreHist(posts){ destroyIf(auxChart); const parent = document.getElementById('auxChartContainer'); parent.innerHTML = '<canvas id="scoreChart" height="120"></canvas>'; const scores = posts.map(p=> Math.min(1, Math.max(0, Number(p.score)||0)) ); const bins = new Array(10).fill(0); scores.forEach(s=>{ const idx = Math.min(9, Math.floor(s*10)); bins[idx]++; }); const labels = bins.map((_,i)=> `${i/10}-${(i+1)/10}` ); const ctx = document.getElementById('scoreChart').getContext('2d'); auxChart = new Chart(ctx, { type:'bar', data:{ labels, datasets:[{ label:'Count', data:bins, backgroundColor:'#06b6d4' }]}, options:{responsive:true, maintainAspectRatio:true, plugins:{legend:{display:false}}, scales:{ y:{ beginAtZero:true } } } }); }
+    // --- Controls ---
+    el('vizSelect')?.addEventListener('change', () => {
+      const mode = el('vizSelect').value;
+      renderCharts(latestData, mode);
+      // show/hide trend card if needed
+      if(mode === 'trend') el('trendCard').style.display = '';
+      else {
+        // only show trend if data has history/time buckets
+        // renderCharts handles that check
+      }
+    });
 
-    // controls + UI update
-    function updateUI(data){ latestData = data || { posts:[] }; const posts = latestData.posts || []; const pos = data.positive ?? posts.filter(p=>String(p.label).toLowerCase()==='positive').length; const neut = data.neutral ?? posts.filter(p=>String(p.label).toLowerCase()==='neutral').length; const neg = data.negative ?? posts.filter(p=>String(p.label).toLowerCase()==='negative').length; const total = pos + neut + neg || posts.length || 0; animateCount(el('positiveCount'), pos||0); animateCount(el('neutralCount'), neut||0); animateCount(el('negativeCount'), neg||0); animateCount(el('totalCount'), total); el('avgScore').textContent = ((posts.reduce((s,p)=>s+(p.score||0),0)/(posts.length||1))*100).toFixed(0)+'%'; const handleCounts = {}; posts.forEach(p=>{ const h=p.handle||'unknown'; handleCounts[h]=(handleCounts[h]||0)+1; }); const top = Object.entries(handleCounts).sort((a,b)=>b[1]-a[1]).slice(0,5).map(x=>`${x[0]} (${x[1]})`).join(', '); el('topHandles').textContent = top || '—'; renderCharts(data, el('vizSelect')?.value || 'default'); renderPosts(posts, { search: el('searchInput')?.value || '' }); el('lastUpdate').textContent = 'Last fetched: ' + new Date().toLocaleString(); }
+    el('refreshBtn')?.addEventListener('click', () => loadData());
+    el('exportBtn')?.addEventListener('click', async () => { const d = await loadData(); exportCSV(d.posts || []); });
+    el('searchInput')?.addEventListener('input', () => renderPosts(latestData.posts || [], { search: el('searchInput').value }));
 
-    async function loadData(){ try{ const res = await fetch(`${DATA_PATH}?_=${Date.now()}`); if(!res.ok) throw new Error('Load failed: '+res.status); const data = await res.json(); console.log('Fetched', data); updateUI(data); return data; }catch(err){ console.error(err); el('postsContainer').innerHTML = `<div class="post">⚠️ Failed to load data: ${err.message}</div>`; return { posts: [] }; } }
-
-    // interaction
-    el('refreshBtn')?.addEventListener('click', ()=> loadData()); el('exportBtn')?.addEventListener('click', async ()=> { const d = await loadData(); exportCSV(d.posts||[]); }); el('vizSelect')?.addEventListener('change', ()=> { const mode = el('vizSelect').value; renderCharts(latestData, mode); }); el('searchInput')?.addEventListener('input', ()=> renderPosts(latestData.posts || [], { search: el('searchInput').value })); el('shareBtn')?.addEventListener('click', ()=>{ if(navigator.share){ navigator.share({ title: document.title, url: location.href }).catch(()=>{}); } else { navigator.clipboard?.writeText(location.href); alert('Link copied to clipboard'); } });
+    el('shareBtn')?.addEventListener('click', ()=>{
+      if(navigator.share){
+        navigator.share({ title: document.title, url: location.href }).catch(()=>{});
+      } else {
+        navigator.clipboard?.writeText(location.href);
+        alert('Dashboard URL copied to clipboard');
+      }
+    });
 
     // aux buttons
-    document.getElementById('showHandles').addEventListener('click', ()=> showTopHandles(latestData.posts || []));
-    document.getElementById('showScores').addEventListener('click', ()=> showScoreHist(latestData.posts || []));
-    document.getElementById('showStacked').addEventListener('click', ()=> { const current = el('vizSelect').value; el('vizSelect').value = current === 'stacked' ? 'default' : 'stacked'; renderCharts(latestData, el('vizSelect').value); });
+    el('showHandles')?.addEventListener('click', ()=> showTopHandles(latestData.posts || []));
+    el('showScores')?.addEventListener('click', ()=> showScoreHist(latestData.posts || []));
+    el('showStacked')?.addEventListener('click', ()=> {
+      const sel = el('vizSelect');
+      if(!sel) return;
+      sel.value = sel.value === 'stacked' ? 'default' : 'stacked';
+      renderCharts(latestData, sel.value);
+    });
 
-    // init
-    loadData(); setInterval(()=> loadData(), 30000);
+    // initial load + polling
+    loadData();
+    setInterval(() => loadData(), 30000);
   </script>
 </body>
 </html>
