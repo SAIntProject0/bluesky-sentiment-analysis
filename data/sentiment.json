@@ -1,9 +1,18 @@
 {
-  "timestamp": "2025-10-03T12:00:43.149967Z",
+  "timestamp": "2025-10-03T14:30:42.158272Z",
   "positive": 29,
   "neutral": 27,
-  "negative": 15,
+  "negative": 16,
   "posts": [
+    {
+      "text": "Why are you allowing them to operate in Illinois?",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.711,
+      "timestamp": "2025-10-03T14:21:33.065Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2cbcsw7sk2w"
+    },
     {
       "text": "The villains are in the ones in charge.",
       "handle": "paul.bsky.social",
