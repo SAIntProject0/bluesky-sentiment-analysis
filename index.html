@@ -29,29 +29,51 @@
     .controls input[type="search"]{padding:8px 12px;border-radius:10px;border:1px solid var(--border);background:var(--card);color:var(--text)}
     button,select{background:var(--card);border:1px solid var(--border);padding:8px 12px;border-radius:10px;cursor:pointer;box-shadow:var(--shadow);transition:var(--transition);color:var(--text)}
     button:active{transform:translateY(1px)}
+    /* — stats — */
     .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:20px}
-    .stat-card{background:var(--card);border-radius:14px;padding:14px;text-align:center;border:1px solid var(--border);box-shadow:var(--shadow)}
-    .stat-label{font-size:.85rem;opacity:.8}
-    .stat-value{font-size:1.6rem;font-weight:800;margin-top:6px}
+    .stat-card{
+      background:var(--card);border-radius:14px;padding:10px;text-align:center;border:1px solid var(--border);box-shadow:var(--shadow);
+      min-height:72px; display:flex;flex-direction:column;justify-content:center;align-items:center;
+    }
+    .stat-label{font-size:.78rem;opacity:.85;margin-bottom:6px}
+    .stat-value{font-size:1.35rem;font-weight:700;margin-top:0}
+    /* color-coded stat values */
+    .stat-card.stat-positive .stat-value{ color:var(--positive) }
+    .stat-card.stat-neutral  .stat-value{ color:var(--neutral) }
+    .stat-card.stat-negative .stat-value{ color:var(--negative) }
+    /* smaller Top Handles text + ellipsis */
+    .stat-card.stat-tophandles .stat-value{
+      font-size:0.98rem;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:220px;
+      color:var(--text);
+    }
+
+    /* charts layout */
     .charts{display:grid;grid-template-columns:2fr 1fr;gap:18px;margin-bottom:20px}
     .chart-card{background:var(--card);padding:14px;border-radius:14px;border:1px solid var(--border);box-shadow:var(--shadow)}
     .chart-card h3{margin:0 0 10px 0;font-size:1.05rem}
-    .posts-section h2{font-size:1.1rem;margin:6px 0 12px}
+    .aux-controls{display:flex;gap:8px;margin-top:10px;align-items:center}
+    .btn-mini{padding:6px 8px;border-radius:8px;font-size:.9rem}
+
+    /* posts */
+    .posts-section h2{font-size:1.05rem;margin:6px 0 12px}
     .posts-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+    /* ensure items align to top so different heights don't misalign the grid */
+    .posts-grid > * { align-self:start; }
     .post-card{background:var(--card);padding:12px;border-radius:12px;border:1px solid var(--border);box-shadow:var(--shadow);display:flex;flex-direction:column;gap:8px}
     .post-header{display:flex;justify-content:space-between;align-items:center;font-weight:700}
     .post-meta{display:flex;gap:8px;align-items:center}
     .category-badge{padding:6px 10px;border-radius:999px;color:white;font-weight:700;font-size:.78rem}
     .cat-movie{background:var(--movie)} .cat-book{background:var(--book)} .cat-music{background:var(--music)} .cat-game{background:var(--game)} .cat-other{background:var(--other)}
     .sent-pos{color:var(--positive)} .sent-neut{color:var(--neutral)} .sent-neg{color:var(--negative)}
-    .post-text{font-size:.95rem;line-height:1.4;white-space:pre-wrap}
+    /* smaller post text, constrained height to avoid layout jumping; users can open full post */
+    .post-text{font-size:0.88rem;line-height:1.28;white-space:pre-wrap;max-height:6.5rem;overflow:hidden}
+    .post-card .foot { display:flex;justify-content:space-between;align-items:center;margin-top:6px;font-size:.85rem;color:var(--neutral) }
+
     .last-update{margin-top:12px;padding-top:10px;border-top:1px solid var(--border);opacity:.85;font-style:italic}
     .loading{text-align:center;padding:40px;color:var(--neutral)}
     .error{background:#fee;padding:12px;border-radius:10px;color:#900}
     .chart-card canvas { display:block;width:100% !important;height:220px !important;max-height:420px;object-fit:contain }
     #trendCard canvas { height:260px !important }
-    .aux-controls{display:flex;gap:8px;margin-top:10px;align-items:center}
-    .aux-controls .btn-mini{padding:6px 8px;border-radius:8px;font-size:.9rem}
     @media (max-width:980px){ .charts{grid-template-columns:1fr} .chart-card canvas{height:200px !important} }
   </style>
 </head>
@@ -78,24 +100,29 @@
     </header>
 
     <section class="stats-grid" aria-live="polite">
-      <div class="stat-card" aria-label="positive count">
+      <!-- note: added color-purpose classes so CSS can style the values -->
+      <div class="stat-card stat-positive" aria-label="positive count">
         <div class="stat-label">Positive</div>
         <div class="stat-value" id="positiveCount">0</div>
       </div>
-      <div class="stat-card" aria-label="neutral count">
+
+      <div class="stat-card stat-neutral" aria-label="neutral count">
         <div class="stat-label">Neutral</div>
         <div class="stat-value" id="neutralCount">0</div>
       </div>
-      <div class="stat-card" aria-label="negative count">
+
+      <div class="stat-card stat-negative" aria-label="negative count">
         <div class="stat-label">Negative</div>
         <div class="stat-value" id="negativeCount">0</div>
       </div>
+
       <div class="stat-card" aria-label="total count">
         <div class="stat-label">Total</div>
         <div class="stat-value" id="totalCount">0</div>
         <div style="font-size:.85rem;color:var(--neutral);margin-top:6px">Avg confidence <strong id="avgScore">0</strong></div>
       </div>
-      <div class="stat-card" aria-label="top handles">
+
+      <div class="stat-card stat-tophandles" aria-label="top handles">
         <div class="stat-label">Top Handles</div>
         <div class="stat-value" id="topHandles">—</div>
       </div>
@@ -202,9 +229,8 @@
         const text = document.createElement('div'); text.className = 'post-text';
         (post.text || '').split('\n').forEach((line,i) => { if(i) text.appendChild(document.createElement('br')); text.appendChild(document.createTextNode(line)); });
 
-        // optional timestamp + open link
-        const foot = document.createElement('div'); foot.style.display='flex'; foot.style.justifyContent='space-between'; foot.style.alignItems='center'; foot.style.marginTop='8px';
-        const ts = document.createElement('div'); ts.style.fontSize='.85rem'; ts.style.color='var(--neutral)'; if(post.timestamp) ts.textContent = new Date(post.timestamp).toLocaleString(); else ts.textContent='';
+        const foot = document.createElement('div'); foot.className = 'foot';
+        const ts = document.createElement('div'); ts.textContent = post.timestamp ? new Date(post.timestamp).toLocaleString() : '';
         const openLink = document.createElement('a'); openLink.href = post.uri || '#'; openLink.textContent = 'open'; openLink.target = '_blank'; openLink.rel = 'noopener noreferrer';
         foot.append(ts, openLink);
 
@@ -334,14 +360,12 @@
 
       // trend chart: aggregate by hour (or day depending on span)
       const trendCard = safeGetEl('trendCard');
-      // build times map (hour buckets)
       const timesMap = {};
       posts.forEach(p => {
         const ts = p.timestamp || p.ts;
         if(!ts) return;
         const d = new Date(ts);
         if(isNaN(d)) return;
-        // bucket key: YYYY-MM-DDTHH
         const key = d.toISOString().slice(0,13) + ':00:00Z';
         if(!timesMap[key]) timesMap[key] = {pos:0,neut:0,neg:0};
         const lab = String(p.label).toLowerCase();
@@ -425,12 +449,6 @@
     el('vizSelect')?.addEventListener('change', () => {
       const mode = el('vizSelect').value;
       renderCharts(latestData, mode);
-      // show/hide trend card if needed
-      if(mode === 'trend') el('trendCard').style.display = '';
-      else {
-        // only show trend if data has history/time buckets
-        // renderCharts handles that check
-      }
     });
 
     el('refreshBtn')?.addEventListener('click', () => loadData());
