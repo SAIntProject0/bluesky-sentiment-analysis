@@ -1,9 +1,27 @@
 {
-  "timestamp": "2025-10-04T16:45:43.193411Z",
-  "positive": 33,
+  "timestamp": "2025-10-04T18:00:35.288560Z",
+  "positive": 34,
   "neutral": 33,
-  "negative": 27,
+  "negative": 28,
   "posts": [
+    {
+      "text": "Augusta National Golf Course wouldn\u2019t even have to change its name. It\u2019s already almost there!",
+      "handle": "paul.bsky.social",
+      "category": "Book",
+      "label": "Positive",
+      "score": 0.854,
+      "timestamp": "2025-10-04T18:00:03.836Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2f5yhrv5s2d"
+    },
+    {
+      "text": "I mean, it\u2019s no secret that MTG has made allusions in the past to her own sexual harassment by her GOP colleagues. She has a bone to pick with some of them, and wants to use the release of the Epstein files as the tipping point which she can use to pile-on.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.763,
+      "timestamp": "2025-10-04T17:46:07.696Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2f57kex622d"
+    },
     {
       "text": "\u201cWealthy Americans, who\u2019ve benefitted so much from the pillars Trump is attacking, need to get our shit together, and seize the means of consumption\u201d\n\nGREAT episode from @ProfGalloway.com \n\npodcasts.apple.com/us/podcast/t...",
       "handle": "paul.bsky.social",
