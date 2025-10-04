@@ -1,9 +1,18 @@
 {
-  "timestamp": "2025-10-04T18:00:35.288560Z",
+  "timestamp": "2025-10-04T18:15:45.192971Z",
   "positive": 34,
-  "neutral": 33,
+  "neutral": 34,
   "negative": 28,
   "posts": [
+    {
+      "text": "You think he\u2019s paying his caddies now??",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Neutral",
+      "score": 0.788,
+      "timestamp": "2025-10-04T18:04:14.190Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2f67wk3ic2d"
+    },
     {
       "text": "Augusta National Golf Course wouldn\u2019t even have to change its name. It\u2019s already almost there!",
       "handle": "paul.bsky.social",
