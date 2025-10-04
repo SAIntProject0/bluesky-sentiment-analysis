@@ -1,9 +1,45 @@
 {
-  "timestamp": "2025-10-04T14:30:44.202972Z",
-  "positive": 31,
-  "neutral": 30,
+  "timestamp": "2025-10-04T14:45:43.631515Z",
+  "positive": 32,
+  "neutral": 33,
   "negative": 26,
   "posts": [
+    {
+      "text": "You are correct. \n\nwww.snopes.com/news/2022/08...",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Positive",
+      "score": 0.504,
+      "timestamp": "2025-10-04T14:41:45.616Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2esvur2o22u"
+    },
+    {
+      "text": "So did the founders of Google.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Neutral",
+      "score": 0.796,
+      "timestamp": "2025-10-04T14:34:52.090Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2esjkf7pc2u"
+    },
+    {
+      "text": "EVERYONE should have healthcare.\n\nPeriod.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Neutral",
+      "score": 0.521,
+      "timestamp": "2025-10-04T14:32:05.562Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2esell6pc2u"
+    },
+    {
+      "text": "EVERYONE should have healthcare.\n\nPeriod.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Neutral",
+      "score": 0.521,
+      "timestamp": "2025-10-04T14:31:30.204Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2esdjuadk2u"
+    },
     {
       "text": "George W Bush has entered the chat",
       "handle": "paul.bsky.social",
