@@ -1,9 +1,45 @@
 {
-  "timestamp": "2025-10-04T18:15:45.192971Z",
+  "timestamp": "2025-10-04T21:00:48.053201Z",
   "positive": 34,
   "neutral": 34,
-  "negative": 28,
+  "negative": 32,
   "posts": [
+    {
+      "text": "\u201cShooting involving federal agents\u201d?!\n\nWho was doing the shooting?\n\nWHO WAS DOING THE SHOOTING MOTHERFUCKER!",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.906,
+      "timestamp": "2025-10-04T20:55:26.485Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2fhs2xokc2c"
+    },
+    {
+      "text": "The Hill is complete trash.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.924,
+      "timestamp": "2025-10-04T20:52:39.779Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2fhn3y7ps2c"
+    },
+    {
+      "text": "And also tell Trump to go fuck himself.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.886,
+      "timestamp": "2025-10-04T20:47:52.496Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2fhejyyws2c"
+    },
+    {
+      "text": "The attorney in charge of pardons at DoJ refused to re-instate Mel Gibson\u2019s gun rights after he was convicted on domestic violence charges.\n\nMel Gibson is a friend of Trump.\n\nThe attorney was fired.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.781,
+      "timestamp": "2025-10-04T20:47:05.360Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2fhd52ko22c"
+    },
     {
       "text": "You think he\u2019s paying his caddies now??",
       "handle": "paul.bsky.social",
