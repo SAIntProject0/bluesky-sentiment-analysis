@@ -1,9 +1,18 @@
 {
-  "timestamp": "2025-10-04T14:45:43.631515Z",
+  "timestamp": "2025-10-04T15:00:49.199287Z",
   "positive": 32,
   "neutral": 33,
-  "negative": 26,
+  "negative": 27,
   "posts": [
+    {
+      "text": "I periodically have to tell DuckDuckGo\u2019s AI to fuck off because it keeps being toggled back on. \ud83e\udd2c",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.957,
+      "timestamp": "2025-10-04T14:49:24.128Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2etdjzrbc2u"
+    },
     {
       "text": "You are correct. \n\nwww.snopes.com/news/2022/08...",
       "handle": "paul.bsky.social",
