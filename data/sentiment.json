@@ -1,9 +1,18 @@
 {
-  "timestamp": "2025-10-03T21:15:40.457808Z",
+  "timestamp": "2025-10-04T11:30:39.994593Z",
   "positive": 30,
   "neutral": 29,
-  "negative": 24,
+  "negative": 25,
   "posts": [
+    {
+      "text": "Every transaction he does is extortion. It\u2019s his entire business model.\n\nAre people just now figuring this out??",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.815,
+      "timestamp": "2025-10-04T11:24:57.788Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2ehvxwqn22a"
+    },
     {
       "text": "I hope you have an entire office dedicated to criminal evidence gathering, because you're going to need it for the laundry list of crimes for the next impeachment hearing.\n\nAlso, good time to remind your Nazi colleagues that the statute of limitations for crimes is longer than 3 years and 3 months.",
       "handle": "paul.bsky.social",
