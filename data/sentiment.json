@@ -1,9 +1,18 @@
 {
-  "timestamp": "2025-10-04T14:15:39.438063Z",
+  "timestamp": "2025-10-04T14:30:44.202972Z",
   "positive": 31,
-  "neutral": 29,
+  "neutral": 30,
   "negative": 26,
   "posts": [
+    {
+      "text": "George W Bush has entered the chat",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Neutral",
+      "score": 0.704,
+      "timestamp": "2025-10-04T14:24:28.413Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2erwxm54c2u"
+    },
     {
       "text": "Pretty disappointed in GenX here.",
       "handle": "paul.bsky.social",
