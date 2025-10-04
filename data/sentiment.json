@@ -1,9 +1,18 @@
 {
-  "timestamp": "2025-10-04T15:00:49.199287Z",
-  "positive": 32,
+  "timestamp": "2025-10-04T16:45:43.193411Z",
+  "positive": 33,
   "neutral": 33,
   "negative": 27,
   "posts": [
+    {
+      "text": "\u201cWealthy Americans, who\u2019ve benefitted so much from the pillars Trump is attacking, need to get our shit together, and seize the means of consumption\u201d\n\nGREAT episode from @ProfGalloway.com \n\npodcasts.apple.com/us/podcast/t...",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Positive",
+      "score": 0.494,
+      "timestamp": "2025-10-04T16:36:22.906Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2ezcthd5s2d"
+    },
     {
       "text": "I periodically have to tell DuckDuckGo\u2019s AI to fuck off because it keeps being toggled back on. \ud83e\udd2c",
       "handle": "paul.bsky.social",
