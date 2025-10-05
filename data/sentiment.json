@@ -1,9 +1,18 @@
 {
-  "timestamp": "2025-10-05T12:00:37.368850Z",
+  "timestamp": "2025-10-05T13:45:42.534736Z",
   "positive": 34,
   "neutral": 34,
-  "negative": 35,
+  "negative": 36,
   "posts": [
+    {
+      "text": "You can just say he\u2019s a lying liar who is lying.\n\nIt\u2019s okay to say they\u2019re lying when they tell lies for the purpose of misleading.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.743,
+      "timestamp": "2025-10-05T13:42:20.512Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2ha2kbhs22n"
+    },
     {
       "text": "\u201cIt\u2019s what our system produces, garbage in, garbage out.\u201d",
       "handle": "paul.bsky.social",
