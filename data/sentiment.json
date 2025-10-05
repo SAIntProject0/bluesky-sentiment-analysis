@@ -1,9 +1,27 @@
 {
-  "timestamp": "2025-10-05T11:45:37.283634Z",
+  "timestamp": "2025-10-05T12:00:37.368850Z",
   "positive": 34,
   "neutral": 34,
-  "negative": 33,
+  "negative": 35,
   "posts": [
+    {
+      "text": "\u201cIt\u2019s what our system produces, garbage in, garbage out.\u201d",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.701,
+      "timestamp": "2025-10-05T11:59:35.370Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2h2csqadc2v"
+    },
+    {
+      "text": "Prosecution and Incarceration time.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.559,
+      "timestamp": "2025-10-05T11:47:01.468Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2gzmdqxvs2v"
+    },
     {
       "text": "A $2 Billion \u201cheadwind\u201d?\n\nThats a little more than a headwind my friend.",
       "handle": "paul.bsky.social",
