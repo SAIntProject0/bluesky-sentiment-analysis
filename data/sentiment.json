@@ -1,9 +1,36 @@
 {
-  "timestamp": "2025-10-06T21:00:41.034154Z",
+  "timestamp": "2025-10-06T21:15:38.592931Z",
   "positive": 37,
   "neutral": 35,
-  "negative": 39,
+  "negative": 42,
   "posts": [
+    {
+      "text": "The lede they buried in this story:\n\nAMAZON CONDUCTS SYSTEMIC WAGE THEFT FROM ITS WORKERS.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.65,
+      "timestamp": "2025-10-06T21:12:44.957Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2kjouaudk2r"
+    },
+    {
+      "text": "He stole it. For pennies on the dollar in terms of its valuation.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.737,
+      "timestamp": "2025-10-06T21:07:15.559Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2kjf24fms2r"
+    },
+    {
+      "text": "Two things:\n\n1) Ellison didn't \"buy\" TikTok, he stole it, for pennies on the dollar, by using the might of the U.S. government.\n\n2) That deal is also not signed yet, and is pending approval by Beijing. I'm not at all convinced it'll actually happen. I think Xi slow-walks it and stalls it out.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.653,
+      "timestamp": "2025-10-06T21:03:46.177Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2kj6sgkzc2r"
+    },
     {
       "text": "\"Oh hi, I totally didn't see you there in this scripted video vignette meant to fool people into thinking this was an organic encounter with a constituent.\"",
       "handle": "paul.bsky.social",
