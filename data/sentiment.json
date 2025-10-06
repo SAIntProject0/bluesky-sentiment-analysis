@@ -1,9 +1,18 @@
 {
-  "timestamp": "2025-10-06T23:00:41.908973Z",
+  "timestamp": "2025-10-06T23:30:34.050332Z",
   "positive": 37,
   "neutral": 36,
-  "negative": 43,
+  "negative": 44,
   "posts": [
+    {
+      "text": "Every air traffic controller should refuse to work.\n\nAs soon as billionaires are inconvenienced and can\u2019t fly their private jets? That shutdown will end immediately.\n\nThreaten to fire them? That\u2019s already happening.",
+      "handle": "paul.bsky.social",
+      "category": "Book",
+      "label": "Negative",
+      "score": 0.855,
+      "timestamp": "2025-10-06T23:18:00.210Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2kqote5mk2a"
+    },
     {
       "text": "Has there been more than one?!",
       "handle": "paul.bsky.social",
