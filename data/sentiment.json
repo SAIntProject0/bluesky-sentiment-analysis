@@ -1,9 +1,27 @@
 {
-  "timestamp": "2025-10-06T19:30:43.089952Z",
-  "positive": 35,
-  "neutral": 34,
+  "timestamp": "2025-10-06T20:45:37.217578Z",
+  "positive": 36,
+  "neutral": 35,
   "negative": 36,
   "posts": [
+    {
+      "text": "The top three politicians most popular with Democrat voters right now?\n\nARE ALL DEMOCRATIC SOCIALISTS.\n\nEmbrace it, own it, rub it in their faces.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Neutral",
+      "score": 0.569,
+      "timestamp": "2025-10-06T20:43:06.404Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2khzu3o7s2r"
+    },
+    {
+      "text": "Justice for the middle class!",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Positive",
+      "score": 0.509,
+      "timestamp": "2025-10-06T20:41:53.505Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2khxokyrc2r"
+    },
     {
       "text": "we hit 2 billion posts today! \ud83e\udd73",
       "handle": "bsky.app",
