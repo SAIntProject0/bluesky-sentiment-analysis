@@ -1,9 +1,18 @@
 {
-  "timestamp": "2025-10-06T21:15:38.592931Z",
+  "timestamp": "2025-10-06T22:30:40.258818Z",
   "positive": 37,
   "neutral": 35,
-  "negative": 42,
+  "negative": 43,
   "posts": [
+    {
+      "text": "SAME TEAM ASSHOLES!\n\nPresident Xi gotta be laughing his ass off right now.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.813,
+      "timestamp": "2025-10-06T22:27:22.112Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2knubyr2224"
+    },
     {
       "text": "The lede they buried in this story:\n\nAMAZON CONDUCTS SYSTEMIC WAGE THEFT FROM ITS WORKERS.",
       "handle": "paul.bsky.social",
