@@ -1,9 +1,45 @@
 {
-  "timestamp": "2025-10-06T20:45:37.217578Z",
-  "positive": 36,
+  "timestamp": "2025-10-06T21:00:41.034154Z",
+  "positive": 37,
   "neutral": 35,
-  "negative": 36,
+  "negative": 39,
   "posts": [
+    {
+      "text": "\"Oh hi, I totally didn't see you there in this scripted video vignette meant to fool people into thinking this was an organic encounter with a constituent.\"",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.679,
+      "timestamp": "2025-10-06T20:58:10.006Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2kiurtg2c2r"
+    },
+    {
+      "text": "\"Your'e not a medic or press you're just a chump with a smart phone. Where'd you get those patches, eBay?\"\n\nOkay but when that dude on the megaphone started talking shit about \"Press\" dude I lol'd.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.783,
+      "timestamp": "2025-10-06T20:56:45.861Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2kisblj722r"
+    },
+    {
+      "text": "If Ukraine can have a comedian as their best president ever, then so can we god dammit.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.386,
+      "timestamp": "2025-10-06T20:48:55.085Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2kieamkz22r"
+    },
+    {
+      "text": "I remember watching this interview when it first aired years ago. It's one of Jon's best interviews ever.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Positive",
+      "score": 0.976,
+      "timestamp": "2025-10-06T20:47:28.290Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2kibntsbc2r"
+    },
     {
       "text": "The top three politicians most popular with Democrat voters right now?\n\nARE ALL DEMOCRATIC SOCIALISTS.\n\nEmbrace it, own it, rub it in their faces.",
       "handle": "paul.bsky.social",
