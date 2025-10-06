@@ -207,37 +207,37 @@
         if (!q) return true;
         return ((p.handle||'') + ' ' + (p.text||'') + ' ' + (p.category||'')).toLowerCase().includes(q);
       });
-
+    
       filtered.forEach(post => {
         const card = document.createElement('article');
         card.className = 'post-card';
-
+    
         const header = document.createElement('div'); header.className = 'post-header';
         const handle = document.createElement('div'); handle.textContent = `@${post.handle || 'unknown'}`;
         const sentiment = document.createElement('div');
         sentiment.className = 'sentiment ' + (post.label === 'Positive' ? 'sent-pos' : post.label === 'Negative' ? 'sent-neg' : 'sent-neut');
         sentiment.textContent = post.label ? `${post.label} (${Math.round((post.score||0)*100)}%)` : 'Unknown';
         header.append(handle, sentiment);
-
+    
         const meta = document.createElement('div'); meta.className = 'post-meta';
         const badge = document.createElement('span');
         const cat = post.category || 'Other';
         badge.className = 'category-badge ' + (cat === 'Movie/TV' ? 'cat-movie' : cat === 'Book' ? 'cat-book' : cat === 'Music' ? 'cat-music' : cat === 'Game' ? 'cat-game' : 'cat-other');
         badge.textContent = cat;
         meta.append(badge);
-
+    
         const text = document.createElement('div'); text.className = 'post-text';
         (post.text || '').split('\n').forEach((line,i) => { if(i) text.appendChild(document.createElement('br')); text.appendChild(document.createTextNode(line)); });
-
+    
+        // 👇 UPDATED FOOTER — NO "open" LINK
         const foot = document.createElement('div'); foot.className = 'foot';
         const ts = document.createElement('div'); ts.textContent = post.timestamp ? new Date(post.timestamp).toLocaleString() : '';
-        const openLink = document.createElement('a'); openLink.href = post.uri || '#'; openLink.textContent = 'open'; openLink.target = '_blank'; openLink.rel = 'noopener noreferrer';
-        foot.append(ts, openLink);
-
+        foot.append(ts);
+    
         card.append(header, meta, text, foot);
         container.appendChild(card);
       });
-
+    
       if (filtered.length === 0) container.innerHTML = '<div class="post-card">No posts match your search.</div>';
     }
 
