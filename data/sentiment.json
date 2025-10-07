@@ -1,9 +1,18 @@
 {
-  "timestamp": "2025-10-06T23:30:34.050332Z",
+  "timestamp": "2025-10-07T02:00:45.979621Z",
   "positive": 37,
   "neutral": 36,
-  "negative": 44,
+  "negative": 45,
   "posts": [
+    {
+      "text": "They should be brought up on charges.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.714,
+      "timestamp": "2025-10-07T01:57:39.956Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2kzmdcrds2r"
+    },
     {
       "text": "Every air traffic controller should refuse to work.\n\nAs soon as billionaires are inconvenienced and can\u2019t fly their private jets? That shutdown will end immediately.\n\nThreaten to fire them? That\u2019s already happening.",
       "handle": "paul.bsky.social",
