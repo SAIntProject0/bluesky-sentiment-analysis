@@ -1,9 +1,18 @@
 {
-  "timestamp": "2025-10-07T19:45:36.559518Z",
+  "timestamp": "2025-10-07T20:30:37.496286Z",
   "positive": 39,
-  "neutral": 38,
+  "neutral": 39,
   "negative": 50,
   "posts": [
+    {
+      "text": "Gold will hit $6k by this time next year. \n\nMaybe sooner.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Neutral",
+      "score": 0.514,
+      "timestamp": "2025-10-07T20:16:45.135Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2mwznjy622y"
+    },
     {
       "text": "This is long, but it is FUCKING HILARIOUS.\n\nTotally worth watching.",
       "handle": "paul.bsky.social",
