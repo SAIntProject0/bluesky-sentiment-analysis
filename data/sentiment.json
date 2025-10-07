@@ -1,9 +1,18 @@
 {
-  "timestamp": "2025-10-07T23:30:42.584179Z",
+  "timestamp": "2025-10-07T23:45:42.973552Z",
   "positive": 39,
-  "neutral": 40,
+  "neutral": 41,
   "negative": 55,
   "posts": [
+    {
+      "text": "The question isn\u2019t will AI have a similar impact, I think it absolutely will, the question is whether current valuations in any way reflect how much we\u2019re spending and the ROI our AI investments are giving us.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Neutral",
+      "score": 0.708,
+      "timestamp": "2025-10-07T23:36:07.442Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2nc65olmk2p"
+    },
     {
       "text": "Another problem is companies are paying these massive volume licensing fees for LLMs by the big 3, and seeing very low uptake and usage by their employees.",
       "handle": "paul.bsky.social",
