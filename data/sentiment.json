@@ -1,9 +1,18 @@
 {
-  "timestamp": "2025-10-07T21:00:45.603306Z",
+  "timestamp": "2025-10-07T21:30:39.850184Z",
   "positive": 39,
   "neutral": 40,
-  "negative": 51,
+  "negative": 52,
   "posts": [
+    {
+      "text": "History points in a bad direction here.\n\nDo you suppose a more impulsive narcissist who built his entire career on firing people to look tough on TV will be LESS likely to pull something like what Reagan did?\n\nIt was a net-win for them, ATC payroll was reduced massively after initial churn pain.",
+      "handle": "paul.bsky.social",
+      "category": "Movie/TV",
+      "label": "Negative",
+      "score": 0.71,
+      "timestamp": "2025-10-07T21:23:51.428Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2n2rncmxs2y"
+    },
     {
       "text": "Tune in to every major earnings call with a sharp ear for this exact scenario:",
       "handle": "paul.bsky.social",
