@@ -1,9 +1,18 @@
 {
-  "timestamp": "2025-10-07T02:15:35.814475Z",
-  "positive": 37,
+  "timestamp": "2025-10-07T12:30:37.978762Z",
+  "positive": 38,
   "neutral": 36,
   "negative": 48,
   "posts": [
+    {
+      "text": "You have China to thank for this. Their massive investments in renewables is paying off.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Positive",
+      "score": 0.798,
+      "timestamp": "2025-10-07T12:29:20.790Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2m4vuegkc2r"
+    },
     {
       "text": "No. \n\nViolence solves nothing.\n\nCutting off funding via a general strike however, does.",
       "handle": "paul.bsky.social",
