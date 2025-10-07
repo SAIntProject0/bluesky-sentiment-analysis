@@ -1,9 +1,18 @@
 {
-  "timestamp": "2025-10-07T21:30:39.850184Z",
+  "timestamp": "2025-10-07T23:00:41.345788Z",
   "positive": 39,
   "neutral": 40,
-  "negative": 52,
+  "negative": 53,
   "posts": [
+    {
+      "text": "You should have called her to task on this RIGHT THEN AND THERE during the hearing!\n\nShe got in her stupid ass sound bite for the mouth breathers to soak in via Fox News, you think any of them are gonna catch your Bluesky correction?!\n\nPffft FUCK NO.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.928,
+      "timestamp": "2025-10-07T22:55:51.743Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2n7w5vcks2p"
+    },
     {
       "text": "History points in a bad direction here.\n\nDo you suppose a more impulsive narcissist who built his entire career on firing people to look tough on TV will be LESS likely to pull something like what Reagan did?\n\nIt was a net-win for them, ATC payroll was reduced massively after initial churn pain.",
       "handle": "paul.bsky.social",
