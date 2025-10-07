@@ -1,9 +1,18 @@
 {
-  "timestamp": "2025-10-07T12:30:37.978762Z",
+  "timestamp": "2025-10-07T18:45:33.484646Z",
   "positive": 38,
-  "neutral": 36,
+  "neutral": 37,
   "negative": 48,
   "posts": [
+    {
+      "text": "UPS sending me paper invoice for tariffs already paid.\n\nMe: Hmm let's just call them up and see what's going on\n\nUPS: \"Based on current call volume, your wait time may exceed 1 hour\"\n\nLOOOOOOLNOPE!",
+      "handle": "paul.bsky.social",
+      "category": "Book",
+      "label": "Neutral",
+      "score": 0.482,
+      "timestamp": "2025-10-07T18:35:07.854Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2mrdwpp7k2o"
+    },
     {
       "text": "You have China to thank for this. Their massive investments in renewables is paying off.",
       "handle": "paul.bsky.social",
