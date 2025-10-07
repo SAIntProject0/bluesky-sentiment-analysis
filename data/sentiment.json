@@ -1,9 +1,36 @@
 {
-  "timestamp": "2025-10-07T02:00:45.979621Z",
+  "timestamp": "2025-10-07T02:15:35.814475Z",
   "positive": 37,
   "neutral": 36,
-  "negative": 45,
+  "negative": 48,
   "posts": [
+    {
+      "text": "No. \n\nViolence solves nothing.\n\nCutting off funding via a general strike however, does.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.847,
+      "timestamp": "2025-10-07T02:07:18.878Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2l25lg3tk2r"
+    },
+    {
+      "text": "Correct. \n\nA call to violence WILL NOT solve this problem. \n\nA grinding halt to the upwards money flow, WILL solve this problem, and with neck-snapping efficiency.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.668,
+      "timestamp": "2025-10-07T02:06:00.112Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2l23accws2r"
+    },
+    {
+      "text": "No, it means they can be KILLED on sight as enemy combatants.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.861,
+      "timestamp": "2025-10-07T02:02:50.050Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2kzvl23jc2r"
+    },
     {
       "text": "They should be brought up on charges.",
       "handle": "paul.bsky.social",
