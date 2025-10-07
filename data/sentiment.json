@@ -1,9 +1,18 @@
 {
-  "timestamp": "2025-10-07T20:45:39.560546Z",
+  "timestamp": "2025-10-07T21:00:45.603306Z",
   "positive": 39,
-  "neutral": 39,
+  "neutral": 40,
   "negative": 51,
   "posts": [
+    {
+      "text": "Tune in to every major earnings call with a sharp ear for this exact scenario:",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Neutral",
+      "score": 0.812,
+      "timestamp": "2025-10-07T20:47:56.578Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2myrgbuak2y"
+    },
     {
       "text": "This is exactly what happened before the dot com bubble popped.\n\nWe massively overspent on infrastructure, overestimated the demand for the product, tried to artificially create demand with fake hype, and when it became inescapable that the demand gap was just too big to ignore, we all lost big.",
       "handle": "paul.bsky.social",
