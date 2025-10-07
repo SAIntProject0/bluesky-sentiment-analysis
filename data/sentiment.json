@@ -1,9 +1,27 @@
 {
-  "timestamp": "2025-10-07T19:15:36.446016Z",
+  "timestamp": "2025-10-07T19:30:35.610157Z",
   "positive": 38,
   "neutral": 38,
-  "negative": 48,
+  "negative": 50,
   "posts": [
+    {
+      "text": "That should be the LEAST of their worries.\n\nThey should be looking over their shoulder fearing for their lives every waking second they are there.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.832,
+      "timestamp": "2025-10-07T19:25:38.845Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2mu6bc7ec2y"
+    },
+    {
+      "text": "MAGA are already threatening termination.",
+      "handle": "paul.bsky.social",
+      "category": "Book",
+      "label": "Negative",
+      "score": 0.863,
+      "timestamp": "2025-10-07T19:16:48.305Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2mtohdguk2y"
+    },
     {
       "text": "I can guarantee you Russell Vought is making this change to the OMB policy in order to offer back-pay for Trump's supporters in FedGov, and NOT offer back-pay to Trump's detractors in FedGov.",
       "handle": "paul.bsky.social",
