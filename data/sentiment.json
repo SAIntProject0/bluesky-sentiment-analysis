@@ -1,9 +1,18 @@
 {
-  "timestamp": "2025-10-07T23:15:32.643775Z",
+  "timestamp": "2025-10-07T23:30:42.584179Z",
   "positive": 39,
   "neutral": 40,
-  "negative": 54,
+  "negative": 55,
   "posts": [
+    {
+      "text": "Another problem is companies are paying these massive volume licensing fees for LLMs by the big 3, and seeing very low uptake and usage by their employees.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.736,
+      "timestamp": "2025-10-07T23:25:36.069Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2nbldklh22p"
+    },
     {
       "text": "\u201cI voted for racism not poverty!\u201d",
       "handle": "paul.bsky.social",
