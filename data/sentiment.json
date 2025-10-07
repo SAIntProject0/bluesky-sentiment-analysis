@@ -1,9 +1,18 @@
 {
-  "timestamp": "2025-10-07T18:45:33.484646Z",
+  "timestamp": "2025-10-07T19:15:36.446016Z",
   "positive": 38,
-  "neutral": 37,
+  "neutral": 38,
   "negative": 48,
   "posts": [
+    {
+      "text": "I can guarantee you Russell Vought is making this change to the OMB policy in order to offer back-pay for Trump's supporters in FedGov, and NOT offer back-pay to Trump's detractors in FedGov.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Neutral",
+      "score": 0.703,
+      "timestamp": "2025-10-07T19:08:09.601Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2mt6ynszc2o"
+    },
     {
       "text": "UPS sending me paper invoice for tariffs already paid.\n\nMe: Hmm let's just call them up and see what's going on\n\nUPS: \"Based on current call volume, your wait time may exceed 1 hour\"\n\nLOOOOOOLNOPE!",
       "handle": "paul.bsky.social",
