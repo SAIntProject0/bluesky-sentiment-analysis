@@ -1,9 +1,18 @@
 {
-  "timestamp": "2025-10-07T20:30:37.496286Z",
+  "timestamp": "2025-10-07T20:45:39.560546Z",
   "positive": 39,
   "neutral": 39,
-  "negative": 50,
+  "negative": 51,
   "posts": [
+    {
+      "text": "This is exactly what happened before the dot com bubble popped.\n\nWe massively overspent on infrastructure, overestimated the demand for the product, tried to artificially create demand with fake hype, and when it became inescapable that the demand gap was just too big to ignore, we all lost big.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.765,
+      "timestamp": "2025-10-07T20:40:36.193Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2myeccds22y"
+    },
     {
       "text": "Gold will hit $6k by this time next year. \n\nMaybe sooner.",
       "handle": "paul.bsky.social",
