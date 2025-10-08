@@ -1,9 +1,18 @@
 {
-  "timestamp": "2025-10-08T01:45:40.216392Z",
+  "timestamp": "2025-10-08T03:15:37.881483Z",
   "positive": 39,
-  "neutral": 42,
+  "neutral": 43,
   "negative": 57,
   "posts": [
+    {
+      "text": "I guess if there\u2019s a saving grace it\u2019s that when the AI bubble pops, retail investors will be spared from the direct asteroid impact. OpenAI, Anthropic, and Perplexity are all still privately held.\n\nVGT/VOO/SPY is gonna get thrashed though.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Neutral",
+      "score": 0.598,
+      "timestamp": "2025-10-08T03:12:03.359Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2noabfscs2t"
+    },
     {
       "text": "I do agree with this, but you\u2019d think if private equity was completely spoken for by AI pits, we\u2019d see more companies turning to retail investment and going public. But we don\u2019t. We haven\u2019t seen a steady stream of solid IPOs at all save for some scam-ass crypto bullshit. Oh and I guess Figma. \ud83e\udd37\ud83c\udffb\u200d\u2642\ufe0f",
       "handle": "paul.bsky.social",
