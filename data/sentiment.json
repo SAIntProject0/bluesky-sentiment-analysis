@@ -1,9 +1,18 @@
 {
-  "timestamp": "2025-10-08T14:30:43.112591Z",
+  "timestamp": "2025-10-08T15:00:41.197099Z",
   "positive": 40,
-  "neutral": 44,
+  "neutral": 45,
   "negative": 63,
   "posts": [
+    {
+      "text": "Gold will hit $6,000 by this time next year.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Neutral",
+      "score": 0.498,
+      "timestamp": "2025-10-08T14:56:48.966Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2ovmi44fk2y"
+    },
     {
       "text": "What's good for the goose is good for the gander.\n\nJudges and juries don't get to wear masks, and they convict some of the worst criminals to the most severe penalties. The only reason for the masks is to encourage and excuse inhumane behavior.\n\nLOCK THEM ALL UP.",
       "handle": "paul.bsky.social",
