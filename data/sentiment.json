@@ -1,9 +1,27 @@
 {
-  "timestamp": "2025-10-08T12:30:41.142242Z",
+  "timestamp": "2025-10-08T14:15:43.519808Z",
   "positive": 40,
   "neutral": 44,
-  "negative": 59,
+  "negative": 61,
   "posts": [
+    {
+      "text": "Direct exposure, yes, but market downturns affect everyone via cascades. Especially employment numbers. The recent housing market crash had some pretty far-reaching effects.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.678,
+      "timestamp": "2025-10-08T14:14:26.644Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2otapkl3s2y"
+    },
+    {
+      "text": "Give them the same treatment ICE are giving everyone else.\n\nStaties should arrest any masked thugs kidnapping people in their state, and bringing them up on state charges. They should get no bail, and be bounced around 8-10 times to different state facilities to prevent access to an attorney.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.834,
+      "timestamp": "2025-10-08T14:12:36.646Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2ot5gnq5k2y"
+    },
     {
       "text": "Why make zones? Why not just \u201call of Illinois\u201d?",
       "handle": "paul.bsky.social",
