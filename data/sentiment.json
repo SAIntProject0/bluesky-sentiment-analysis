@@ -1,9 +1,18 @@
 {
-  "timestamp": "2025-10-08T01:00:35.595973Z",
+  "timestamp": "2025-10-08T01:45:40.216392Z",
   "positive": 39,
   "neutral": 42,
-  "negative": 56,
+  "negative": 57,
   "posts": [
+    {
+      "text": "I do agree with this, but you\u2019d think if private equity was completely spoken for by AI pits, we\u2019d see more companies turning to retail investment and going public. But we don\u2019t. We haven\u2019t seen a steady stream of solid IPOs at all save for some scam-ass crypto bullshit. Oh and I guess Figma. \ud83e\udd37\ud83c\udffb\u200d\u2642\ufe0f",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.563,
+      "timestamp": "2025-10-08T01:40:56.780Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2nj5e2zbs2p"
+    },
     {
       "text": "The problem is the market correction won\u2019t be limited to just tech companies, it\u2019s going to drag everything else down with it.",
       "handle": "paul.bsky.social",
