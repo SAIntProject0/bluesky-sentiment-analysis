@@ -1,9 +1,18 @@
 {
-  "timestamp": "2025-10-08T03:30:36.806140Z",
+  "timestamp": "2025-10-08T12:30:41.142242Z",
   "positive": 40,
-  "neutral": 43,
+  "neutral": 44,
   "negative": 59,
   "posts": [
+    {
+      "text": "Why make zones? Why not just \u201call of Illinois\u201d?",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Neutral",
+      "score": 0.586,
+      "timestamp": "2025-10-08T12:24:02.481Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2on3cb6vc27"
+    },
     {
       "text": "And also this. Because he\u2019s a whore. \n\nyoutu.be/Bf3e9Cl1-Bs?...",
       "handle": "paul.bsky.social",
