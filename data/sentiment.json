@@ -1,9 +1,18 @@
 {
-  "timestamp": "2025-10-08T15:00:41.197099Z",
+  "timestamp": "2025-10-08T15:15:40.160814Z",
   "positive": 40,
-  "neutral": 45,
+  "neutral": 46,
   "negative": 63,
   "posts": [
+    {
+      "text": "I think this is a big reason why gold as an asset class has seen such a meteoric rise in value this year. For years tech has been a safe haven for investments, but people are seeing the writing on the wall about AI's overvaluation, and new investment capital isn't going there now.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Neutral",
+      "score": 0.484,
+      "timestamp": "2025-10-08T15:03:09.970Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2ovxthgmk2y"
+    },
     {
       "text": "Gold will hit $6,000 by this time next year.",
       "handle": "paul.bsky.social",
