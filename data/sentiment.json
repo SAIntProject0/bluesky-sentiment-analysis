@@ -1,9 +1,27 @@
 {
-  "timestamp": "2025-10-08T14:15:43.519808Z",
+  "timestamp": "2025-10-08T14:30:43.112591Z",
   "positive": 40,
   "neutral": 44,
-  "negative": 61,
+  "negative": 63,
   "posts": [
+    {
+      "text": "What's good for the goose is good for the gander.\n\nJudges and juries don't get to wear masks, and they convict some of the worst criminals to the most severe penalties. The only reason for the masks is to encourage and excuse inhumane behavior.\n\nLOCK THEM ALL UP.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.741,
+      "timestamp": "2025-10-08T14:17:49.773Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2otgrblb22y"
+    },
+    {
+      "text": "Give them the same treatment ICE are giving everyone else.\n\nStaties should arrest any masked thugs kidnapping people in their state, and bring them up on state charges. They should get no bail, and be bounced around 8-10 times to different state facilities to prevent access to an attorney.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.824,
+      "timestamp": "2025-10-08T14:15:47.449Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2otd4mka22y"
+    },
     {
       "text": "Direct exposure, yes, but market downturns affect everyone via cascades. Especially employment numbers. The recent housing market crash had some pretty far-reaching effects.",
       "handle": "paul.bsky.social",
