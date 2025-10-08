@@ -1,9 +1,27 @@
 {
-  "timestamp": "2025-10-07T23:45:42.973552Z",
+  "timestamp": "2025-10-08T01:00:35.595973Z",
   "positive": 39,
-  "neutral": 41,
-  "negative": 55,
+  "neutral": 42,
+  "negative": 56,
   "posts": [
+    {
+      "text": "The problem is the market correction won\u2019t be limited to just tech companies, it\u2019s going to drag everything else down with it.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.818,
+      "timestamp": "2025-10-08T00:59:34.967Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2ngtfa3rk2p"
+    },
+    {
+      "text": "Certainly not in the short term, no.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Neutral",
+      "score": 0.685,
+      "timestamp": "2025-10-08T00:58:16.518Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2ngr2g2fk2p"
+    },
     {
       "text": "The question isn\u2019t will AI have a similar impact, I think it absolutely will, the question is whether current valuations in any way reflect how much we\u2019re spending and the ROI our AI investments are giving us.",
       "handle": "paul.bsky.social",
