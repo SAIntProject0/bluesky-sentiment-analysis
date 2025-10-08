@@ -1,9 +1,27 @@
 {
-  "timestamp": "2025-10-08T15:15:40.160814Z",
+  "timestamp": "2025-10-08T16:00:43.398484Z",
   "positive": 40,
-  "neutral": 46,
-  "negative": 63,
+  "neutral": 47,
+  "negative": 64,
   "posts": [
+    {
+      "text": "For real though, how are they passing PT?",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Neutral",
+      "score": 0.728,
+      "timestamp": "2025-10-08T15:54:13.302Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2oyt4uvrk2k"
+    },
+    {
+      "text": "U.S. Customs appears to be shut down entirely. \n\nYour import shipments are not clearing customs, and are essentially frozen at the inspection facility, and there's fuck-all you can do about it.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.942,
+      "timestamp": "2025-10-08T15:50:36.355Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2oymny7hs2y"
+    },
     {
       "text": "I think this is a big reason why gold as an asset class has seen such a meteoric rise in value this year. For years tech has been a safe haven for investments, but people are seeing the writing on the wall about AI's overvaluation, and new investment capital isn't going there now.",
       "handle": "paul.bsky.social",
