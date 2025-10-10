@@ -1,9 +1,18 @@
 {
-  "timestamp": "2025-10-09T09:45:41.203301Z",
+  "timestamp": "2025-10-10T11:15:45.019848Z",
   "positive": 40,
   "neutral": 47,
-  "negative": 65,
+  "negative": 66,
   "posts": [
+    {
+      "text": "\u201cUpon arrival at their boarding gate, their reservations had suddenly disappeared from the United Airlines system.\u201d\n\nFuck United Airlines. They knew EXACTLY what happened.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.901,
+      "timestamp": "2025-10-10T11:12:44.980Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2tjzntots25"
+    },
     {
       "text": "The risks of an AI bubble are real, but I\u2019m WAAAAAY more concerned about the risks to the US Federal Reserve.\n\nProject 2025 has a stated goal on page 661 to ABOLISH the U.S. Federal Reserve and replace it with a system of \u201cfree banking\u201d.\n\nI can not stress how disastrous this would be for the economy",
       "handle": "paul.bsky.social",
