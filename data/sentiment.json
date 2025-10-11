@@ -1,9 +1,18 @@
 {
-  "timestamp": "2025-10-11T04:00:42.748557Z",
+  "timestamp": "2025-10-11T18:45:38.973035Z",
   "positive": 40,
-  "neutral": 47,
+  "neutral": 48,
   "negative": 67,
   "posts": [
+    {
+      "text": "She should counter sue",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Neutral",
+      "score": 0.512,
+      "timestamp": "2025-10-11T18:37:01.823Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2wtczaq3k2i"
+    },
     {
       "text": "Old white American guys love their World War 2 documentaries.\n\nHow do they not realize this is exactly what\u2019s happening in their country?",
       "handle": "paul.bsky.social",
