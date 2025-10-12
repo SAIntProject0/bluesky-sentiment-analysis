@@ -1,9 +1,27 @@
 {
-  "timestamp": "2025-10-11T18:45:38.973035Z",
+  "timestamp": "2025-10-12T13:15:41.100098Z",
   "positive": 40,
-  "neutral": 48,
-  "negative": 67,
+  "neutral": 49,
+  "negative": 68,
   "posts": [
+    {
+      "text": "This is the correct outcome prediction.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Neutral",
+      "score": 0.6,
+      "timestamp": "2025-10-12T13:11:01.716Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2yrkyqh2c2u"
+    },
+    {
+      "text": "This is not hyperbole. Trump has killed international commerce.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.906,
+      "timestamp": "2025-10-12T13:03:08.532Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2yr4vhyd22u"
+    },
     {
       "text": "She should counter sue",
       "handle": "paul.bsky.social",
