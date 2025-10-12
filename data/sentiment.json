@@ -1,9 +1,18 @@
 {
-  "timestamp": "2025-10-12T13:15:41.100098Z",
+  "timestamp": "2025-10-12T20:00:42.997645Z",
   "positive": 40,
   "neutral": 49,
-  "negative": 68,
+  "negative": 69,
   "posts": [
+    {
+      "text": "They\u2019re too busy working three jobs to be able to make ends meet. They can\u2019t get time off to go to a town hall.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.808,
+      "timestamp": "2025-10-12T19:52:03.516Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m2zhy3ucmc2u"
+    },
     {
       "text": "This is the correct outcome prediction.",
       "handle": "paul.bsky.social",
