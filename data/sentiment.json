@@ -1,9 +1,36 @@
 {
-  "timestamp": "2025-10-13T15:15:48.387276Z",
+  "timestamp": "2025-10-13T18:45:51.009093Z",
   "positive": 42,
-  "neutral": 49,
-  "negative": 69,
+  "neutral": 51,
+  "negative": 70,
   "posts": [
+    {
+      "text": "It\u2019s because of a ridiculous fantasy that one day they\u2019ll be able to blast a home invader with lawful impunity.\n\nWhich of course never comes to pass.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.83,
+      "timestamp": "2025-10-13T18:38:14.380Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m33uczeijs2p"
+    },
+    {
+      "text": "And not a single death?\n\nI think we can draw our own conclusions about those figures then.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Neutral",
+      "score": 0.629,
+      "timestamp": "2025-10-13T18:36:12.958Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m33u7fkyec2p"
+    },
+    {
+      "text": "Or for any other reason.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Neutral",
+      "score": 0.704,
+      "timestamp": "2025-10-13T18:34:34.766Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m33u4hwfqc2p"
+    },
     {
       "text": "Colman Domingo is one of my favorite actors right now. I can\u2019t wait to see him in it.",
       "handle": "paul.bsky.social",
