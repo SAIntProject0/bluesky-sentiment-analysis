@@ -1,9 +1,18 @@
 {
-  "timestamp": "2025-10-13T18:45:51.009093Z",
+  "timestamp": "2025-10-13T20:15:42.619118Z",
   "positive": 42,
-  "neutral": 51,
+  "neutral": 52,
   "negative": 70,
   "posts": [
+    {
+      "text": "Quick Tip: Don\u2019t want people getting pinged when you post or reply?\n\nYou can turn that off by heading to: Settings \u2192 Privacy and Security \u2192 Allow others to be notified of your posts and toggling it off.",
+      "handle": "bsky.app",
+      "category": "Other",
+      "label": "Neutral",
+      "score": 0.8,
+      "timestamp": "2025-10-13T20:05:05.614Z",
+      "uri": "at://did:plc:z72i7hdynmk6r22z27h6tvur/app.bsky.feed.post/3m33z6d6yzk2w"
+    },
     {
       "text": "It\u2019s because of a ridiculous fantasy that one day they\u2019ll be able to blast a home invader with lawful impunity.\n\nWhich of course never comes to pass.",
       "handle": "paul.bsky.social",
