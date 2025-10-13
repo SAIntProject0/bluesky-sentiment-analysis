@@ -1,9 +1,18 @@
 {
-  "timestamp": "2025-10-12T20:00:42.997645Z",
-  "positive": 40,
+  "timestamp": "2025-10-13T13:15:40.683894Z",
+  "positive": 41,
   "neutral": 49,
   "negative": 69,
   "posts": [
+    {
+      "text": "Dude was supposed to play a computer program. For that, he was perfect. \ud83e\udd23",
+      "handle": "paul.bsky.social",
+      "category": "Game",
+      "label": "Positive",
+      "score": 0.891,
+      "timestamp": "2025-10-13T13:11:17.651Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m33c2ffhls2g"
+    },
     {
       "text": "They\u2019re too busy working three jobs to be able to make ends meet. They can\u2019t get time off to go to a town hall.",
       "handle": "paul.bsky.social",
