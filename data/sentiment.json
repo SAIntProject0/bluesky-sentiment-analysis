@@ -1,9 +1,18 @@
 {
-  "timestamp": "2025-10-13T13:15:40.683894Z",
-  "positive": 41,
+  "timestamp": "2025-10-13T15:15:48.387276Z",
+  "positive": 42,
   "neutral": 49,
   "negative": 69,
   "posts": [
+    {
+      "text": "Colman Domingo is one of my favorite actors right now. I can\u2019t wait to see him in it.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Positive",
+      "score": 0.991,
+      "timestamp": "2025-10-13T15:07:16.593Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m33ijrxig22i"
+    },
     {
       "text": "Dude was supposed to play a computer program. For that, he was perfect. \ud83e\udd23",
       "handle": "paul.bsky.social",
