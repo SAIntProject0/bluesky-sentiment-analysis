@@ -1,9 +1,27 @@
 {
-  "timestamp": "2025-10-14T19:31:03.494488Z",
+  "timestamp": "2025-10-14T21:45:39.381541Z",
   "positive": 42,
-  "neutral": 54,
-  "negative": 76,
+  "neutral": 55,
+  "negative": 77,
   "posts": [
+    {
+      "text": "Oh and don't worry, FedEx will just straight up lie to you and tell you that your package has cleared when it fucking hasn't. I got this bullshit from FedEx about my package. When I called US Customs they said \"LOLNOPE! This thing hasn't actually cleared at all, and FedEx is full of shit\".",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.929,
+      "timestamp": "2025-10-14T21:45:23.067Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m36paldn522q"
+    },
+    {
+      "text": "\"Anyway, have they tried amassing an abundance of wealth yet?\"\n-Also Ezra Klein, probably",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Neutral",
+      "score": 0.874,
+      "timestamp": "2025-10-14T21:04:58.109Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m36mycpr4c2q"
+    },
     {
       "text": "Right. Because they have no brand to use as an alternative. So they\u2019re stuck with what caught on, and it\u2019s making them look like the boogeyman.",
       "handle": "paul.bsky.social",
