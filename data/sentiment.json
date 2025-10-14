@@ -1,9 +1,18 @@
 {
-  "timestamp": "2025-10-14T22:15:42.753660Z",
-  "positive": 42,
+  "timestamp": "2025-10-14T22:30:40.153486Z",
+  "positive": 43,
   "neutral": 60,
   "negative": 78,
   "posts": [
+    {
+      "text": "Hopefully it's because he knows something we don't.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Positive",
+      "score": 0.429,
+      "timestamp": "2025-10-14T22:17:17.882Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m36qznh4ok2f"
+    },
     {
       "text": "bsky.app/profile/paul...",
       "handle": "paul.bsky.social",
