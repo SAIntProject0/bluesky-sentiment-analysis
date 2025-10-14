@@ -1,9 +1,18 @@
 {
-  "timestamp": "2025-10-14T21:45:39.381541Z",
+  "timestamp": "2025-10-14T22:00:42.090001Z",
   "positive": 42,
-  "neutral": 55,
+  "neutral": 56,
   "negative": 77,
   "posts": [
+    {
+      "text": "The Supreme Court is set to hear arguments regarding President Trump's tariffs on November 5, 2025. This expedited session is following several lower court rulings that deemed these tariffs unlawful. Both sides have urged the court to act quickly, and a decision is expected by the end of 2025.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Neutral",
+      "score": 0.885,
+      "timestamp": "2025-10-14T21:49:00.734Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m36ph2wamc2q"
+    },
     {
       "text": "Oh and don't worry, FedEx will just straight up lie to you and tell you that your package has cleared when it fucking hasn't. I got this bullshit from FedEx about my package. When I called US Customs they said \"LOLNOPE! This thing hasn't actually cleared at all, and FedEx is full of shit\".",
       "handle": "paul.bsky.social",
