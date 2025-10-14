@@ -1,9 +1,27 @@
 {
-  "timestamp": "2025-10-14T01:30:44.284532Z",
+  "timestamp": "2025-10-14T01:45:40.657109Z",
   "positive": 42,
-  "neutral": 53,
-  "negative": 70,
+  "neutral": 54,
+  "negative": 71,
   "posts": [
+    {
+      "text": "Have you tried \u201cBofa\u201d?",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Neutral",
+      "score": 0.891,
+      "timestamp": "2025-10-14T01:42:48.499Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m34m27evuk22"
+    },
+    {
+      "text": "Because the left sucks at marketing and branding?",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.867,
+      "timestamp": "2025-10-14T01:41:57.968Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m34lyp6t6s22"
+    },
     {
       "text": "The top 3-4 politicians most popular with the Democrats\u2019 voter base ARE ALL DEMOCRATIC SOCIALISTS.\n\nGet on board, or get booted from office.",
       "handle": "paul.bsky.social",
