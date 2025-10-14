@@ -1,9 +1,18 @@
 {
-  "timestamp": "2025-10-14T14:00:52.084149Z",
+  "timestamp": "2025-10-14T19:31:03.494488Z",
   "positive": 42,
   "neutral": 54,
-  "negative": 75,
+  "negative": 76,
   "posts": [
+    {
+      "text": "Right. Because they have no brand to use as an alternative. So they\u2019re stuck with what caught on, and it\u2019s making them look like the boogeyman.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.825,
+      "timestamp": "2025-10-14T19:24:05.849Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m36hdwtfy22z"
+    },
     {
       "text": "Every last one of these crimes need cataloging for prosecution when they lose.\n\nAnd they need reminding the statute of limitations for this extends beyond 3 years, 2 months.",
       "handle": "paul.bsky.social",
