@@ -1,9 +1,18 @@
 {
-  "timestamp": "2025-10-13T20:15:42.619118Z",
+  "timestamp": "2025-10-14T01:30:44.284532Z",
   "positive": 42,
-  "neutral": 52,
+  "neutral": 53,
   "negative": 70,
   "posts": [
+    {
+      "text": "The top 3-4 politicians most popular with the Democrats\u2019 voter base ARE ALL DEMOCRATIC SOCIALISTS.\n\nGet on board, or get booted from office.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Neutral",
+      "score": 0.478,
+      "timestamp": "2025-10-14T01:25:17.044Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m34l2un3d222"
+    },
     {
       "text": "Quick Tip: Don\u2019t want people getting pinged when you post or reply?\n\nYou can turn that off by heading to: Settings \u2192 Privacy and Security \u2192 Allow others to be notified of your posts and toggling it off.",
       "handle": "bsky.app",
