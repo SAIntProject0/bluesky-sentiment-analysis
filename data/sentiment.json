@@ -1,9 +1,27 @@
 {
-  "timestamp": "2025-10-14T02:00:44.481142Z",
+  "timestamp": "2025-10-14T14:00:52.084149Z",
   "positive": 42,
   "neutral": 54,
-  "negative": 73,
+  "negative": 75,
   "posts": [
+    {
+      "text": "Every last one of these crimes need cataloging for prosecution when they lose.\n\nAnd they need reminding the statute of limitations for this extends beyond 3 years, 2 months.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.835,
+      "timestamp": "2025-10-14T13:57:00.972Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m35v333qyc2z"
+    },
+    {
+      "text": "Why doesn\u2019t she just lie publicly and say \u201coh nevermind I\u2019ll vote against release\u201d, get sworn in, and then vote for the release anyway?\n\nShe\u2019s shooting herself in the foot by being so naive about this.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.773,
+      "timestamp": "2025-10-14T13:50:17.187Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m35uozz5qk2z"
+    },
     {
       "text": "It screams of insecurity and the realization that he hasn\u2019t earned the title and doesn\u2019t deserve the title.",
       "handle": "paul.bsky.social",
