@@ -1,9 +1,54 @@
 {
-  "timestamp": "2025-10-14T22:00:42.090001Z",
+  "timestamp": "2025-10-14T22:15:42.753660Z",
   "positive": 42,
-  "neutral": 56,
-  "negative": 77,
+  "neutral": 60,
+  "negative": 78,
   "posts": [
+    {
+      "text": "bsky.app/profile/paul...",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Neutral",
+      "score": 0.901,
+      "timestamp": "2025-10-14T22:13:33.192Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m36qsx64u223"
+    },
+    {
+      "text": "ERO = Enforcement and Removal Operations.\n\nThey are a wing of DHS/ICE. \n\nwww.ice.gov/about-ice/ero",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Neutral",
+      "score": 0.8,
+      "timestamp": "2025-10-14T22:12:22.370Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m36qqtmrrc23"
+    },
+    {
+      "text": "What does the USA flag mean to you?\n\nBecause to many, this is what it has always meant.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Neutral",
+      "score": 0.757,
+      "timestamp": "2025-10-14T22:11:35.528Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m36qpgxbms23"
+    },
+    {
+      "text": "Lawsuit or STFU.\n\nThreats are for cowards.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.852,
+      "timestamp": "2025-10-14T22:07:52.437Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m36qis75bk23"
+    },
+    {
+      "text": "What would you have her do?",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Neutral",
+      "score": 0.917,
+      "timestamp": "2025-10-14T22:05:48.380Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m36qf3v6v226"
+    },
     {
       "text": "The Supreme Court is set to hear arguments regarding President Trump's tariffs on November 5, 2025. This expedited session is following several lower court rulings that deemed these tariffs unlawful. Both sides have urged the court to act quickly, and a decision is expected by the end of 2025.",
       "handle": "paul.bsky.social",
