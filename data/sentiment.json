@@ -1,9 +1,27 @@
 {
-  "timestamp": "2025-10-15T19:31:13.390127Z",
+  "timestamp": "2025-10-15T21:00:51.544860Z",
   "positive": 45,
   "neutral": 65,
-  "negative": 87,
+  "negative": 89,
   "posts": [
+    {
+      "text": "The real economy is in a recession while the fake economy is booming, but because the real economy doesn't matter anymore, GDP continues to grow.\n\nIt's an economy by billionaires for billionaires.\n\n(2/2)",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.535,
+      "timestamp": "2025-10-15T20:48:12.065Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m3b4jaqo4s23"
+    },
+    {
+      "text": "The dissolution of the U.S. middle class has created two economies:  the real economy  - selling products and services to consumers, and the fake economy - private equity, the \"Mag 7\", AI, speculative investment, etc... but capitalism ensures that only the fake economy matters.\n\n(1/2)",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.494,
+      "timestamp": "2025-10-15T20:48:12.064Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m3b4jaqhc223"
+    },
     {
       "text": "Everything costs 5x more on average.... except your labor.\n\nCharge accordingly!",
       "handle": "paul.bsky.social",
