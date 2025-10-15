@@ -1,9 +1,18 @@
 {
-  "timestamp": "2025-10-15T21:00:51.544860Z",
+  "timestamp": "2025-10-15T21:45:36.041192Z",
   "positive": 45,
   "neutral": 65,
-  "negative": 89,
+  "negative": 90,
   "posts": [
+    {
+      "text": "\u201cU.S. Drops Out of Top 10 in Passport Power. Here\u2019s Why\u201d - TIME\n\nSpoiler:  It\u2019s because Trump sucks.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.88,
+      "timestamp": "2025-10-15T21:42:28.217Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m3b7kc2e7c2w"
+    },
     {
       "text": "The real economy is in a recession while the fake economy is booming, but because the real economy doesn't matter anymore, GDP continues to grow.\n\nIt's an economy by billionaires for billionaires.\n\n(2/2)",
       "handle": "paul.bsky.social",
