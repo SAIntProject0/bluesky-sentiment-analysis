@@ -1,9 +1,27 @@
 {
-  "timestamp": "2025-10-15T02:45:39.601656Z",
+  "timestamp": "2025-10-15T03:00:37.164418Z",
   "positive": 43,
   "neutral": 60,
-  "negative": 79,
+  "negative": 81,
   "posts": [
+    {
+      "text": "There\u2019s nobody there\u2026 so you\u2019re marching upon an empty office?\n\nWhy are you wasting your time?!\n\nYou should be marching into the AZ attorney general\u2019s office so they\u2019ll quit fucking around with empty threats and file a lawsuit against Mike Johnson already.",
+      "handle": "paul.bsky.social",
+      "category": "Book",
+      "label": "Negative",
+      "score": 0.908,
+      "timestamp": "2025-10-15T02:57:51.274Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m37apczh3c2o"
+    },
+    {
+      "text": "A letter? They\u2019ll wipe their ass with your letters.\n\nGrow a spine please, file a lawsuit or STFU.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.905,
+      "timestamp": "2025-10-15T02:51:55.241Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m37aepiakk2o"
+    },
     {
       "text": "A letter?\n\nGrow a spine please.\n\nLawsuit or STFU.",
       "handle": "paul.bsky.social",
