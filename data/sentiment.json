@@ -1,9 +1,36 @@
 {
-  "timestamp": "2025-10-15T14:30:43.278107Z",
+  "timestamp": "2025-10-15T16:45:48.868917Z",
   "positive": 44,
-  "neutral": 62,
-  "negative": 84,
+  "neutral": 64,
+  "negative": 85,
   "posts": [
+    {
+      "text": "If you are in Georgia (the state), you need to watch this video.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Neutral",
+      "score": 0.756,
+      "timestamp": "2025-10-15T16:43:26.681Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m3aotlo4xc2b"
+    },
+    {
+      "text": "Idealism vs. Reality.\n\nHopefully it is the beginning of an impeachment and criminal conviction.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.583,
+      "timestamp": "2025-10-15T16:40:34.075Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m3aooh2mfs2b"
+    },
+    {
+      "text": "Well, here's something i wasn't expecting today. Janus got their original lineup back together and dropped a new track.\n\nwww.youtube.com/watch?v=MaI4...",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Neutral",
+      "score": 0.527,
+      "timestamp": "2025-10-15T16:39:31.677Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m3aomlkeuc2b"
+    },
     {
       "text": "\"\"\"\nOpenAI claim they need at least $1 trillion for infrastructure despite projected revenues of only $13 billion this year.\n\n\u201cA.I. investment fits that pattern,\u201d the authors noted when describing how bubbles form when investment becomes \u201cpersistently detached\u201d from potential profits.\n\"\"\"",
       "handle": "paul.bsky.social",
