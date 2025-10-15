@@ -1,9 +1,18 @@
 {
-  "timestamp": "2025-10-15T19:15:32.749982Z",
+  "timestamp": "2025-10-15T19:31:13.390127Z",
   "positive": 45,
   "neutral": 65,
-  "negative": 86,
+  "negative": 87,
   "posts": [
+    {
+      "text": "Everything costs 5x more on average.... except your labor.\n\nCharge accordingly!",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.799,
+      "timestamp": "2025-10-15T19:15:52.143Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m3axe5hi6s23"
+    },
     {
       "text": "Adjusted for inflation, everything today costs roughly 5x more than it did in the 1950's.\n\nHousing, food, clothing, everything.\n\nAnd back then, single-income households were the norm! Are we great again yet?",
       "handle": "paul.bsky.social",
