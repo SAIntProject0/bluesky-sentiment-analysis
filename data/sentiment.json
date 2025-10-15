@@ -1,9 +1,18 @@
 {
-  "timestamp": "2025-10-15T03:15:38.946306Z",
+  "timestamp": "2025-10-15T10:45:41.809773Z",
   "positive": 44,
   "neutral": 61,
-  "negative": 82,
+  "negative": 83,
   "posts": [
+    {
+      "text": "There's a shocking disparity between high- and low-income earners' views of economy - CNBC\n\napple.news/A9ym7qenXTQi...",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.544,
+      "timestamp": "2025-10-15T10:44:11.736Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m3a2r7bfy22r"
+    },
     {
       "text": "Cool. Did it work?\n\n\ud83d\ude44",
       "handle": "paul.bsky.social",
