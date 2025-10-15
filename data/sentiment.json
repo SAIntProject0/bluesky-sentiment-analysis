@@ -1,9 +1,18 @@
 {
-  "timestamp": "2025-10-15T10:45:41.809773Z",
+  "timestamp": "2025-10-15T14:15:36.118808Z",
   "positive": 44,
   "neutral": 61,
-  "negative": 83,
+  "negative": 84,
   "posts": [
+    {
+      "text": "The speaker is a proven bad-faith actor, why engage?\n\nShe should file a lawsuit or STFU. Anything short of that is a pointless exercise in futility.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.923,
+      "timestamp": "2025-10-15T14:15:05.611Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m3agkcwzrs2f"
+    },
     {
       "text": "There's a shocking disparity between high- and low-income earners' views of economy - CNBC\n\napple.news/A9ym7qenXTQi...",
       "handle": "paul.bsky.social",
