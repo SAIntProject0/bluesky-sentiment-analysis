@@ -1,9 +1,18 @@
 {
-  "timestamp": "2025-10-15T14:15:36.118808Z",
+  "timestamp": "2025-10-15T14:30:43.278107Z",
   "positive": 44,
-  "neutral": 61,
+  "neutral": 62,
   "negative": 84,
   "posts": [
+    {
+      "text": "\"\"\"\nOpenAI claim they need at least $1 trillion for infrastructure despite projected revenues of only $13 billion this year.\n\n\u201cA.I. investment fits that pattern,\u201d the authors noted when describing how bubbles form when investment becomes \u201cpersistently detached\u201d from potential profits.\n\"\"\"",
+      "handle": "paul.bsky.social",
+      "category": "Book",
+      "label": "Neutral",
+      "score": 0.648,
+      "timestamp": "2025-10-15T14:17:39.775Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m3agovxqks2b"
+    },
     {
       "text": "The speaker is a proven bad-faith actor, why engage?\n\nShe should file a lawsuit or STFU. Anything short of that is a pointless exercise in futility.",
       "handle": "paul.bsky.social",
