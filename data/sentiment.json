@@ -1,9 +1,18 @@
 {
-  "timestamp": "2025-10-14T22:30:40.153486Z",
+  "timestamp": "2025-10-15T02:45:39.601656Z",
   "positive": 43,
   "neutral": 60,
-  "negative": 78,
+  "negative": 79,
   "posts": [
+    {
+      "text": "A letter?\n\nGrow a spine please.\n\nLawsuit or STFU.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.753,
+      "timestamp": "2025-10-15T02:36:01.371Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m377ibsewk2o"
+    },
     {
       "text": "Hopefully it's because he knows something we don't.",
       "handle": "paul.bsky.social",
