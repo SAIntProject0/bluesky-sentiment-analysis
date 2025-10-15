@@ -1,9 +1,27 @@
 {
-  "timestamp": "2025-10-15T21:45:36.041192Z",
-  "positive": 45,
+  "timestamp": "2025-10-15T22:00:42.884790Z",
+  "positive": 47,
   "neutral": 65,
   "negative": 90,
   "posts": [
+    {
+      "text": "starter packs are good too!",
+      "handle": "bsky.app",
+      "category": "Other",
+      "label": "Positive",
+      "score": 0.977,
+      "timestamp": "2025-10-15T21:49:51.886Z",
+      "uri": "at://did:plc:z72i7hdynmk6r22z27h6tvur/app.bsky.feed.post/3m3b7xj5zqc2r"
+    },
+    {
+      "text": "welcome! there\u2019s a ton of great art feeds to help you get started \u2728\n\nhere\u2019s one:",
+      "handle": "bsky.app",
+      "category": "Other",
+      "label": "Positive",
+      "score": 0.981,
+      "timestamp": "2025-10-15T21:48:12.784Z",
+      "uri": "at://did:plc:z72i7hdynmk6r22z27h6tvur/app.bsky.feed.post/3m3b7uknogs2r"
+    },
     {
       "text": "\u201cU.S. Drops Out of Top 10 in Passport Power. Here\u2019s Why\u201d - TIME\n\nSpoiler:  It\u2019s because Trump sucks.",
       "handle": "paul.bsky.social",
