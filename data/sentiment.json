@@ -1,9 +1,36 @@
 {
-  "timestamp": "2025-10-15T03:00:37.164418Z",
-  "positive": 43,
-  "neutral": 60,
-  "negative": 81,
+  "timestamp": "2025-10-15T03:15:38.946306Z",
+  "positive": 44,
+  "neutral": 61,
+  "negative": 82,
   "posts": [
+    {
+      "text": "Cool. Did it work?\n\n\ud83d\ude44",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Positive",
+      "score": 0.546,
+      "timestamp": "2025-10-15T03:10:05.783Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m37bf7iuzk2o"
+    },
+    {
+      "text": "Is DHS/ICE getting paid during the shutdown?!",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Neutral",
+      "score": 0.664,
+      "timestamp": "2025-10-15T03:06:36.616Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m37b6xzne22o"
+    },
+    {
+      "text": "Threaten in one hand and shit in the other and see which one fills up first.\n\nLawsuits or STFU.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.83,
+      "timestamp": "2025-10-15T03:00:44.691Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m37auifpmk2o"
+    },
     {
       "text": "There\u2019s nobody there\u2026 so you\u2019re marching upon an empty office?\n\nWhy are you wasting your time?!\n\nYou should be marching into the AZ attorney general\u2019s office so they\u2019ll quit fucking around with empty threats and file a lawsuit against Mike Johnson already.",
       "handle": "paul.bsky.social",
