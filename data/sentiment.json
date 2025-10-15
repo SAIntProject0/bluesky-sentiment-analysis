@@ -1,9 +1,27 @@
 {
-  "timestamp": "2025-10-15T16:45:48.868917Z",
-  "positive": 44,
-  "neutral": 64,
+  "timestamp": "2025-10-15T18:45:38.724607Z",
+  "positive": 45,
+  "neutral": 65,
   "negative": 85,
   "posts": [
+    {
+      "text": "Marc Maron is the George Carlin of today.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Neutral",
+      "score": 0.68,
+      "timestamp": "2025-10-15T18:35:39.204Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m3av4acfhs23"
+    },
+    {
+      "text": "We'll no doubt have to trot out this evergreen article once again.\n\ntheonion.com/supreme-cour...",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Positive",
+      "score": 0.492,
+      "timestamp": "2025-10-15T18:34:45.115Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m3av2mps5223"
+    },
     {
       "text": "If you are in Georgia (the state), you need to watch this video.",
       "handle": "paul.bsky.social",
