@@ -1,9 +1,18 @@
 {
-  "timestamp": "2025-10-15T22:00:42.884790Z",
+  "timestamp": "2025-10-16T12:15:39.276123Z",
   "positive": 47,
   "neutral": 65,
-  "negative": 90,
+  "negative": 91,
   "posts": [
+    {
+      "text": "Where was he when Mitch McConnell refused to hold a vote on Merrick Garland\u2019s Supreme Court confirmation?\n\nBecause that was the exact same thing.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.562,
+      "timestamp": "2025-10-16T12:11:37.912Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m3cq4hupqs2g"
+    },
     {
       "text": "starter packs are good too!",
       "handle": "bsky.app",
