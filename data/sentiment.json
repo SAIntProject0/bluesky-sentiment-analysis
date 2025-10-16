@@ -1,9 +1,18 @@
 {
-  "timestamp": "2025-10-16T12:45:39.631187Z",
+  "timestamp": "2025-10-16T13:45:48.838878Z",
   "positive": 47,
   "neutral": 65,
-  "negative": 95,
+  "negative": 96,
   "posts": [
+    {
+      "text": "The TV talk show format never went away. They just became shittier, and we call them Podcasts now.",
+      "handle": "paul.bsky.social",
+      "category": "Movie/TV",
+      "label": "Negative",
+      "score": 0.863,
+      "timestamp": "2025-10-16T13:30:47.478Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m3cujzfzqs2r"
+    },
     {
       "text": "Less people were involved in the operation that took out fucking Osama bin Laden.",
       "handle": "paul.bsky.social",
