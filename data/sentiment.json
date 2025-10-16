@@ -1,9 +1,18 @@
 {
-  "timestamp": "2025-10-16T12:31:17.681800Z",
+  "timestamp": "2025-10-16T12:45:39.631187Z",
   "positive": 47,
   "neutral": 65,
-  "negative": 94,
+  "negative": 95,
   "posts": [
+    {
+      "text": "Less people were involved in the operation that took out fucking Osama bin Laden.",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Negative",
+      "score": 0.863,
+      "timestamp": "2025-10-16T12:42:54.762Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m3crufro2k2r"
+    },
     {
       "text": "Oh it goes back further to the 1950\u2019s and the John Birch Society. The Republicans have been complete and utter assholes for 75+ years.\n\nTHREE GENERATIONS OF SHITBAGS!",
       "handle": "paul.bsky.social",
