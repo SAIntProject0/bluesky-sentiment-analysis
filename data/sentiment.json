@@ -1,9 +1,18 @@
 {
-  "timestamp": "2025-10-16T13:45:48.838878Z",
+  "timestamp": "2025-10-16T17:30:51.930350Z",
   "positive": 47,
-  "neutral": 65,
+  "neutral": 66,
   "negative": 96,
   "posts": [
+    {
+      "text": "And they\u2019ll still be wearing masks?",
+      "handle": "paul.bsky.social",
+      "category": "Other",
+      "label": "Neutral",
+      "score": 0.771,
+      "timestamp": "2025-10-16T17:18:06.854Z",
+      "uri": "at://did:plc:kqiwi5amvyhaanx4mvfrf6ft/app.bsky.feed.post/3m3dbaiwowc2g"
+    },
     {
       "text": "The TV talk show format never went away. They just became shittier, and we call them Podcasts now.",
       "handle": "paul.bsky.social",
